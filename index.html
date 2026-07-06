@@ -516,6 +516,14 @@ textarea{min-height:72px;}
   background:linear-gradient(135deg,#C9B26A,#DCC684 50%,#C9B26A);
   box-shadow:0 10px 24px -12px rgba(20,26,58,.5);transition:transform .12s;}
 .foyer-main-btn:active{transform:scale(.99);}
+/* v2-F7 현관 보조 입구 (연대기 정리 · 조명하기) — 진입 구조 정리 전용 */
+.foyer-sub-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:9px;}
+.foyer-sub-btn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;
+  background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px 14px;min-height:56px;cursor:pointer;}
+.foyer-sub-btn b{font-size:13.5px;color:var(--wd-navy);}
+.foyer-sub-btn span{font-size:11px;line-height:1.5;color:var(--s500);}
+.foyer-sub-btn:hover{border-color:var(--gold);}
+.foyer-sub-btn:active{transform:scale(.99);}
 /* [5] 진행도 칩 가볍게 */
 .foyer-chip{padding:7px 9px;font-size:11.5px;border-radius:10px;}
 .foyer-chip span{font-size:10.5px;}
@@ -892,6 +900,134 @@ textarea{min-height:72px;}
   #screen-chron .wrap{padding-bottom:calc(60px + env(safe-area-inset-bottom));}
 }
 
+/* ============================================================
+   v2-F 입력 화면 다이어트 (추가 전용 CSS)
+   - 세부 입력 영역 기본 접힘 (details/summary)
+   - 기존 .fsec / 필드 스타일 미변경
+   ============================================================ */
+.form-ease-note{margin:2px 0 12px;padding:12px 14px;border:1px solid var(--gold-soft);
+  border-radius:12px;background:linear-gradient(180deg,#FFFDF8,#FAF6EC);
+  font-size:13px;line-height:1.8;color:var(--s600);}
+.fold-sec{margin-bottom:12px;}
+.fold-sec>summary{list-style:none;cursor:pointer;background:#fff;border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;font-size:14px;font-weight:700;color:var(--s600);
+  display:flex;align-items:center;gap:9px;user-select:none;}
+.fold-sec>summary::-webkit-details-marker{display:none;}
+.fold-sec>summary::before{content:"▸";color:var(--gold);font-size:13px;transition:transform .15s ease;}
+.fold-sec[open]>summary::before{transform:rotate(90deg);}
+.fold-sec[open]>summary{margin-bottom:8px;color:var(--wd-navy);border-color:var(--gold-soft);}
+.fold-sec>.fsec{margin-bottom:0;}
+.fold-sub{margin-top:6px;}
+.fold-sub>summary{list-style:none;cursor:pointer;padding:9px 2px;font-size:12.5px;font-weight:700;
+  color:var(--s500);display:flex;align-items:center;gap:7px;user-select:none;}
+.fold-sub>summary::-webkit-details-marker{display:none;}
+.fold-sub>summary::before{content:"▸";color:var(--gold);font-size:11px;transition:transform .15s ease;}
+.fold-sub[open]>summary::before{transform:rotate(90deg);}
+.fold-sec .txt-close,.fold-sub .txt-close{display:none;}
+.fold-sec[open] .txt-open,.fold-sub[open] .txt-open{display:none;}
+.fold-sec[open] .txt-close,.fold-sub[open] .txt-close{display:inline;}
+.fold-guide{margin:14px 2px 10px;font-size:12.5px;line-height:1.8;color:var(--s500);}
+.fold-tip{margin:-2px 0 10px;font-size:11.5px;line-height:1.7;color:var(--s400);}
+
+/* ============================================================
+   v2-F4 외부 AI 정리 프롬프트 · 정리본 가져오기 (추가 전용)
+   - 표시/복사/빈칸 채움 전용 · 저장 구조 무관
+   - fold-sub가 아닌 fold-tool: lp/chFoldAutoOpen 자동 열림 대상에서 제외
+   ============================================================ */
+.fold-tool{margin-top:14px;border-top:1px dashed var(--border);padding-top:8px;}
+.fold-tool>summary{list-style:none;cursor:pointer;padding:9px 2px;font-size:12.5px;font-weight:700;color:var(--s500);display:flex;align-items:center;gap:7px;user-select:none;}
+.fold-tool>summary::-webkit-details-marker{display:none;}
+.fold-tool>summary::before{content:"▸";color:var(--gold);font-size:11px;transition:transform .15s ease;}
+.fold-tool[open]>summary::before{transform:rotate(90deg);}
+.fold-tool .txt-close{display:none;}
+.fold-tool[open] .txt-open{display:none;}
+.fold-tool[open] .txt-close{display:inline;}
+.pr-note{font-size:11.5px;line-height:1.75;color:var(--s500);margin:4px 0 10px;}
+.pr-ta{width:100%;box-sizing:border-box;font-size:11.5px;line-height:1.6;border:1px solid var(--border);border-radius:10px;padding:10px;background:#fafafa;color:var(--s600);resize:vertical;}
+.pr-ro{height:130px;}
+.pr-paste{min-height:90px;background:#fff;}
+.pr-btns{display:flex;gap:8px;margin:8px 0 12px;flex-wrap:wrap;}
+.pr-btn{font-size:12px;font-weight:700;border:1px solid var(--border);background:#fff;color:var(--s600);border-radius:10px;padding:9px 14px;cursor:pointer;min-height:38px;}
+.pr-btn:hover{border-color:var(--gold);color:var(--wd-navy);}
+.pr-msg{font-size:11.5px;line-height:1.7;color:var(--s500);margin:2px 0 6px;white-space:pre-line;}
+/* v2-F6 AI 영역 톤 통일 + 프롬프트 원문 접힘 (표시 전용) */
+.pr-aistub{margin-top:14px;}
+.pr-aistub .ai-stub-btn.pr-wait{opacity:.55;cursor:default;}
+.pr-aistub .ai-stub-btn.pr-wait:hover{transform:none;border-color:var(--border);color:var(--s500);}
+.pr-src{margin:2px 0 10px;}
+.pr-src>summary{list-style:none;cursor:pointer;padding:7px 2px;font-size:12px;font-weight:700;color:var(--s500);display:flex;align-items:center;gap:6px;user-select:none;}
+.pr-src>summary::-webkit-details-marker{display:none;}
+.pr-src>summary::before{content:"\25B8";color:var(--gold);font-size:11px;transition:transform .15s ease;}
+.pr-src[open]>summary::before{transform:rotate(90deg);}
+.pr-src .txt-close{display:none;}
+.pr-src[open] .txt-open{display:none;}
+.pr-src[open] .txt-close{display:inline;}
+.pr-fixed{font-size:11px;line-height:1.6;color:var(--s500);margin:-4px 0 8px;}
+/* v2-F8 AI 안내 박스 + 외부 AI 접힘 = 한 흐름 (사건기록과 같은 결) */
+.pr-aistub + .fold-tool{margin-top:4px;border-top:0;padding-top:0;}
+.pr-aistub{margin:14px 0 0;}
+/* v2-F9 상세보기 접힘 (표시 전용) */
+.dfold{margin-top:12px;}
+.dfold>summary{list-style:none;cursor:pointer;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 16px;font-size:13.5px;font-weight:800;color:var(--s600);display:flex;align-items:center;gap:8px;user-select:none;}
+.dfold>summary::-webkit-details-marker{display:none;}
+.dfold>summary::before{content:"\25B8";color:var(--gold);font-size:12px;transition:transform .15s ease;}
+.dfold[open]>summary::before{transform:rotate(90deg);}
+.dfold>summary .mk{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--gold);}
+.dfold>.dsec{margin-top:8px;}
+/* v2-F10 지난 기록 요약판 + 목록 접힘 (표시 전용) */
+.rec-summary{margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 15px;}
+.rsum-t{font-size:12.5px;font-weight:800;color:var(--s600);margin-bottom:8px;}
+.rsum-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.rsum-chip{font-size:11.5px;font-weight:700;color:var(--s600);background:var(--s50,#f6f6f9);border:1px solid var(--border);border-radius:999px;padding:4px 10px;}
+.rsum-chip.all{background:var(--gold-soft,#f3ead2);color:var(--wd-navy);border-color:var(--gold);}
+.rsum-chip.zero{opacity:.45;font-weight:500;}
+.rsum-note{margin-top:9px;font-size:11.5px;line-height:1.7;color:var(--s500);}
+.pieces-summary{margin-top:12px;}
+.rec-fold{margin-top:12px;}
+.rec-fold>summary{list-style:none;cursor:pointer;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 16px;font-size:13.5px;font-weight:800;color:var(--s600);display:flex;align-items:center;gap:8px;user-select:none;}
+.rec-fold>summary::-webkit-details-marker{display:none;}
+.rec-fold>summary::before{content:"\25B8";color:var(--gold);font-size:12px;transition:transform .15s ease;}
+.rec-fold[open]>summary::before{transform:rotate(90deg);}
+.rec-fold .txt-close{display:none;}
+.rec-fold[open] .txt-open{display:none;}
+.rec-fold[open] .txt-close{display:inline;}
+
+/* ============================================================
+   v2-F2 본문/AI 영역 슬림화 (추가 전용 CSS · 기존 규칙 오버라이드)
+   - AI는 선택 기능 느낌 · 저장 흐름이 우선으로 보이게
+   - 로직/DOM id 미변경, 밀도만 조정
+   ============================================================ */
+#f_content{field-sizing:content;max-height:60vh;}   /* 입력량에 따라 자동 세로 확장(지원 브라우저) · 수동 resize도 유지 */
+.ai-stub{margin-top:8px;padding:9px 11px;background:transparent;}
+.ai-note{padding:7px 10px;line-height:1.65;margin-bottom:7px;}
+.ai-note-h{margin-bottom:2px;}
+.ai-stub-btns{gap:6px;margin-bottom:6px;}
+.ai-stub-btn{flex:1;min-width:120px;padding:7px 10px;font-size:12px;font-weight:600;
+  background:#fff;transform:none;}
+.ai-stub-btn:hover{transform:none;}
+#btnAiNoah{background:#fff;box-shadow:none;border:1px solid var(--vi200);color:var(--s600);}
+#btnAiNoah:hover{border-color:var(--gold);color:var(--wd-navy);transform:none;}
+.ai-btn-desc{font-size:11px;line-height:1.6;margin:2px 0 4px;}
+.ai-status{margin:7px 0;padding:8px 10px;}
+.ai-status-h{margin-bottom:5px;}
+.ai-steps{flex-direction:row;flex-wrap:wrap;gap:4px 12px;}
+.ai-steps li{font-size:11px;}
+.ai-steps li .mk{width:13px;height:13px;font-size:8px;}
+.ai-stub-note{font-size:11px;line-height:1.6;}
+
+/* ============================================================
+   v2-F3 모바일 뷰포트 보정 (추가 전용 CSS)
+   - field-sizing 미지원 브라우저(iOS Safari 등)에서 본문창이
+     64px 고정되는 문제 → 모바일에서만 기본 높이 상향
+   - max-height를 dvh 지원 시 동적 뷰포트 기준으로 보정
+     (키보드/주소창으로 화면이 줄어도 본문창이 넘치지 않게)
+   ============================================================ */
+@media (max-width:520px){
+  #f_content{min-height:110px !important;} /* 인라인 64px을 모바일에서만 상향 · id 미변경 */
+  /* v2-F4 마감: 여러 줄 입력 시 마지막 줄이 저장바에 가리지 않게 하단 여백 확대 */
+  #screen-edit .form{padding-bottom:calc(176px + env(safe-area-inset-bottom));}
+}
+#f_content{max-height:50dvh;} /* dvh 미지원 브라우저는 기존 60vh 유지 */
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -916,27 +1052,7 @@ function sbConfigured(){
 </script>
 </head>
 <body>
-<!-- ===== 연결진단 열기 버튼 (진단 사본 전용 · 운영본에 없음) ===== -->
-<button type="button" id="btnDiagOpen" style="position:fixed;top:10px;right:10px;z-index:210;
-  font:11px monospace;background:#2a355e;color:#EAD9A8;border:1px solid #4a568c;
-  border-radius:7px;padding:5px 10px;box-shadow:0 2px 8px rgba(0,0,0,.25);">연결진단</button>
 
-<!-- ===== 진단 모달 (진단 사본 전용 · 운영본에 없음) ===== -->
-<div id="diagPanel" style="display:none;position:fixed;inset:0;z-index:99999;
-  background:rgba(10,14,30,.55);align-items:center;justify-content:center;padding:16px;">
-  <div style="width:100%;max-width:480px;max-height:80vh;overflow:auto;
-    background:#101528;color:#cfe3ff;font:11px/1.65 ui-monospace,Menlo,monospace;
-    padding:10px 12px;border-radius:10px;border:1px solid #35406b;">
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
-      <b style="color:#EAD9A8;">v2-E 진단 패널</b>
-      <button type="button" id="btnDiagPing" style="font:11px monospace;background:#2a355e;color:#EAD9A8;border:1px solid #4a568c;border-radius:7px;padding:3px 9px;">연결 진단 실행</button>
-      <button type="button" id="btnDiagToggle" style="font:11px monospace;background:none;color:#8fa0d0;border:1px solid #35406b;border-radius:7px;padding:3px 9px;margin-left:auto;">접기</button>
-      <button type="button" id="btnDiagClose" style="font:12px monospace;background:none;color:#ff9c8f;border:1px solid #35406b;border-radius:7px;padding:3px 9px;">닫기 ✕</button>
-    </div>
-    <div id="diagStatus"></div>
-    <div id="diagLast" style="margin-top:6px;color:#ffd9d0;"></div>
-  </div>
-</div>
 
 
 <!-- ============ 도입 화면 (인트로) ============ -->
@@ -980,7 +1096,7 @@ function sbConfigured(){
     <div class="hm-card">
       <div class="hm-card-t">오늘</div>
       <button type="button" data-room="foyer" data-loc="list">현관</button>
-      <button type="button" data-room="new" data-loc="edit">오늘 기록하기</button>
+      <button type="button" data-room="new" data-loc="edit">조각 남기기</button>
     </div>
     <div class="hm-card">
       <div class="hm-card-t">방</div>
@@ -1011,20 +1127,26 @@ function sbConfigured(){
   <div class="wrap">
     <div class="foyer" id="foyer">
       <div class="foyer-date" id="foyerDate"></div>
+      <div class="foyer-welcome" id="foyerWelcome">하루를 완성하지 않아도 됩니다.<br>오늘 떠오른 조각은 빈칸에 새로 남기세요.<br>저장하면 오늘 기록 안에 차곡차곡 이어 담깁니다.<br>연대기와 조명은 필요한 만큼 따로 보관할 수 있습니다.</div>
       <div class="foyer-status" id="foyerStatus"></div>
-      <button type="button" class="foyer-main-btn" data-room="new">오늘 기록하기</button>
-      <div class="foyer-rooms" id="foyerRooms"></div>
-      <div class="foyer-ask">오늘은 어디로 가실까요?</div>
-      <div class="room-cards">
-        <button type="button" class="room-card" data-room="sp_situation"><b>영의 방</b><span>말씀과 기도로 다시 해석하는 방</span></button>
-        <button type="button" class="room-card" data-room="mind_state"><b>혼의 방</b><span>마음, 기억, 반응을 회수하는 방</span></button>
-        <button type="button" class="room-card" data-room="body_state"><b>육의 방</b><span>몸, 돈, 현실을 점검하는 방</span></button>
-        <button type="button" class="room-card" data-room="fl_blocked"><b>흐름 점검</b><span>영·혼·육이 어디서 막혔는지 보는 방</span></button>
-        <button type="button" class="room-card" data-room="relation_lesson"><b>삶의 원석</b><span>깨달음과 씨앗을 보관하는 방</span></button>
-        <button type="button" class="room-card" data-room="chron"><b>연대기의 방</b><span>기억나는 조각을 순서 없이 모아, 나중에 삶의 흐름으로 맞추는 방</span></button>
-        <button type="button" class="room-card" data-room="light"><b>조명의 방</b><span>들은 이야기와 깨달음을 말씀의 빛으로 다시 비추는 방</span></button>
-        <button type="button" class="room-card" data-room="past"><b>지난 기록</b><span>예전 기록과 앨범을 꺼내보는 곳</span></button>
+      <button type="button" class="foyer-main-btn" data-room="new">조각 남기기</button>
+      <div class="foyer-sub-btns">
+        <button type="button" class="foyer-sub-btn" id="btnFoyerChron"><b>연대기 정리</b><span>지나온 기억을 시간 순서에 담아요</span></button>
+        <button type="button" class="foyer-sub-btn" id="btnFoyerLight"><b>조명하기</b><span>밖에서 들은 메시지와 깨달음을 담아요</span></button>
       </div>
+      <div class="foyer-rooms" id="foyerRooms"></div>
+      <details class="room-guide" id="roomShortcuts">
+        <summary>방 바로가기</summary>
+        <div class="foyer-ask" style="margin-top:10px;font-size:13px;">오늘은 어디로 가실까요?</div>
+        <div class="room-cards">
+          <button type="button" class="room-card" data-room="sp_situation"><b>영의 방</b><span>말씀과 기도로 다시 해석하는 방</span></button>
+          <button type="button" class="room-card" data-room="mind_state"><b>혼의 방</b><span>마음, 기억, 반응을 회수하는 방</span></button>
+          <button type="button" class="room-card" data-room="body_state"><b>육의 방</b><span>몸, 돈, 현실을 점검하는 방</span></button>
+          <button type="button" class="room-card" data-room="fl_blocked"><b>흐름 점검</b><span>영·혼·육이 어디서 막혔는지 보는 방</span></button>
+          <button type="button" class="room-card" data-room="relation_lesson"><b>삶의 원석</b><span>깨달음과 씨앗을 보관하는 방</span></button>
+          <button type="button" class="room-card" data-room="past"><b>지난 기록</b><span>예전 기록과 앨범을 꺼내보는 곳</span></button>
+        </div>
+      </details>
       <details class="room-guide" id="roomGuide">
         <summary>방 소개</summary>
         <div class="room-guide-body">
@@ -1041,12 +1163,28 @@ function sbConfigured(){
     <div class="hero-entry">
       <div class="he-q">오늘, 무엇을 남겨둘까요?</div>
       <div class="he-s">지금 정리하지 않아도 괜찮아요. 떠오른 마음을 그저 적어 두세요.</div>
-      <button class="he-btn" id="btnHeroNew">오늘 기록하기</button>
+      <button class="he-btn" id="btnHeroNew">조각 남기기</button>
       <div class="he-quick">
         <button id="btnHeroWord">말씀 기록하기</button>
         <button id="btnHeroOneline">한 문장 남기기</button>
       </div>
     </div>
+    <!-- v2-F10 지난 기록 요약판 (표시 전용 · 개수만) -->
+    <div class="rec-summary" id="recSummary"></div>
+
+    <!-- v2-F13 검색창·새 조각은 기본 표시 (필요할 때 바로 검색) -->
+    <div class="toolbar">
+      <div class="search">
+        <span class="ico"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.6"/><path d="m16.3 16.3 3.4 3.4"/></svg></span>
+        <input id="searchInput" type="text" placeholder="기억·말씀·사람·주제 검색" />
+      </div>
+      <button id="btnNew" class="btn-new">＋ 새 조각</button>
+    </div>
+
+    <!-- v2-F10 기록 목록 기본 접힘 (탭은 목록과 함께 접힘 안) -->
+    <details class="rec-fold" id="recListFold">
+      <summary><span class="txt-open">기록 목록 열기</span><span class="txt-close">기록 목록 접기</span></summary>
+
     <div class="tabs" id="tabs">
       <button class="tab on" data-tab="전체">전체</button>
       <button class="tab" data-tab="일반기록">일반기록</button>
@@ -1058,21 +1196,16 @@ function sbConfigured(){
       <button class="tab" data-tab="보류">보류</button>
     </div>
 
-    <div class="toolbar">
-      <div class="search">
-        <span class="ico"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.6"/><path d="m16.3 16.3 3.4 3.4"/></svg></span>
-        <input id="searchInput" type="text" placeholder="기억·말씀·사람·주제 검색" />
-      </div>
-      <button id="btnNew" class="btn-new">＋ 오늘 기록</button>
-    </div>
+    </details>
 
+    <!-- v2-F13 카드 리스트는 접힘 밖 — 검색어 또는 목록 열기 시에만 렌더 -->
     <div class="list" id="list"></div>
   </div>
 
   <nav class="bottom-nav" id="bottomNav">
     <button type="button" data-nav="foyer" class="cur"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10.5V19h11v-8.5"/></svg><span>현관</span></button>
     <button type="button" data-nav="rooms"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="1.2"/><path d="M14 11.6v1.2"/></svg><span>방</span></button>
-    <button type="button" data-nav="new" class="bn-center"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5l4 4"/><path d="M6 18l.5-2.6L16.6 5.3a1.9 1.9 0 0 1 2.7 2.7L9.2 18.1 6.6 18.6 6 18Z"/></svg><span>오늘 기록</span></button>
+    <button type="button" data-nav="new" class="bn-center"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5l4 4"/><path d="M6 18l.5-2.6L16.6 5.3a1.9 1.9 0 0 1 2.7 2.7L9.2 18.1 6.6 18.6 6 18Z"/></svg><span>조각 남기기</span></button>
     <button type="button" data-nav="album"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v15H7.5A2.5 2.5 0 0 0 5 20.5V5.5Z"/><path d="M19 18H7.5"/></svg><span>앨범</span></button>
     <button type="button" data-nav="search"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.6"/><path d="m16.3 16.3 3.4 3.4"/></svg><span>검색</span></button>
   </nav>
@@ -1105,40 +1238,124 @@ function sbConfigured(){
       <div class="lp-head">
         <div class="lp-head-l">
           <div class="lp-head-t"><span class="lp-mk">조</span>조명의 방</div>
-          <div class="lp-head-s">들은 이야기와 깨달음을 말씀의 빛으로 다시 비추는 방</div>
+          <div class="lp-head-s">밖에서 들어온 메시지를 담아두는 방</div>
         </div>
-        <button type="button" class="btn-new" id="btnLpNew">+ 새 조각</button>
+        <button type="button" class="btn-new" id="btnLpNew">+ 원석 조각</button>
       </div>
+      <!-- v2-F11 조명의 방 요약판 (표시 전용) -->
+      <div class="rec-summary pieces-summary" id="lpSummary"></div>
       <div class="tabs" id="lpTypeChips"></div>
-      <div class="lp-filter"><input type="text" id="lpFilterText" placeholder="조각 내용 필터 (보호 조각 제외)" /></div>
+      <div class="lp-filter"><input type="text" id="lpFilterText" placeholder="조각 내용 검색 (보호 조각 제외)" /></div>
       <div class="lp-sync" id="lpSyncNote"></div>
+      <details class="rec-fold" id="lpAllFold">
+        <summary><span class="txt-open">전체 목록 열기</span><span class="txt-close">전체 목록 접기</span></summary>
+      </details>
       <div class="lp-list" id="lpList"></div>
     </div>
 
     <!-- 패널 2: 입력/수정 -->
     <div id="lpPanelForm" style="display:none;">
       <div class="fsec">
-        <div class="fsec-h"><span class="mk">조</span><h3 id="lpFormTitle">새 조각</h3></div>
+        <div class="fsec-h"><span class="mk">조</span><h3 id="lpFormTitle">새 원석 조각</h3></div>
+        <div class="fold-guide">전부 채우지 않아도 됩니다.<br>오늘은 마음에 남은 한 문장만 남겨도 충분합니다.<br>비추는 일은 나중에 돌아와서 천천히 해도 됩니다.</div>
         <div class="fld"><label>누구에게서 · 어디서</label><input type="text" id="lp_source" placeholder="예: 김미경 강연, 김형석 교수님 책, 오은영 박사님 영상, 지인과의 대화" /></div>
         <div class="lp-hint">공인이 아닌 지인의 이야기는 실명 대신 표현을 고르고, 필요하면 보호 등급을 함께 지정합니다.</div>
         <div class="fld"><label>형태</label><select id="lp_source_type">
           <option>강연</option><option>책</option><option>영상</option><option>설교</option><option>대화</option><option>기타</option>
         </select></div>
-        <div class="fld"><label>남은 문장</label><textarea id="lp_quote" placeholder="마음에 남은 문장을 짧게 — 긴 원문 통째 옮기지 않기"></textarea></div>
+        <div class="fld"><label>마음에 남은 한 문장</label><textarea id="lp_quote" placeholder="마음에 남은 문장을 짧게 — 긴 원문 통째 옮기지 않기"></textarea></div>
         <div class="lp-hint">강연·책의 문장은 개인 기록으로는 짧게 남기고, 콘텐츠로 흘려보낼 때는 인용·출처를 따로 점검합니다.</div>
-        <div class="fld"><label>내 삶과 연결되는 지점</label><textarea id="lp_my_link" placeholder="이 이야기가 내 기억·상황의 어디와 만나는지"></textarea></div>
-        <div class="fld"><label>기도하며 다시 본 의미</label><textarea id="lp_prayer_view" placeholder="하나님 앞에서 기도할 때 이 이야기가 어떻게 다시 보였는지"></textarea></div>
-        <div class="fld"><label>비춰진 말씀 구절</label><input type="text" id="lp_word_ref" placeholder="예: 잠언 16:3" /></div>
-        <div class="fld"><label>말씀으로 비춰진 깨달음</label><textarea id="lp_word_light" placeholder="말씀의 빛으로 이 이야기를 다시 해석한 내용"></textarea></div>
-        <div class="fld"><label>흘려보내고 싶은 방향</label><textarea id="lp_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정 — 누구에게 어떤 형태로"></textarea></div>
-        <div class="fld"><label class="lp-seed-toggle"><input type="checkbox" id="lp_is_seed" /> 씨앗 후보로 심기</label>
-          <div id="lpSeedWrap" style="display:none;"></div></div>
-        <div class="row2">
-          <div class="fld"><label>들은 날짜</label><input type="date" id="lp_piece_date" /></div>
-          <div class="fld"><label>보호 등급</label><select id="lp_protect">
-            <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
-          </select></div>
+        <div class="ai-stub pr-aistub">
+          <div class="ai-note">
+            <div class="ai-note-h">AI 정리는 선택입니다</div>
+            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI 정리는 아직 준비 중이며, 지금은 외부 AI 정리본을 가져오는 방식입니다.</div>
+          </div>
+          <div class="ai-stub-btns">
+            <button type="button" class="ai-stub-btn pr-wait" disabled>앱 안 AI 정리 준비 중</button>
+            <button type="button" class="ai-stub-btn" id="btnPrOpenLp">외부 AI 정리본 가져오기</button>
+          </div>
+          <div class="ai-stub-note">AI는 빈 칸만 채웁니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다. 정리된 초안은 내가 확인한 뒤 저장합니다.</div>
         </div>
+        <details class="fold-tool" id="prToolLp">
+          <summary><span class="txt-open">외부 AI 정리 프롬프트 · 정리본 가져오기</span><span class="txt-close">외부 AI 정리 프롬프트 · 정리본 가져오기 접기</span></summary>
+          <div class="pr-note">아래 프롬프트를 복사해 노아, 나온, 하라, 제미나이 등 외부 AI 비서에게 붙여넣으세요.<br>정리된 초안에서 내 기록으로 남기고 싶은 문장만 골라 확인 후 저장합니다.<br>앱 안 AI를 쓰지 않고, 외부 AI에게 정리받은 초안을 가져오는 방식입니다. 자동 저장되지 않습니다.</div>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrCopyLp">프롬프트 복사</button></div>
+          <details class="pr-src">
+            <summary><span class="txt-open">프롬프트 원문 보기</span><span class="txt-close">프롬프트 원문 접기</span></summary>
+            <textarea class="pr-ta pr-ro" id="prPromptLp" readonly>아래 [원문]은 내가 밖에서 들은 이야기(강연·책·영상·설교·대화)와 그때의 깨달음을 적은 것입니다.
+이 원문만 근거로, 아래 출력 항목에 옮겨 담을 초안을 정리해 주세요.
+각 항목은 초안입니다. 정리 결과를 그대로 저장할 필요는 없으며, 내가 남기고 싶은 문장만 확인 후 저장합니다.
+
+[출력 형식 규칙 — 반드시 지키세요]
+1. 아래 [출력 항목]의 항목명은 절대 바꾸지 마세요. 글자, 띄어쓰기, 기호까지 그대로 쓰세요. 앱이 이 항목명을 기준으로 칸을 나눕니다.
+2. 각 항목은 아래 형식으로만 출력하세요.
+[항목명]
+내용
+3. 항목명 줄은 내용이 없어도 항상 출력하고, 내용 자리만 비워 두세요.
+4. 각 항목에 해당 내용이 없으면 비워 두세요. 없는 내용을 채우기 위해 추측하지 마세요.
+5. 항목 순서를 바꾸지 말고, [출력 항목]에 없는 항목을 만들지 마세요.
+6. 항목명 아래 괄호로 적힌 안내문은 설명일 뿐이니 출력에 포함하지 마세요.
+7. 출력 결과에 1. 2. 3. 같은 번호 매기기나 불릿 목록을 붙이지 마세요. 각 항목은 [항목명]과 내용만 출력하세요.
+8. 출력 앞뒤에 인사말, 설명, 요약, 덧붙임을 넣지 마세요. 대괄호 항목들만 출력하세요.
+
+[기록 톤 규칙 — 반드시 지키세요]
+1. 모든 문장은 내가 쓴 기록처럼 1인칭으로 쓰세요. (예: "나는 이렇게 느꼈다", "이 말이 내 삶의 어느 부분과 닿았다")
+2. 다음 표현은 절대 쓰지 마세요: AI/노아/나온/하라/사라언니/ChatGPT/Gemini/Claude가 알려줌·정리함·분석함·판단함·말함, "제가 보기에는", "분석 결과", "판단 결과", "추천드립니다", "당신은 ~입니다", "사용자는 ~입니다"
+3. 단정하지 마세요. 확실하지 않으면 "아직 확실하지 않지만, 이렇게 느껴진다" 또는 "더 확인이 필요하다"로 쓰세요.
+4. "반드시 ~해야 한다" 같은 실행 압박 문장을 쓰지 마세요.
+5. 원문에 있는 내용만 사용하세요. 없는 사실·감정·해석을 만들지 마세요.
+
+[이 방에서 특히 지킬 것]
+1. 성경 구절을 임의로 만들거나 추측해서 채우지 마세요. 원문에 구절이 없으면 [비춰진 말씀 구절]은 비워 두세요.
+2. 하나님의 뜻이 무엇인지 단정하지 마세요. "하나님의 뜻은 이것이다", "이것이 사명의 확정이다"를 쓰지 마세요.
+3. 강연자·저자의 말을 왜곡하거나 과장하지 마세요.
+4. 영적 해석을 강요하지 마세요.
+
+[출력 항목]
+[누구에게서 · 어디서]
+[형태]
+(다음 여섯 가지 중 하나만 그대로 적기: 강연 / 책 / 영상 / 설교 / 대화 / 기타)
+[마음에 남은 한 문장]
+(짧게 — 긴 원문을 통째로 옮기지 않기)
+[내 삶 어디와 닿았나요]
+[기도하며 다시 보면]
+[비춰진 말씀 구절]
+(원문에 있는 경우만)
+[조용히 다시 본 의미]
+[나중에 흘려보낼 수 있다면]
+(간증 / 강연 / 책 / 콘텐츠 / 아직 미정)
+
+[원문]
+(여기에 붙여넣기)</textarea>
+          </details>
+          <div class="pr-note">외부 AI가 정리한 초안을 아래에 붙여넣고 [칸 나누기]를 눌러 주세요. 빈칸에만 채워집니다.</div>
+          <textarea class="pr-ta pr-paste" id="prPasteLp" placeholder="외부 AI 정리본 붙여넣기"></textarea>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrSplitLp">칸 나누기</button></div>
+          <div class="pr-fixed">※ 자동 저장되지 않으며, 빈칸만 채워집니다.</div>
+          <div class="pr-msg" id="prMsgLp"></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">더 비춰보기</span><span class="txt-close">더 비춰보기 접기</span></summary>
+          <div class="fld"><label>내 삶 어디와 닿았나요</label><textarea id="lp_my_link" placeholder="이 이야기가 내 기억·상황의 어디와 만나는지"></textarea></div>
+          <div class="fld"><label>기도하며 다시 보면</label><textarea id="lp_prayer_view" placeholder="하나님 앞에서 기도할 때 이 이야기가 어떻게 다시 보였는지"></textarea></div>
+          <div class="fld"><label>비춰진 말씀 구절</label><input type="text" id="lp_word_ref" placeholder="예: 잠언 16:3" /></div>
+          <div class="fld"><label>조용히 다시 본 의미</label><textarea id="lp_word_light" placeholder="말씀의 빛으로 이 이야기를 다시 해석한 내용"></textarea></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">나중에 흘려보내기</span><span class="txt-close">나중에 흘려보내기 접기</span></summary>
+          <div class="fld"><label>나중에 흘려보낼 수 있다면</label><textarea id="lp_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정 — 누구에게 어떤 형태로"></textarea></div>
+          <div class="fld"><label class="lp-seed-toggle"><input type="checkbox" id="lp_is_seed" /> 씨앗 후보로 심기</label>
+            <div id="lpSeedWrap" style="display:none;"></div></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">날짜 · 보호</span><span class="txt-close">날짜 · 보호 접기</span></summary>
+          <div class="row2">
+            <div class="fld"><label>들은 날짜</label><input type="date" id="lp_piece_date" /></div>
+            <div class="fld"><label>보호 등급</label><select id="lp_protect">
+              <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
+            </select></div>
+          </div>
+        </details>
         <div class="lp-actions">
           <button type="button" class="btn-save" id="btnLpSave">조각 저장</button>
           <button type="button" class="btn-ghost" id="btnLpCancel">목록으로</button>
@@ -1176,37 +1393,125 @@ function sbConfigured(){
       <div class="ch-head">
         <div class="ch-head-l">
           <div class="ch-head-t"><span class="ch-mk">연</span>연대기의 방</div>
-          <div class="ch-head-s">기억나는 조각을 순서 없이 모아, 나중에 삶의 흐름으로 맞추는 방</div>
+          <div class="ch-head-s">내가 걸어온 시간을 안전하게 담아두는 방</div>
         </div>
-        <button type="button" class="btn-new" id="btnChNew">+ 새 조각</button>
+        <button type="button" class="btn-new" id="btnChNew">+ 연대기 조각</button>
       </div>
-      <div class="ch-guide">아픔을 억지로 파내는 방이 아닙니다. 기억나는 조각만, 기억나는 만큼만 담아두세요. 순서는 나중에 맞춥니다.</div>
-      <div class="ch-filter"><input type="text" id="chFilterText" placeholder="조각 내용 필터 (보호 조각 제외)" /></div>
+      <div class="ch-guide">아픔을 억지로 파내는 방이 아닙니다. 기억나는 조각만, 기억나는 만큼만 담아두세요. 순서는 나중에 맞춥니다.<br>누가 옳고 그른지 판단하는 방이 아니라, 내가 반복하지 않을 패턴과 지켜야 할 선을 찾는 방입니다.</div>
+      <!-- v2-F11 연대기의 방 요약판 (표시 전용) -->
+      <div class="rec-summary pieces-summary" id="chSummary"></div>
+      <div class="ch-filter"><input type="text" id="chFilterText" placeholder="조각 내용 검색 (보호 조각 제외)" /></div>
       <div class="ch-sync" id="chSyncNote"></div>
+      <details class="rec-fold" id="chAllFold">
+        <summary><span class="txt-open">전체 목록 열기</span><span class="txt-close">전체 목록 접기</span></summary>
+      </details>
       <div class="ch-list" id="chList"></div>
     </div>
 
     <!-- 패널 2: 입력/수정 -->
     <div id="chPanelForm" style="display:none;">
       <div class="fsec">
-        <div class="fsec-h"><span class="mk">연</span><h3 id="chFormTitle">새 조각</h3></div>
-        <div class="fld"><label>언제쯤의 기억인가</label><input type="text" id="ch_period" placeholder="예: 일곱 살 무렵, 첫 직장 시절, 결혼 전, 아이 낳고 얼마 안 됐을 때" /></div>
-        <div class="fld"><label>기억 장면</label><textarea id="ch_scene" placeholder="그때 있었던 일을 기억나는 대로, 짧아도 괜찮게"></textarea></div>
-        <div class="fld"><label>함께 있던 사람</label><input type="text" id="ch_people" placeholder="실명 대신 표현도 괜찮음 (예: 그때 담임 선생님)" /></div>
-        <div class="ch-hint">공인이 아닌 사람은 실명 대신 표현을 고르고, 필요하면 보호 등급을 함께 지정합니다.</div>
-        <div class="fld"><label>그때의 마음</label><textarea id="ch_feeling" placeholder="그때 느꼈던 감정, 아픔, 기쁨을 그대로"></textarea></div>
-        <div class="fld"><label>지금의 나에게 남긴 것</label><textarea id="ch_effect" placeholder="이 기억이 지금의 내 패턴·선택에 어떻게 남아 있는지"></textarea></div>
-        <div class="fld"><label>지나며 받은 은혜·회복</label><textarea id="ch_grace" placeholder="그 시절을 지나오게 하신 손길이 있었다면 (선택)"></textarea></div>
-        <div class="fld"><label>하나님 앞에서 다시 본 의미</label><textarea id="ch_god_view" placeholder="지금 시점에서 하나님 앞에 이 기억을 놓고 다시 보면"></textarea></div>
-        <div class="fld"><label>흘려보내고 싶은 방향</label><textarea id="ch_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정"></textarea></div>
-        <div class="fld"><label class="ch-seed-toggle"><input type="checkbox" id="ch_is_seed" /> 씨앗 후보로 심기</label>
-          <div id="chSeedWrap" style="display:none;"></div></div>
-        <div class="row2">
-          <div class="fld"><label>정확한 날짜 (아는 경우만)</label><input type="date" id="ch_piece_date" /></div>
-          <div class="fld"><label>보호 등급</label><select id="ch_protect">
-            <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
-          </select></div>
+        <div class="fsec-h"><span class="mk">연</span><h3 id="chFormTitle">새 기억 조각</h3></div>
+        <div class="fld"><label>언제쯤의 기억인가요</label><input type="text" id="ch_period" placeholder="예: 일곱 살 무렵, 첫 직장 시절, 결혼 전, 아이 낳고 얼마 안 됐을 때" /></div>
+        <div class="fld"><label>떠오른 장면</label><textarea id="ch_scene" placeholder="그때 있었던 일을 기억나는 대로, 짧아도 괜찮게"></textarea></div>
+        <div class="fld"><label>그때 내 마음</label><textarea id="ch_feeling" placeholder="그때 느꼈던 감정, 아픔, 기쁨을 그대로"></textarea></div>
+        <div class="ai-stub pr-aistub">
+          <div class="ai-note">
+            <div class="ai-note-h">AI 정리는 선택입니다</div>
+            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI 정리는 아직 준비 중이며, 지금은 외부 AI 정리본을 가져오는 방식입니다.</div>
+          </div>
+          <div class="ai-stub-btns">
+            <button type="button" class="ai-stub-btn pr-wait" disabled>앱 안 AI 정리 준비 중</button>
+            <button type="button" class="ai-stub-btn" id="btnPrOpenCh">외부 AI 정리본 가져오기</button>
+          </div>
+          <div class="ai-stub-note">AI는 빈 칸만 채웁니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다. 정리된 초안은 내가 확인한 뒤 저장합니다.</div>
         </div>
+        <details class="fold-tool" id="prToolCh">
+          <summary><span class="txt-open">외부 AI 정리 프롬프트 · 정리본 가져오기</span><span class="txt-close">외부 AI 정리 프롬프트 · 정리본 가져오기 접기</span></summary>
+          <div class="pr-note">아래 프롬프트를 복사해 노아, 나온, 하라, 제미나이 등 외부 AI 비서에게 붙여넣으세요.<br>정리된 초안에서 내 기록으로 남기고 싶은 문장만 골라 확인 후 저장합니다.<br>앱 안 AI를 쓰지 않고, 외부 AI에게 정리받은 초안을 가져오는 방식입니다. 자동 저장되지 않습니다.</div>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrCopyCh">프롬프트 복사</button></div>
+          <details class="pr-src">
+            <summary><span class="txt-open">프롬프트 원문 보기</span><span class="txt-close">프롬프트 원문 접기</span></summary>
+            <textarea class="pr-ta pr-ro" id="prPromptCh" readonly>아래 [원문]은 내가 지나온 시간의 기억 조각입니다.
+사람을 판단하기 위해서가 아니라, 사건과 패턴과 지켜야 할 선을 정리해 두기 위한 기록입니다.
+이 원문만 근거로 초안을 정리해 주세요.
+각 항목은 초안입니다. 최종 판단과 보관 여부는 내가 직접 결정하고, 확인한 뒤 직접 저장합니다.
+
+[출력 형식 규칙 — 반드시 지키세요]
+1. 아래 [출력 항목]의 항목명은 절대 바꾸지 마세요. 글자, 띄어쓰기, 기호까지 그대로 쓰세요. 앱이 이 항목명을 기준으로 칸을 나눕니다.
+2. 각 항목은 아래 형식으로만 출력하세요.
+[항목명]
+내용
+3. 항목명 줄은 내용이 없어도 항상 출력하고, 내용 자리만 비워 두세요.
+4. 각 항목에 해당 내용이 없으면 비워 두세요. 없는 내용을 채우기 위해 추측하지 마세요.
+5. 항목 순서를 바꾸지 말고, [출력 항목]에 없는 항목을 만들지 마세요.
+6. 항목명 아래 괄호로 적힌 안내문은 설명일 뿐이니 출력에 포함하지 마세요.
+7. 출력 결과에 1. 2. 3. 같은 번호 매기기나 불릿 목록을 붙이지 마세요. 각 항목은 [항목명]과 내용만 출력하세요.
+8. 출력 앞뒤에 인사말, 설명, 요약, 덧붙임을 넣지 마세요. 대괄호 항목들만 출력하세요.
+
+[기록 톤 규칙 — 반드시 지키세요]
+1. 모든 문장은 내가 쓴 기록처럼 1인칭으로 쓰세요. (예: "나는 이렇게 느꼈다", "이 말이 내 삶의 어느 부분과 닿았다")
+2. 다음 표현은 절대 쓰지 마세요: AI/노아/나온/하라/사라언니/ChatGPT/Gemini/Claude가 알려줌·정리함·분석함·판단함·말함, "제가 보기에는", "분석 결과", "판단 결과", "추천드립니다", "당신은 ~입니다", "사용자는 ~입니다"
+3. 단정하지 마세요. 확실하지 않으면 "아직 확실하지 않지만, 이렇게 느껴진다" 또는 "더 확인이 필요하다"로 쓰세요.
+4. "반드시 ~해야 한다" 같은 실행 압박 문장을 쓰지 마세요.
+5. 원문에 있는 내용만 사용하세요. 없는 사실·감정·해석을 만들지 마세요.
+
+[이 방에서 특히 지킬 것]
+1. 등장하는 사람의 심리·의도·성품을 단정하지 마세요. "이 사람은 이런 사람이다"를 쓰지 마세요.
+2. 누가 가해자이고 피해자인지, 누가 옳고 그른지 가리지 마세요.
+3. 과도한 위로, 감정을 부풀리는 표현, 아픔을 파고드는 질문을 넣지 마세요.
+4. 정확하지 않은 기억은 "정확하지 않지만 이렇게 기억난다"로 쓰세요.
+5. 실명이 부담스러운 사람은 관계 표현으로 바꾸세요. (예: "그때 담임 선생님")
+
+[출력 항목]
+[언제쯤의 기억인가요]
+[떠오른 장면]
+[그때 내 마음]
+[함께 있던 사람 또는 관계]
+(실명 대신 표현 가능)
+[지금 내 삶에 미친 영향]
+[지나며 받은 은혜·회복]
+(원문에 있다면)
+[지금 하나님 앞에 놓아본다면]
+(원문에 그런 내용이 있다면, 단정 없이)
+[나중에 흘려보낼 수 있다면]
+[보호 등급 후보]
+(다음 다섯 가지 중 하나만 그대로 적기: 공개 가능 / 부분 보호 / 강한 보호 / 절대 비공개 / 추후 판단.
+보호 등급 후보는 참고용입니다. 최종 보호 등급은 내가 직접 결정합니다.
+확실하지 않으면 [보호 등급 후보]는 추후 판단으로 둡니다.)
+
+[원문]
+(여기에 붙여넣기)</textarea>
+          </details>
+          <div class="pr-note">외부 AI가 정리한 초안을 아래에 붙여넣고 [칸 나누기]를 눌러 주세요. 빈칸에만 채워집니다.</div>
+          <textarea class="pr-ta pr-paste" id="prPasteCh" placeholder="외부 AI 정리본 붙여넣기"></textarea>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrSplitCh">칸 나누기</button></div>
+          <div class="pr-fixed">※ 자동 저장되지 않으며, 빈칸만 채워집니다.</div>
+          <div class="pr-msg" id="prMsgCh"></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">관계 · 영향</span><span class="txt-close">관계 · 영향 접기</span></summary>
+          <div class="fld"><label>함께 있던 사람 또는 관계</label><input type="text" id="ch_people" placeholder="실명 대신 표현도 괜찮음 (예: 그때 담임 선생님)" /></div>
+          <div class="ch-hint">공인이 아닌 사람은 실명 대신 표현을 고르고, 필요하면 보호 등급을 함께 지정합니다.</div>
+          <div class="fld"><label>지금 내 삶에 미친 영향</label><textarea id="ch_effect" placeholder="이 기억이 지금의 내 패턴·선택에 어떻게 남아 있는지"></textarea></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">다시 바라보기</span><span class="txt-close">다시 바라보기 접기</span></summary>
+          <div class="fld"><label>지나며 받은 은혜·회복</label><textarea id="ch_grace" placeholder="그 시절을 지나오게 하신 손길이 있었다면 (선택)"></textarea></div>
+          <div class="fld"><label>지금 하나님 앞에 놓아본다면</label><textarea id="ch_god_view" placeholder="지금 시점에서 하나님 앞에 이 기억을 놓고 다시 보면"></textarea></div>
+        </details>
+        <details class="fold-sub">
+          <summary><span class="txt-open">나중에 흘려보내기 · 보호</span><span class="txt-close">나중에 흘려보내기 · 보호 접기</span></summary>
+          <div class="fld"><label>나중에 흘려보낼 수 있다면</label><textarea id="ch_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정"></textarea></div>
+          <div class="fld"><label class="ch-seed-toggle"><input type="checkbox" id="ch_is_seed" /> 씨앗 후보로 심기</label>
+            <div id="chSeedWrap" style="display:none;"></div></div>
+          <div class="row2">
+            <div class="fld"><label>정확한 날짜 (아는 경우만)</label><input type="date" id="ch_piece_date" /></div>
+            <div class="fld"><label>보호 등급</label><select id="ch_protect">
+              <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
+            </select></div>
+          </div>
+        </details>
         <div class="ch-actions">
           <button type="button" class="btn-save" id="btnChSave">조각 저장</button>
           <button type="button" class="btn-ghost" id="btnChCancel">목록으로</button>
@@ -1232,8 +1537,8 @@ function sbConfigured(){
 
 <div id="screen-edit" class="scr">
   <div class="subbar">
-    <div class="l"><button class="bk" id="btnEditCancel">← 취소</button></div>
-    <div class="ttl" id="editTitle">새 기록</div>
+    <div class="l"><button class="bk" id="btnEditCancel">← 돌아가기</button></div>
+    <div class="ttl" id="editTitle">새 조각</div>
     <div class="r"></div>
   </div>
   <div class="room-pills" id="roomPills">
@@ -1245,7 +1550,25 @@ function sbConfigured(){
   </div>
 
   <div class="form">
+    <!-- v2-F12 새 조각 안내 (새 조각 진입 시에만 표시) -->
+    <div class="form-ease-note" id="newPieceNote" style="display:none;">오늘 기록이 이미 있어도 새 조각은 빈칸에서 남길 수 있습니다.<br>저장하면 오늘 기록에 이어 담깁니다.</div>
+    <div class="form-ease-note">본문만 남겨도 저장할 수 있습니다.<br>필요하면 아래 방들을 열어 천천히 정리하세요.</div>
     <div class="fsec">
+      <div class="row2">
+        <div class="fld">
+          <label>날짜</label>
+          <input type="date" id="f_date" />
+        </div>
+        <div class="fld">
+          <label>상태</label>
+          <select id="f_status">
+            <option>일반기록</option><option>치유문장</option><option>말씀묵상</option>
+            <option>원석보호</option><option>보호기록</option><option>회수완료</option><option>보류</option>
+          </select>
+        </div>
+      </div>
+      <details class="fold-sub">
+        <summary><span class="txt-open">기본 정보 더 열기</span><span class="txt-close">기본 정보 접기</span></summary>
       <div class="row2">
         <div class="fld">
           <label>기록 출처</label>
@@ -1273,19 +1596,6 @@ function sbConfigured(){
       </div>
       <div class="row2">
         <div class="fld">
-          <label>날짜</label>
-          <input type="date" id="f_date" />
-        </div>
-        <div class="fld">
-          <label>상태</label>
-          <select id="f_status">
-            <option>일반기록</option><option>치유문장</option><option>말씀묵상</option>
-            <option>원석보호</option><option>보호기록</option><option>회수완료</option><option>보류</option>
-          </select>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="fld">
           <label>기록 분류</label>
           <select id="f_category">
             <option value="">(선택 안 함)</option>
@@ -1301,20 +1611,19 @@ function sbConfigured(){
           <input type="text" id="f_topic" placeholder="예) 오늘 떠오른 마음, 관계에서 배운 것, 하나님 앞에 남길 문장" />
         </div>
       </div>
+      </details>
     </div>
 
     <div class="fsec">
-      <div class="fsec-h"><span class="mk">글</span><h3>기록 본문 · 검색 키워드</h3></div>
+      <div class="fsec-h"><span class="mk">글</span><h3>기록 본문</h3></div>
       <div class="fld">
-        <label>사건 요약 / 기록 본문 <span style="font-size:11px;color:var(--s400);font-weight:400;">노아 정리방·삶 운영방에서 회수한 내용을 그대로 붙여넣기</span></label>
-        <textarea id="f_content" style="min-height:160px;" placeholder="정리본 또는 원문을 그대로 붙여넣기 — 각색하지 말고 원문 그대로"></textarea>
-        <div class="field-hint">처음에는 본문만 붙여넣어도 됩니다. 나머지 칸은 노아/나온 버튼으로 정리할 수 있습니다.</div>
+        <label>사건 요약 / 기록 본문</label>
+        <textarea id="f_content" style="min-height:64px;" placeholder="한 줄만 남겨도 괜찮습니다. 지금 떠오른 조각을 그대로 적어두세요."></textarea>
+        <div class="field-hint">본문만 남겨도 저장할 수 있습니다. AI 정리는 선택입니다.</div>
         <div class="ai-stub">
           <div class="ai-note">
-            <div class="ai-note-h">AI 정리 안내</div>
-            <div>이 화면에는 API 키를 입력하지 않습니다.</div>
-            <div>본문을 붙여넣고 버튼을 누르면 빈칸만 자동으로 정리됩니다.</div>
-            <div>설정 정보는 관리자 안내에서 확인할 수 있습니다.</div>
+            <div class="ai-note-h">AI 정리는 선택입니다</div>
+            <div>먼저 저장해도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.</div>
           </div>
           <div class="ai-stub-btns">
             <button type="button" class="ai-stub-btn" id="btnAiNoah">노아에게 정리시키기</button>
@@ -1334,7 +1643,7 @@ function sbConfigured(){
             </ol>
             <div class="ai-status-msg" id="aiStatusMsg">버튼을 누르면 AI 연결 상태를 확인합니다.</div>
           </div>
-          <div class="ai-stub-note">본문을 붙여넣고 버튼을 누르면, AI가 빈 칸만 자동으로 채워줍니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다.</div>
+          <div class="ai-stub-note">AI는 빈 칸만 채웁니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다.</div>
           <div class="ai-stub-box" id="aiStubBox"></div>
           <details class="admin-guide">
             <summary>관리자 설정 안내</summary>
@@ -1346,15 +1655,108 @@ function sbConfigured(){
             </div>
           </details>
         </div>
+        <details class="fold-tool" id="prToolMain">
+          <summary><span class="txt-open">외부 AI 정리 프롬프트 · 정리본 가져오기</span><span class="txt-close">외부 AI 정리 프롬프트 · 정리본 가져오기 접기</span></summary>
+          <div class="pr-note">아래 프롬프트를 복사해 노아, 나온, 하라, 제미나이 등 외부 AI 비서에게 붙여넣으세요.<br>정리된 초안에서 내 기록으로 남기고 싶은 문장만 골라 확인 후 저장합니다.<br>앱 안 AI를 쓰지 않고, 외부 AI에게 정리받은 초안을 가져오는 방식입니다. 자동 저장되지 않습니다.</div>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrCopyMain">프롬프트 복사</button></div>
+          <details class="pr-src">
+            <summary><span class="txt-open">프롬프트 원문 보기</span><span class="txt-close">프롬프트 원문 접기</span></summary>
+            <textarea class="pr-ta pr-ro" id="prPromptMain" readonly>아래 [원문]은 내가 오늘 겪은 일과 마음을 적은 기록입니다.
+이 원문만 근거로, 아래 출력 항목에 옮겨 담을 초안을 정리해 주세요.
+각 항목은 초안입니다. 정리 결과를 그대로 저장할 필요는 없으며, 내가 남기고 싶은 문장만 확인 후 저장합니다.
+
+[출력 형식 규칙 — 반드시 지키세요]
+1. 아래 [출력 항목]의 항목명은 절대 바꾸지 마세요. 글자, 띄어쓰기, 기호까지 그대로 쓰세요. 앱이 이 항목명을 기준으로 칸을 나눕니다.
+2. 각 항목은 아래 형식으로만 출력하세요.
+[항목명]
+내용
+3. 항목명 줄은 내용이 없어도 항상 출력하고, 내용 자리만 비워 두세요.
+4. 각 항목에 해당 내용이 없으면 비워 두세요. 없는 내용을 채우기 위해 추측하지 마세요.
+5. 항목 순서를 바꾸지 말고, [출력 항목]에 없는 항목을 만들지 마세요.
+6. 항목명 아래 괄호로 적힌 안내문은 설명일 뿐이니 출력에 포함하지 마세요.
+7. 출력 결과에 1. 2. 3. 같은 번호 매기기나 불릿 목록을 붙이지 마세요. 각 항목은 [항목명]과 내용만 출력하세요.
+8. 출력 앞뒤에 인사말, 설명, 요약, 덧붙임을 넣지 마세요. 대괄호 항목들만 출력하세요.
+
+[기록 톤 규칙 — 반드시 지키세요]
+1. 모든 문장은 내가 쓴 기록처럼 1인칭으로 쓰세요. (예: "나는 이렇게 느꼈다", "이 말이 내 삶의 어느 부분과 닿았다")
+2. 다음 표현은 절대 쓰지 마세요: AI/노아/나온/하라/사라언니/ChatGPT/Gemini/Claude가 알려줌·정리함·분석함·판단함·말함, "제가 보기에는", "분석 결과", "판단 결과", "추천드립니다", "당신은 ~입니다", "사용자는 ~입니다"
+3. 단정하지 마세요. 확실하지 않으면 "아직 확실하지 않지만, 이렇게 느껴진다" 또는 "더 확인이 필요하다"로 쓰세요.
+4. "반드시 ~해야 한다" 같은 실행 압박 문장을 쓰지 마세요.
+5. 원문에 있는 내용만 사용하세요. 없는 사실·감정·해석을 만들지 마세요.
+
+[이 기록에서 특히 지킬 것]
+1. 성경 구절과 말씀 본문은 원문에 실제로 적혀 있는 경우에만 옮기세요. 임의로 만들거나 추측해서 채우지 마세요.
+2. 하나님의 뜻이 무엇인지 단정하지 마세요.
+3. "오늘 할 작은 행동"은 원문에 내가 이미 적어둔 행동이 있을 때만 정리하세요. 새로운 할 일을 만들어 압박하지 마세요.
+4. 분류·출처·묶음·보호에 관한 판단은 하지 마세요. 보호, 공개 범위, 분류, 출처, 묶음 판단은 내가 직접 정합니다.
+
+[출력 항목]
+[사건 요약 / 기록 본문]
+[검색 키워드]
+(쉼표로 3~6개)
+[관련 관계]
+[연결 태그]
+[오늘의 한 문장]
+[오늘 마음 상태]
+[오늘 떠오른 과거의 기억]
+[반복하고 싶지 않은 나의 패턴]
+(원문에 보일 때만, 단정 없이)
+[그때의 나는 무엇이 아팠나]
+[그때의 나에게 해주고 싶은 말]
+[치유의 한 문장]
+[오늘 관계에서 배운 기준]
+[가족과 관련해 남은 마음]
+[내가 한 반응]
+[오늘 마음에 붙든 말씀 구절]
+(원문에 있는 경우만)
+[말씀 본문]
+(원문에 있는 경우만)
+[그 상황에서 올라온 마음]
+[하나님께 올려드릴 기도]
+[나에게 주시는 기준]
+(단정 없이, 원문에 근거가 있을 때만)
+[아직 더 기도해야 할 것]
+[하나님 앞에 남길 문장]
+[하나님 앞에서 다시 해석한 의미]
+[오늘 만난 상황]
+[사람에게 상처 없이 전할 문장]
+[오늘의 분별]
+[사명과 순종]
+(원문에 근거가 있을 때만, 확정 표현 금지)
+[몸 상태와 생활 리듬]
+[돈 때문에 올라온 마음]
+[오늘 할 작은 행동]
+[이번 달 꼭 확인할 것]
+[지금 막힌 곳]
+[서로 영향을 주는 것]
+[가장 먼저 회복할 한 가지]
+
+[원문]
+(여기에 붙여넣기)</textarea>
+          </details>
+          <div class="pr-note">외부 AI가 정리한 초안을 아래에 붙여넣고 [칸 나누기]를 눌러 주세요. 빈칸에만 채워집니다.</div>
+          <textarea class="pr-ta pr-paste" id="prPasteMain" placeholder="외부 AI 정리본 붙여넣기"></textarea>
+          <div class="pr-btns"><button type="button" class="pr-btn" id="btnPrSplitMain">칸 나누기</button></div>
+          <div class="pr-fixed">※ 자동 저장되지 않으며, 빈칸만 채워집니다.</div>
+          <div class="pr-msg" id="prMsgMain"></div>
+        </details>
       </div>
+      <details class="fold-sub">
+        <summary><span class="txt-open">검색 키워드 열기</span><span class="txt-close">검색 키워드 접기</span></summary>
       <div class="fld">
         <label>검색 키워드 <span style="font-size:11px;color:var(--s400);font-weight:400;">나중에 찾을 수 있는 키워드 · 쉼표 또는 띄어쓰기로 구분</span></label>
         <textarea id="f_keywords" style="min-height:54px;" placeholder="예) 마음, 관계, 말씀, 회복, 일, 사명, 보호할 원석 ..."></textarea>
       </div>
+      </details>
     </div>
 
+    <div class="fold-guide">아래 방들은 필요할 때만 열어도 됩니다.<br>오늘은 본문 한 줄만 남겨도 충분합니다.</div>
+
+    <details class="fold-sec">
+      <summary><span class="txt-open">연결 · 보호 열기</span><span class="txt-close">연결 · 보호 접기</span></summary>
     <div class="fsec">
       <div class="fsec-h"><span class="mk">연결</span><h3>연결 · 보호</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div class="fld">
         <label>관련 관계 <span style="font-size:11px;color:var(--s400);font-weight:400;">나, 하나님, 가족, 관계, 일, 공동체 등</span></label>
         <input type="text" id="f_relation" placeholder="예) 나, 하나님, 가족, 관계" />
@@ -1378,9 +1780,13 @@ function sbConfigured(){
         <input type="text" id="f_tags" placeholder="예) #하나님앞의진실 #증명하지않음 #말씀회수" />
       </div>
     </div>
+    </details>
 
+    <details class="fold-sec">
+      <summary><span class="txt-open">영의 방 열기</span><span class="txt-close">영의 방 접기</span></summary>
     <div class="fsec word">
       <div class="fsec-h"><span class="mk">영</span><h3>영의 방 · 말씀 연결 흐름</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div style="font-size:11.5px;line-height:1.7;color:#8a8a97;margin:2px 0 8px;">상황 → 마음 → 말씀 → 해석 → 기준 → 전할 말 → 기도의 흐름으로 정리합니다. 사람 실명이나 민감한 관계 내용이 들어가면 "연결 · 보호"에서 보호 등급을 함께 지정해 주세요.</div>
       <div class="fld"><label><span class="no">2</span>오늘 만난 상황</label><input type="text" id="sp_situation" placeholder="오늘 마음에 남은 상황을 한 줄로 적어주세요. 예: 어르신의 말, 문병, 돈 걱정, 관계 대화" /></div>
       <div class="fld"><label><span class="no">3</span>그 상황에서 올라온 마음</label><textarea id="heart_before_word"></textarea></div>
@@ -1396,9 +1802,13 @@ function sbConfigured(){
       <div class="fld"><label><span class="no">12</span>오늘의 분별</label><textarea id="sp_discern" placeholder="오늘 하나님 앞에서 분별이 필요한 일과, 지금 드는 판단"></textarea></div>
       <div class="fld"><label><span class="no">13</span>사명과 순종</label><textarea id="sp_mission" placeholder="오늘 사명과 연결된 일, 순종할 한 걸음"></textarea></div>
     </div>
+    </details>
 
+    <details class="fold-sec">
+      <summary><span class="txt-open">혼의 방 열기</span><span class="txt-close">혼의 방 접기</span></summary>
     <div class="fsec recall">
       <div class="fsec-h"><span class="mk">혼</span><h3>혼의 방 · 기억 회수</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div class="fld"><label><span class="no">14</span>오늘 마음 상태</label><textarea id="mind_state"></textarea></div>
       <div class="fld"><label><span class="no">15</span>오늘 떠오른 과거의 기억</label><textarea id="past_memory"></textarea></div>
       <div class="fld"><label><span class="no">16</span>반복하고 싶지 않은 나의 패턴</label><textarea id="pattern"></textarea></div>
@@ -1406,25 +1816,37 @@ function sbConfigured(){
       <div class="fld"><label><span class="no">18</span>지금의 내가 그때의 나에게 해주고 싶은 말</label><textarea id="to_past_me"></textarea></div>
       <div class="fld"><label><span class="no">19</span>내가 한 반응</label><textarea id="so_reaction" placeholder="오늘 그 상황에서 내가 실제로 한 말과 반응 — 잘한 것도, 아쉬운 것도 그대로"></textarea></div>
     </div>
+    </details>
 
+    <details class="fold-sec">
+      <summary><span class="txt-open">육의 방 열기</span><span class="txt-close">육의 방 접기</span></summary>
     <div class="fsec">
       <div class="fsec-h"><span class="mk">육</span><h3>육의 방 · 현실 점검</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div class="fld"><label><span class="no">20</span>몸 상태와 생활 리듬</label><textarea id="body_state" placeholder="오늘 몸 컨디션, 수면, 식사, 생활 리듬"></textarea></div>
       <div class="fld"><label><span class="no">21</span>돈 때문에 올라온 마음</label><textarea id="ph_money_heart" placeholder="돈 생각을 할 때 올라오는 마음을 솔직하게"></textarea></div>
       <div class="fld"><label><span class="no">22</span>오늘 할 작은 행동</label><textarea id="ph_small_action" placeholder="오늘 현실에서 할 수 있는 작은 행동 딱 하나"></textarea></div>
       <div class="fld"><label><span class="no">23</span>이번 달 꼭 확인할 것</label><textarea id="ph_month_check" placeholder="이번 달 확인할 결제·정리·연락"></textarea></div>
     </div>
+    </details>
 
+    <details class="fold-sec">
+      <summary><span class="txt-open">흐름 점검 열기</span><span class="txt-close">흐름 점검 접기</span></summary>
     <div class="fsec">
       <div class="fsec-h"><span class="mk">흐름</span><h3>흐름 점검</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div style="font-size:11.5px;line-height:1.7;color:#8a8a97;margin:2px 0 8px;">영·혼·육은 따로 있지 않습니다. 오늘 서로 어떻게 연결되어 있는지만 가볍게 봅니다.</div>
       <div class="fld"><label><span class="no">24</span>지금 막힌 곳</label><textarea id="fl_blocked" placeholder="지금 영·혼·육 중 어디가 막혀 있는지"></textarea></div>
       <div class="fld"><label><span class="no">25</span>서로 영향을 주는 것</label><textarea id="fl_influence" placeholder="무엇이 무엇에 영향을 주고 있는지 (예: 돈 걱정 → 마음 → 기도)"></textarea></div>
       <div class="fld"><label><span class="no">26</span>가장 먼저 회복할 한 가지</label><textarea id="fl_first_recover" placeholder="오늘 가장 먼저 회복할 한 가지"></textarea></div>
     </div>
+    </details>
 
+    <details class="fold-sec">
+      <summary><span class="txt-open">삶의 원석 열기</span><span class="txt-close">삶의 원석 접기</span></summary>
     <div class="fsec seed">
       <div class="fsec-h"><span class="mk">셋</span><h3>삶의 원석 정리</h3></div>
+      <div class="fold-tip">이 방은 필요할 때만 적어도 됩니다. 비워두어도 저장할 수 있습니다.</div>
       <div class="fld"><label><span class="no">27</span>오늘 관계에서 배운 기준</label><textarea id="relation_lesson"></textarea></div>
       <div class="fld"><label><span class="no">28</span>가족과 관련해 남은 마음</label><textarea id="family_note"></textarea></div>
       <div class="fld"><label><span class="no">29</span>하나님 앞에 남길 문장</label><textarea id="before_god"></textarea></div>
@@ -1449,6 +1871,7 @@ function sbConfigured(){
       </div>
       <div class="fld"><label><span class="no">32</span>오늘의 한 문장</label><input type="text" id="one_line" placeholder="오늘을 한 문장으로" /></div>
     </div>
+    </details>
   </div>
 
   <div class="savebar">
@@ -1519,8 +1942,24 @@ function loadStore(){try{return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'
 function saveStore(o){try{localStorage.setItem(STORE_KEY,JSON.stringify(o));return true;}catch(e){return false;}}
 function entriesArray(){const s=loadStore();return Object.keys(s).map(date=>Object.assign({date},s[date])).sort((a,b)=>b.date.localeCompare(a.date));}
 
+/* v2-F10 지난 기록 요약판 (표시 전용 · loadStore 읽기만 · 저장 무관) */
+function renderRecSummary(){
+  var el=$('recSummary'); if(!el) return;
+  var arr=entriesArray();
+  var order=['일반기록','치유문장','말씀묵상','원석보호','보호기록','회수완료','보류'];
+  var cnt={}; order.forEach(function(s){cnt[s]=0;});
+  arr.forEach(function(e){ var s=e.status||'일반기록'; if(cnt[s]==null)cnt[s]=0; cnt[s]++; });
+  var chips='<span class="rsum-chip all">전체 기록 '+arr.length+'개</span>'+
+    order.map(function(s){ return '<span class="rsum-chip'+(cnt[s]?'':' zero')+'">'+s+' '+cnt[s]+'개</span>'; }).join('');
+  el.innerHTML='<div class="rsum-t">지난 기록 요약</div><div class="rsum-chips">'+chips+'</div>'+
+    '<div class="rsum-note">기록을 다시 열어볼 필요가 있을 때만 검색하거나 카테고리를 열어보세요.</div>';
+}
 function renderList(){
+  renderRecSummary();   /* v2-F10 요약판 동기 갱신 (1줄 추가) */
   const box=$('list');
+  /* v2-F13 열람 게이트: 검색어가 있거나 '기록 목록 열기'를 직접 연 경우에만 카드 표시 */
+  var _allOpen=($('recListFold')||{}).open===true;
+  if(!_search && !_allOpen){ box.innerHTML=''; return; }
   let arr=entriesArray();
   if(_tab!=='전체') arr=arr.filter(e=>(e.status||'일반기록')===_tab);
   if(_search){
@@ -1529,13 +1968,15 @@ function renderList(){
   }
   if(arr.length===0){
     box.innerHTML=`<div class="empty-list"><div class="big"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#C9B26A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c1.2 1.4 1.9 2.5 1.9 3.4A1.9 1.9 0 0 1 12 8.5a1.9 1.9 0 0 1-1.9-1.9c0-.9.7-2 1.9-3.4Z"/><rect x="9.6" y="11" width="4.8" height="8.6" rx="1.1"/><path d="M7.5 19.6h9"/></svg></div>
-      <div class="t">${(_search||_tab!=='전체')?'해당하는 기록이 없습니다':'아직 회수한 하루가 없습니다'}</div>
-      <div class="s">${(_search||_tab!=='전체')?'다른 탭이나 검색어를 시도해 보세요':'＋ 오늘 기록로 시작해 보세요'}</div></div>`;
+      <div class="t">${_search?'검색 결과가 없습니다':(_tab!=='전체'?'해당하는 기록이 없습니다':'아직 남긴 조각이 없습니다')}</div>
+      <div class="s">${(_search||_tab!=='전체')?'다른 탭이나 검색어를 시도해 보세요':'떠오른 조각 하나부터 남겨보세요'}</div></div>`;
     return;
   }
   box.innerHTML=arr.map(e=>{
     const st=e.status||'일반기록';
-    const oneLine=e.one_line?esc(e.one_line):'(오늘의 한 문장 없음)';
+    /* v2-F10 보호기록: 목록에서도 문장 미노출 — 상세에서만 확인 */
+    const oneLine=(st==='보호기록') ? '보호 기록 — 열어서 확인'
+      : (e.one_line?esc(e.one_line):'(오늘의 한 문장 없음)');
     const sc=e.scripture_ref?`<span class="card-scripture">말씀 ${esc(e.scripture_ref)}</span>`:'';
     const seed=e.is_seed?`<span class="card-seed">원석 · ${(e.seed_types&&e.seed_types.length)?esc(e.seed_types.join(', ')):'원석'}</span>`:'';
     const cat=e.category?`<span class="card-cat">${esc(e.category)}</span>`:'';
@@ -1581,18 +2022,22 @@ function openDetail(date){
         ${e.topic?`<span>· ${esc(e.topic)}</span>`:''}
         ${e.one_line?`<span>"${esc(e.one_line)}"</span>`:''}</div>
     </div>`;
-  SECTIONS.forEach(sec=>{
-    html+=`<div class="dsec ${sec.cls}"><div class="dsec-h"><span class="mk">${sec.mk}</span><h3>${sec.title}</h3></div>`;
+  /* v2-F9 상세보기 정리 (표시 전용): 값 있는 항목만 · 빈 섹션 숨김 · 본문은 기본 노출 · 나머지 기본 접힘 */
+  SECTIONS.forEach((sec,si)=>{
+    let rows='';
     sec.keys.forEach(k=>{
-      if(k==='one_line') return;
+      if(k==='one_line') return;                 /* 머리글에 이미 표시 */
       const v=e[k];
-      html+=`<div class="drow"><div class="k">${FIELD_LABEL[k]}</div><div class="v ${v?'':'empty'}">${v?esc(v):'기록 없음'}</div></div>`;
+      if(!v) return;                             /* 빈값 숨김 — '기록 없음' 반복 제거 */
+      rows+=`<div class="drow"><div class="k">${FIELD_LABEL[k]}</div><div class="v">${esc(v)}</div></div>`;
     });
-    if(sec.cls==='seed'){
-      html+=`<div class="drow"><div class="k">원석 여부 · 유형</div>${seedLine}</div>`;
-      html+=`<div class="drow"><div class="k">오늘의 한 문장</div><div class="v ${e.one_line?'':'empty'}">${e.one_line?esc(e.one_line):'기록 없음'}</div></div>`;
+    if(sec.cls==='seed' && e.is_seed){
+      rows+=`<div class="drow"><div class="k">원석 여부 · 유형</div>${seedLine}</div>`;
     }
-    html+=`</div>`;
+    if(!rows) return;                            /* 섹션 전체가 비면 섹션 숨김 */
+    const body=`<div class="dsec ${sec.cls}"><div class="dsec-h"><span class="mk">${sec.mk}</span><h3>${sec.title}</h3></div>${rows}</div>`;
+    if(si===0){ html+=body; }
+    else{ html+=`<details class="dfold"><summary><span class="mk">${sec.mk}</span>${sec.title}</summary>${body}</details>`; }
   });
   $('detailBody').innerHTML=html;
   $('btnDetailEdit').dataset.date=date;
@@ -1627,31 +2072,63 @@ function fillForm(o){
 function openEdit(date){
   if(date){
     _editingDate=date;
-    $('editTitle').textContent='기록 수정';
+    $('editTitle').textContent='조각 수정';
     $('f_date').value=date;
     fillForm(loadStore()[date]);
   }else{
     _editingDate=null;
-    $('editTitle').textContent='새 기록';
+    $('editTitle').textContent='새 조각';
     $('f_date').value=todayStr();
     fillForm(null);
   }
+  var pp=$('prPasteMain'); if(pp) pp.value='';     /* v2-F9 붙여넣기 상자 초기화 (표시 전용) */
+  var pm=$('prMsgMain'); if(pm) pm.textContent='';
+  var nn=$('newPieceNote'); if(nn) nn.style.display = date ? 'none' : '';   /* v2-F12 새 조각 안내 */
   show('screen-edit');
 }
 
+/* v2-F12 이어 담기 병합 (신규 · 날짜당 1레코드 구조 유지 · 기존 값 절대 삭제/덮어쓰기 없음)
+   - 텍스트 칸: 기존만 있으면 유지 / 새 값만 있으면 채움 / 둘 다 있으면 구분선으로 이어 붙임
+   - 보호(f_protect)·분류류(select): 기존 값 우선, 기존이 비어 있을 때만 새 값
+   - 씨앗: 합집합 */
+function mergeAppendEntry(oldE, newE){
+  const out=Object.assign({}, oldE);
+  const now=new Date();
+  const hm=('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
+  const SEP='\n\n--- 추가 조각 '+hm+' ---\n';
+  FIELD_IDS.forEach(function(k){
+    if(k==='f_protect') return;                              /* 보호는 아래 기존 우선 규칙 */
+    const nv=((newE[k]||'')+'').trim(); if(!nv) return;      /* 새 값 없으면 기존 유지 */
+    const ov=((oldE[k]||'')+'').trim();
+    out[k] = ov ? (ov + SEP + nv) : nv;
+  });
+  ['f_protect','status','category','topic','source','bundle'].forEach(function(k){
+    const ov=((oldE[k]||'')+'').trim(), nv=((newE[k]||'')+'').trim();
+    if(k==='status'){ out.status=(ov && ov!=='일반기록')?ov:(nv||ov||'일반기록'); }
+    else{ out[k]= ov || nv; }
+  });
+  out.is_seed=!!(oldE.is_seed||newE.is_seed);
+  const seeds=[...new Set([].concat(oldE.seed_types||[], newE.seed_types||[]))];
+  if(seeds.length) out.seed_types=seeds; 
+  out.updated_at=newE.updated_at;
+  return out;
+}
 function saveEdit(){
   const date=$('f_date').value||todayStr();
   const store=loadStore();
   const data=collectForm();
   data.updated_at=new Date().toISOString();
   if(_editingDate && _editingDate!==date && store[_editingDate]) delete store[_editingDate];
-  const overwrite=!!store[date];
-  store[date]=data;
+  const existing=store[date];
+  const isEditEntry=(_editingDate===date);                       /* 수정 진입 여부 */
+  const appended=!!(existing && !isEditEntry);                   /* v2-F12 새 조각 + 오늘 기록 존재 → 이어 담기 */
+  store[date]= appended ? mergeAppendEntry(existing, data) : data;
+  if(typeof _lastSavedDate!=='undefined') _lastSavedDate = date;   /* v2-F13 클라우드 동기 날짜 직접 세팅 (1줄 안정화) */
   if(!saveStore(store)){toast('저장하지 못했습니다. 저장 공간을 확인해 주세요.',true);return;}
   _editingDate=null;
   setSaveState(_sbReady ? 'saving' : 'localonly');   // 로컬 저장은 확정 · 클라우드는 sbSyncStatus가 비동기 갱신
   renderList();
-  toast(overwrite?'덮어썼습니다. (이 브라우저)':'저장했습니다. (이 브라우저)');
+  toast(appended?'오늘 기록에 이어 담았습니다.':'오늘 기록에 저장되었습니다.');
   setTimeout(function(){ show('screen-list'); }, 900);
 }
 
@@ -1990,7 +2467,7 @@ function init(){
   $('btnDetailDelete').addEventListener('click',e=>deleteEntry(e.target.dataset.date));
   $('btnEditCancel').addEventListener('click',()=>{_editingDate=null;show('screen-list');});
   $('btnSave').addEventListener('click',saveEdit);
-  $('btnClearForm').addEventListener('click',()=>{fillForm(null);$('f_status').value='일반기록';toast('입력칸을 비웠습니다.');});
+  $('btnClearForm').addEventListener('click',()=>{if(!confirm('작성 중인 내용이 모두 비워집니다. 계속할까요?'))return;fillForm(null);$('f_status').value='일반기록';toast('입력칸을 비웠습니다.');});
   // AI 칸 자동분류 — 서버 함수 호출 → 빈칸만 채움 (자동 저장 없음)
   var aiNoah=$('btnAiNoah');
   if(aiNoah) aiNoah.addEventListener('click',function(){ aiClassifyFill('noah'); });
@@ -2057,9 +2534,9 @@ function renderFoyer(){
   var d1=$('foyerDate'); if(d1)d1.textContent=fmtFoyerDate();
   var d2=$('mTopDate'); if(d2){var dd=new Date();d2.textContent=(dd.getMonth()+1)+'.'+dd.getDate()+'.';}
   var msg,cls;
-  if(!st.exists){msg='오늘의 집은 아직 비어 있어요.';cls='';}
-  else if(st.filled<3){msg='오늘의 집이 채워지고 있어요.';cls='filling';}
-  else{msg='오늘 기록이 저장되어 있어요.';cls='saved';}
+  if(!st.exists){msg='오늘은 아직 남긴 조각이 없어요.';cls='';}
+  else if(st.filled<3){msg='오늘의 조각이 남겨지고 있어요.';cls='filling';}
+  else{msg='오늘 남긴 조각이 있어요.';cls='saved';}
   var sc=$('foyerStatus'); if(sc){sc.textContent=msg;sc.className='foyer-status'+(cls?' '+cls:'');}
   var map=[['spirit','영의 방'],['soul','혼의 방'],['body','육의 방'],['flow','흐름 점검'],['seed','삶의 원석']];
   var wrap=$('foyerRooms');
@@ -2072,10 +2549,12 @@ function renderFoyer(){
 /* 방 이동 — 오늘 기록이 있으면 그 기록을, 없으면 새 기록을 열고 해당 칸으로 */
 function openTodayRoom(targetId){
   closeHouseMenu();
-  var t=todayStr(); var rec=(loadStore()||{})[t];
-  openEdit(rec?t:null);
+  /* v2-F12: [조각 남기기]는 항상 빈 폼 — 기존 오늘 기록을 불러오지 않음.
+     저장 시 saveEdit가 오늘 기록에 '이어 담기'로 합류 (덮어쓰기 아님) */
+  openEdit(null);
   setTimeout(function(){
     var el=$(targetId); if(!el) return;
+    var fd=el.closest?el.closest('details.fold-sec,details.fold-sub'):null; if(fd)fd.open=true; /* v2-F 접힘 대응 */
     if(el.scrollIntoView){try{el.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
     if(el.focus){try{el.focus({preventScroll:true});}catch(e){try{el.focus();}catch(e2){}}}
   },180);
@@ -2139,6 +2618,7 @@ function jumpRoom(label){
   for(var i=0;i<secs.length;i++){
     var h=secs[i].querySelector('.fsec-h h3');
     if(h&&h.textContent.indexOf(label)>=0){
+      var fd=secs[i].closest?secs[i].closest('details.fold-sec'):null; if(fd)fd.open=true; /* v2-F 접힘 대응 */
       if(secs[i].scrollIntoView){try{secs[i].scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}
       return;
     }
@@ -2195,6 +2675,21 @@ function setBottomNav(name){
   },true);
 })();
 
+/* v2-F7 · 현관 보조 입구 → 새 입력폼 직행 (기존 진입/폼 함수 재사용 · 무수정) */
+(function(){
+  var bc=$('btnFoyerChron');
+  if(bc) bc.addEventListener('click',function(){ chEnter(); chOpenForm(null); });
+  var bl=$('btnFoyerLight');
+  if(bl) bl.addEventListener('click',function(){ lpEnter(); lpOpenForm(null); });
+})();
+
+/* v2-F11 · 전체 목록 열기 토글 → 목록 재렌더 (표시 전용) */
+(function(){
+  var lf=$('lpAllFold'); if(lf) lf.addEventListener('toggle',function(){ lpRenderList(); });
+  var cf=$('chAllFold'); if(cf) cf.addEventListener('toggle',function(){ chRenderList(); });
+  var rf=$('recListFold'); if(rf) rf.addEventListener('toggle',function(){ renderList(); });   /* v2-F13 */
+})();
+
 
 /* ============================================================
    v2-D 조명의 방 — sara_house_pieces (전부 신규 lp_ 함수)
@@ -2203,9 +2698,9 @@ function setBottomNav(name){
 const LP_TABLE = 'sara_house_pieces';
 const LP_CACHE = 'sara_house_pieces_cache_v1';   // 캐시 전용 (기준 저장소 아님)
 const LP_FIELDS = ['li_source','li_source_type','li_quote','li_my_link','li_prayer_view','li_word_ref','li_word_light','li_flow_to'];
-const LP_LABEL = {li_source:'누구에게서 · 어디서', li_source_type:'형태', li_quote:'남은 문장',
-  li_my_link:'내 삶과 연결되는 지점', li_prayer_view:'기도하며 다시 본 의미',
-  li_word_ref:'비춰진 말씀 구절', li_word_light:'말씀으로 비춰진 깨달음', li_flow_to:'흘려보내고 싶은 방향'};
+const LP_LABEL = {li_source:'누구에게서 · 어디서', li_source_type:'형태', li_quote:'마음에 남은 한 문장',
+  li_my_link:'내 삶 어디와 닿았나요', li_prayer_view:'기도하며 다시 보면',
+  li_word_ref:'비춰진 말씀 구절', li_word_light:'조용히 다시 본 의미', li_flow_to:'나중에 흘려보낼 수 있다면'};
 const LP_TYPES = ['강연','책','영상','설교','대화','기타'];
 const LP_SEED = ['책','강의','코칭 프로그램','유튜브','말씀/간증','삶 운영 기준','퍼스널브랜딩 사례','보험 상담 사례','아직 미정'];
 let _lpPieces = [];
@@ -2270,7 +2765,7 @@ async function lpSavePiece(){
         else{ _lpPieces.unshift(res.data); }
         lpCacheSave();
         if(st){ st.textContent='클라우드 저장됨'; st.className='lp-savestate ok'; }
-        toast('조각이 클라우드에 저장되었습니다.');
+        toast('조명의 방에 저장되었습니다.');
         setTimeout(function(){ lpShow('list'); lpRenderList(); }, 700);
         return;
       }
@@ -2328,10 +2823,34 @@ function lpRenderChips(){
     b.addEventListener('click',function(){ _lpFilterType=b.getAttribute('data-lptype'); lpRenderList(); });
   });
 }
+/* v2-F11 조명의 방 요약판 (표시 전용 · _lpPieces 읽기만) */
+function lpSummaryRender(){
+  var el=$('lpSummary'); if(!el) return;
+  var n=_lpPieces.length;
+  var prot=_lpPieces.filter(lpIsProtected).length;
+  var un=_lpPieces.filter(function(p){return p._unsynced;}).length;
+  var cnt={}; LP_TYPES.forEach(function(t){cnt[t]=0;});
+  var last='';
+  _lpPieces.forEach(function(p){
+    var t=(p.data||{}).li_source_type||'기타'; if(cnt[t]==null)cnt[t]=0; cnt[t]++;
+    var dt=p.piece_date||(p.created_at||'').slice(0,10); if(dt&&dt>last)last=dt;
+  });
+  var chips='<span class="rsum-chip all">전체 원석 '+n+'개</span>'+
+    LP_TYPES.map(function(t){return '<span class="rsum-chip'+(cnt[t]?'':' zero')+'">'+t+' '+cnt[t]+'개</span>';}).join('')+
+    '<span class="rsum-chip'+(prot?'':' zero')+'">보호 조각 '+prot+'개</span>'+
+    '<span class="rsum-chip'+(un?'':' zero')+'">미동기 조각 '+un+'개</span>'+
+    '<span class="rsum-chip">최근 저장일 '+(last||'없음')+'</span>';
+  el.innerHTML='<div class="rsum-t">조명의 방 요약</div><div class="rsum-chips">'+chips+'</div>'+
+    '<div class="rsum-note">필요할 때만 검색해서 꺼내보세요. 원석은 이미 안전하게 보관되어 있습니다.</div>';
+}
 function lpRenderList(){
+  lpSummaryRender();   /* v2-F11 요약 동기 갱신 */
   lpRenderChips();
   var box=$('lpList'); if(!box) return;
   var q=(($('lpFilterText')||{}).value||'').trim().toLowerCase();
+  /* v2-F11 열람 게이트: 검색어가 있거나 '전체 목록 열기'를 직접 연 경우에만 카드 표시 */
+  var allOpen=(($('lpAllFold'))||{}).open===true;
+  if(!q && !allOpen){ box.innerHTML=''; return; }
   var items=_lpPieces.filter(function(p){
     if(_lpFilterType!=='전체' && ((p.data||{}).li_source_type||'기타')!==_lpFilterType) return false;
     if(q){ if(lpIsProtected(p)) return false;                 // 보호 조각은 텍스트 필터 제외
@@ -2345,7 +2864,8 @@ function lpRenderList(){
       : (un>0 ? '미동기 조각 '+un+'개 — 열어서 다시 저장하면 클라우드로 올라갑니다.' : '');
   }
   if(!items.length){
-    box.innerHTML='<div class="lp-empty">아직 조각이 없습니다.<br>오늘 들은 이야기를 첫 조각으로 남겨보세요.</div>';
+    box.innerHTML = q ? '<div class="lp-empty">검색 결과가 없습니다.</div>'
+      : '<div class="lp-empty">아직 조각이 없습니다.<br>오늘 들은 이야기를 첫 조각으로 남겨보세요.</div>';
     return;
   }
   box.innerHTML=items.map(function(p){
@@ -2387,11 +2907,25 @@ function lpSeedChipsRender(sel){
     c.addEventListener('click',function(){ c.classList.toggle('on'); });
   });
 }
+/* v2-F3 · 접힘 자동 열림 (표시 보조 전용 · 수정 모드에서 값 있는 접힘만 열기 · 저장/수집 로직 무관) */
+function lpFoldAutoOpen(editing){
+  document.querySelectorAll('#lpPanelForm details.fold-sub').forEach(function(dt){
+    var has=false;
+    if(editing){
+      dt.querySelectorAll('input,textarea,select').forEach(function(el){
+        if(el.type==='checkbox'){ if(el.checked) has=true; }
+        else if(el.tagName==='SELECT'){ if((el.value||'')!=='' && el.value!=='추후 판단') has=true; }
+        else if((el.value||'').trim()!=='') has=true;
+      });
+    }
+    dt.open=has;
+  });
+}
 function lpOpenForm(id){
   _lpEditId=id||null;
   var p=id?_lpPieces.find(function(x){return x.id===id;}):null;
   var d=(p&&p.data)||{};
-  $('lpFormTitle').textContent = p?'조각 수정':'새 조각';
+  $('lpFormTitle').textContent = p?'조각 수정':'새 원석 조각';
   $('lp_source').value=d.li_source||'';
   $('lp_source_type').value=d.li_source_type||'강연';
   $('lp_quote').value=d.li_quote||'';
@@ -2406,6 +2940,9 @@ function lpOpenForm(id){
   $('lp_piece_date').value = (p&&p.piece_date) ? p.piece_date : todayStr();
   $('lp_protect').value = (p&&p.protect) || '추후 판단';
   var st=$('lpSaveState'); if(st){ st.textContent=''; st.className='lp-savestate'; }
+  var pp=$('prPasteLp'); if(pp) pp.value='';       /* v2-F9 붙여넣기 상자 초기화 (표시 전용) */
+  var pm=$('prMsgLp'); if(pm) pm.textContent='';
+  lpFoldAutoOpen(!!p);   /* v2-F3 표시 보조 */
   lpShow('form');
 }
 
@@ -2471,9 +3008,9 @@ async function lpEnter(){
 const CH_TABLE = 'sara_house_pieces';
 const CH_CACHE = 'sara_house_pieces_chron_cache_v1';   // 캐시 전용 (기준 저장소 아님)
 const CH_FIELDS = ['ch_period','ch_scene','ch_people','ch_feeling','ch_effect','ch_grace','ch_god_view','ch_flow_to'];
-const CH_LABEL = {ch_period:'언제쯤의 기억인가', ch_scene:'기억 장면', ch_people:'함께 있던 사람',
-  ch_feeling:'그때의 마음', ch_effect:'지금의 나에게 남긴 것', ch_grace:'지나며 받은 은혜·회복',
-  ch_god_view:'하나님 앞에서 다시 본 의미', ch_flow_to:'흘려보내고 싶은 방향'};
+const CH_LABEL = {ch_period:'언제쯤의 기억인가요', ch_scene:'떠오른 장면', ch_people:'함께 있던 사람 또는 관계',
+  ch_feeling:'그때 내 마음', ch_effect:'지금 내 삶에 미친 영향', ch_grace:'지나며 받은 은혜·회복',
+  ch_god_view:'지금 하나님 앞에 놓아본다면', ch_flow_to:'나중에 흘려보낼 수 있다면'};
 const CH_SEED = ['책','강의','코칭 프로그램','유튜브','말씀/간증','삶 운영 기준','퍼스널브랜딩 사례','보험 상담 사례','아직 미정'];
 let _chPieces = [];
 let _chLoadedOnce = false;
@@ -2535,7 +3072,7 @@ async function chSavePiece(){
         else{ _chPieces.unshift(res.data); }
         chCacheSave();
         if(st){ st.textContent='클라우드 저장됨'; st.className='ch-savestate ok'; }
-        toast('조각이 클라우드에 저장되었습니다.');
+        toast('연대기의 방에 저장되었습니다.');
         setTimeout(function(){ chShow('list'); chRenderList(); }, 700);
         return;
       }
@@ -2587,9 +3124,28 @@ function chPeriodBadge(p){
 function chPieceText(p){ var d=p.data||{}; return CH_FIELDS.map(function(k){return d[k]||'';}).join(' ').toLowerCase(); }
 
 /* ---- 목록 렌더 (텍스트 필터 1개만 · D-C6) ---- */
+/* v2-F11 연대기의 방 요약판 (표시 전용 · _chPieces 읽기만) */
+function chSummaryRender(){
+  var el=$('chSummary'); if(!el) return;
+  var n=_chPieces.length;
+  var prot=_chPieces.filter(chIsProtected).length;
+  var un=_chPieces.filter(function(p){return p._unsynced;}).length;
+  var last='';
+  _chPieces.forEach(function(p){ var dt=p.piece_date||(p.created_at||'').slice(0,10); if(dt&&dt>last)last=dt; });
+  var chips='<span class="rsum-chip all">전체 조각 '+n+'개</span>'+
+    '<span class="rsum-chip'+(prot?'':' zero')+'">보호 조각 '+prot+'개</span>'+
+    '<span class="rsum-chip'+(un?'':' zero')+'">미동기 조각 '+un+'개</span>'+
+    '<span class="rsum-chip">최근 저장일 '+(last||'없음')+'</span>';
+  el.innerHTML='<div class="rsum-t">연대기의 방 요약</div><div class="rsum-chips">'+chips+'</div>'+
+    '<div class="rsum-note">필요할 때만 검색해서 꺼내보세요. 기억은 이미 안전하게 보관되어 있습니다.</div>';
+}
 function chRenderList(){
+  chSummaryRender();   /* v2-F11 요약 동기 갱신 */
   var box=$('chList'); if(!box) return;
   var q=(($('chFilterText')||{}).value||'').trim().toLowerCase();
+  /* v2-F11 열람 게이트 */
+  var allOpen=(($('chAllFold'))||{}).open===true;
+  if(!q && !allOpen){ box.innerHTML=''; return; }
   var items=_chPieces.filter(function(p){
     if(q){ if(chIsProtected(p)) return false;
            if(chPieceText(p).indexOf(q)<0) return false; }
@@ -2602,7 +3158,8 @@ function chRenderList(){
       : (un>0 ? '미동기 조각 '+un+'개 — 열어서 다시 저장하면 클라우드로 올라갑니다.' : '');
   }
   if(!items.length){
-    box.innerHTML='<div class="ch-empty">아직 조각이 없습니다.<br>오늘 문득 떠오른 기억 하나면 충분합니다.</div>';
+    box.innerHTML = q ? '<div class="ch-empty">검색 결과가 없습니다.</div>'
+      : '<div class="ch-empty">아직 조각이 없습니다.<br>오늘 문득 떠오른 기억 하나면 충분합니다.</div>';
     return;
   }
   box.innerHTML=items.map(function(p){
@@ -2642,11 +3199,25 @@ function chSeedChipsRender(sel){
     c.addEventListener('click',function(){ c.classList.toggle('on'); });
   });
 }
+/* v2-F3 · 접힘 자동 열림 (표시 보조 전용 · 수정 모드에서 값 있는 접힘만 열기 · 저장/수집 로직 무관) */
+function chFoldAutoOpen(editing){
+  document.querySelectorAll('#chPanelForm details.fold-sub').forEach(function(dt){
+    var has=false;
+    if(editing){
+      dt.querySelectorAll('input,textarea,select').forEach(function(el){
+        if(el.type==='checkbox'){ if(el.checked) has=true; }
+        else if(el.tagName==='SELECT'){ if((el.value||'')!=='' && el.value!=='추후 판단') has=true; }
+        else if((el.value||'').trim()!=='') has=true;
+      });
+    }
+    dt.open=has;
+  });
+}
 function chOpenForm(id){
   _chEditId=id||null;
   var p=id?_chPieces.find(function(x){return x.id===id;}):null;
   var d=(p&&p.data)||{};
-  $('chFormTitle').textContent = p?'조각 수정':'새 조각';
+  $('chFormTitle').textContent = p?'조각 수정':'새 기억 조각';
   CH_FIELDS.forEach(function(k){ var el=$(k); if(el) el.value=d[k]||''; });
   $('ch_is_seed').checked=!!d.is_seed;
   $('chSeedWrap').style.display = d.is_seed?'':'none';
@@ -2654,6 +3225,9 @@ function chOpenForm(id){
   $('ch_piece_date').value = (p&&p.piece_date) ? p.piece_date : '';   // 기본 빈칸
   $('ch_protect').value = (p&&p.protect) || '추후 판단';
   var st=$('chSaveState'); if(st){ st.textContent=''; st.className='ch-savestate'; }
+  var pp=$('prPasteCh'); if(pp) pp.value='';       /* v2-F9 붙여넣기 상자 초기화 (표시 전용) */
+  var pm=$('prMsgCh'); if(pm) pm.textContent='';
+  chFoldAutoOpen(!!p);   /* v2-F3 표시 보조 */
   chShow('form');
 }
 
@@ -2744,51 +3318,147 @@ function diagRender(){
       : '<span style="color:#8fa0d0">아직 포착된 오류 없음 — 조각 저장을 한 번 시도해 보세요.</span>';
   }
 }
-(function(){
-  var openBtn=document.getElementById('btnDiagOpen');
-  var panel=document.getElementById('diagPanel');
-  var closeBtn=document.getElementById('btnDiagClose');
-  if(openBtn && panel) openBtn.addEventListener('click',function(){ panel.style.display='flex'; });
-  if(closeBtn && panel) closeBtn.addEventListener('click',function(){ panel.style.display='none'; });
-  if(panel) panel.addEventListener('click',function(ev){ if(ev.target===panel) panel.style.display='none'; });
-})();
-/* ===== show() 감싸기 (신규 · 원본 show()는 수정하지 않음) =====
-   목적: 연결진단 버튼을 메인 목록 화면(screen-list)에서만 보이게 하고,
-   그 외 화면(상세/편집/조명의 방/연대기의 방) 진입 시 버튼을 숨기고
-   모달이 열려 있었다면 자동으로 닫는다. */
-(function(){
-  var _origShow = show;
-  show = function(id){
-    _origShow(id);
-    var diagOpenBtn = document.getElementById('btnDiagOpen');
-    var diagModal = document.getElementById('diagPanel');
-    if(diagOpenBtn){ diagOpenBtn.style.display = (id==='screen-list') ? '' : 'none'; }
-    if(id!=='screen-list' && diagModal && diagModal.style.display!=='none'){
-      diagModal.style.display='none';
-    }
-  };
-})();
-(function(){
-  var t=document.getElementById('btnDiagToggle');
-  if(t) t.addEventListener('click',function(){
-    var st=document.getElementById('diagStatus'), la=document.getElementById('diagLast');
-    var hide = st.style.display!=='none';
-    st.style.display=hide?'none':''; la.style.display=hide?'none':'';
-    t.textContent=hide?'펼치기':'접기';
-  });
-  var p=document.getElementById('btnDiagPing');
-  if(p) p.addEventListener('click', async function(){
-    if(typeof _sb==='undefined' || !_sb){ diagSet('연결 진단',{message:'클라이언트 없음(_sb null) — supabase-js CDN 로드 실패 가능'}); return; }
+/* v2-F13 운영본 정리: 진단 버튼 바인딩·show 래퍼·핑/폴링 IIFE 제거 (진단 사본 전용이었음)
+   diagSet/diagRender/diagStatusHtml 함수는 저장·조회 오류 경로(15곳)가 호출하므로 유지 — 요소 부재 시 무해한 내부 기록만 남김 */
+
+/* ============================================================
+   v2-F4 외부 AI 정리 프롬프트 · 정리본 가져오기 (전부 신규 · prefix pr_)
+   - 어떤 저장 함수도 호출하지 않음 · 빈칸만 채움 · 자동 저장 없음
+   - 상수 FIELD_IDS/FIELD_LABEL/LP_FIELDS/LP_LABEL/CH_FIELDS/CH_LABEL/LP_TYPES는 읽기 전용 참조만
+   ============================================================ */
+function pr_copyPrompt(elId, msgId){
+  var ta=$(elId), msgEl=$(msgId);
+  function say(m){ if(msgEl) msgEl.textContent=m; }
+  if(!ta) return;
+  var txt=ta.value||'';
+  function fallback(){
     try{
-      var r=await _sb.from('sara_house_pieces').select('id',{count:'exact',head:true}).eq('owner_id','sara_house');
-      if(r.error){ diagSet('연결 진단(테이블 접근)', r.error); }
-      else { diagSet('연결 진단', {message:'테이블 접근 OK · sara_house_pieces 행 수 '+(r.count==null?'?':r.count)}); }
-    }catch(e){ diagSet('연결 진단(예외)', e); }
+      ta.focus(); ta.select();
+      var ok=document.execCommand && document.execCommand('copy');
+      if(ok){ say('프롬프트를 복사했습니다. 외부 AI에게 붙여넣어 주세요.'); toast('프롬프트 복사 완료'); return; }
+    }catch(e){}
+    say('복사가 되지 않으면 프롬프트를 직접 드래그해서 복사해 주세요.');
+    toast('복사가 되지 않으면 직접 드래그해 주세요.', true);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){
+      say('프롬프트를 복사했습니다. 외부 AI에게 붙여넣어 주세요.'); toast('프롬프트 복사 완료');
+    }, fallback);
+  } else { fallback(); }
+}
+
+/* 순수 함수 · DOM 미접촉: [항목명] 기준 파싱, [원문] 이후 무시 */
+function pr_parseDraft(text){
+  var out={};
+  if(typeof text!=='string') return out;
+  var lines=text.replace(/\r\n?/g,'\n').split('\n');
+  var cur=null, buf=[];
+  function flush(){ if(cur!==null){ out[cur]=buf.join('\n').trim(); } cur=null; buf=[]; }
+  for(var i=0;i<lines.length;i++){
+    var m=lines[i].trim().match(/^\[([^\[\]]+)\]$/);
+    if(m){
+      var name=m[1].trim();
+      if(name==='원문'){ flush(); return out; }
+      flush(); cur=name; continue;
+    }
+    if(cur!==null) buf.push(lines[i]);
+  }
+  flush();
+  return out;
+}
+
+/* 사건기록: FIELD_LABEL 역매핑 · 빈칸만 · select/보호 텍스트 제외 */
+function pr_applyMain(parsed){
+  var res={filled:0, skipped:0};
+  var EXCLUDE={protect_now:1, f_protect_reason:1};
+  FIELD_IDS.forEach(function(id){
+    if(EXCLUDE[id]) return;
+    var label=FIELD_LABEL[id]; if(!label || !(label in parsed)) return;
+    var val=(parsed[label]||'').trim(); if(val==='') return;
+    var el=$(id); if(!el || el.tagName==='SELECT') return;      /* f_protect 등 select 자동 반영 금지 */
+    if(((el.value||'').trim())!==''){ res.skipped++; return; }  /* 빈칸만 채움 */
+    el.value=val; res.filled++;
   });
-  window.addEventListener('error',function(ev){ if(ev&&ev.message) diagSet('전역 오류',{message:ev.message}); });
-  window.addEventListener('unhandledrejection',function(ev){ diagSet('전역 rejection',{message:(ev.reason&&ev.reason.message)||String(ev.reason)}); });
-  diagRender();
-  setInterval(function(){ var st=document.getElementById('diagStatus'); if(st&&st.style.display!=='none') st.innerHTML=diagStatusHtml(); }, 2000);
+  return res;
+}
+
+/* 조명의 방: LP_LABEL 역매핑 · 빈칸만 · [형태]는 기본값 '강연'일 때 + 6옵션 정확 일치 시만 */
+function pr_applyLp(parsed){
+  var res={filled:0, skipped:0};
+  LP_FIELDS.forEach(function(k){
+    var label=LP_LABEL[k]; if(!label || !(label in parsed)) return;
+    var val=(parsed[label]||'').trim(); if(val==='') return;
+    var el=$('lp_'+k.slice(3)); if(!el) return;
+    if(k==='li_source_type'){
+      if(el.value==='강연' && LP_TYPES.indexOf(val)>=0 && val!=='강연'){ el.value=val; res.filled++; }
+      return;
+    }
+    if(((el.value||'').trim())!==''){ res.skipped++; return; }
+    el.value=val; res.filled++;
+  });
+  return res;
+}
+
+/* 연대기의 방: CH_LABEL 역매핑 · 빈칸만 · [보호 등급 후보]는 기본값 '추후 판단'일 때 + 5옵션 정확 일치 시만 (참고용) */
+function pr_applyCh(parsed){
+  var res={filled:0, skipped:0};
+  CH_FIELDS.forEach(function(k){
+    var label=CH_LABEL[k]; if(!label || !(label in parsed)) return;
+    var val=(parsed[label]||'').trim(); if(val==='') return;
+    var el=$(k); if(!el) return;
+    if(((el.value||'').trim())!==''){ res.skipped++; return; }
+    el.value=val; res.filled++;
+  });
+  var pv=(parsed['보호 등급 후보']||'').trim();
+  if(pv){
+    var sel=$('ch_protect');
+    var OPT=['공개 가능','부분 보호','강한 보호','절대 비공개','추후 판단'];
+    if(sel && sel.value==='추후 판단' && OPT.indexOf(pv)>=0 && pv!=='추후 판단'){ sel.value=pv; res.filled++; }
+  }
+  return res;
+}
+
+/* 버튼 연결 (익명 핸들러 · 신규 요소 전용) */
+(function(){
+  function wire(copyBtn, promptTa, splitBtn, pasteTa, msgId, applyFn, saveLabel){
+    var cb=$(copyBtn);
+    if(cb) cb.addEventListener('click', function(){ pr_copyPrompt(promptTa, msgId); });
+    var sb=$(splitBtn);
+    if(sb) sb.addEventListener('click', function(){
+      var msgEl=$(msgId);
+      function say(m){ if(msgEl) msgEl.textContent=m; }
+      var ta=$(pasteTa), text=ta?(ta.value||''):'';
+      if(text.trim()===''){ say('외부 AI 정리본을 먼저 붙여넣어 주세요.'); return; }
+      var parsed=pr_parseDraft(text);
+      if(!Object.keys(parsed).length){
+        say('정리본에서 [항목명] 형태를 찾지 못했습니다. 프롬프트의 출력 항목명을 그대로 사용해야 칸을 나눌 수 있습니다. 지금 입력해 둔 내용은 그대로 유지됩니다.');
+        toast('칸 나누기 실패 — 정리본 형식을 확인해 주세요.', true);
+        return;
+      }
+      var r=applyFn(parsed);
+      var m = (r.filled>0)
+        ? r.filled+'칸을 채웠습니다. 확인 후 '+saveLabel+'을(를) 눌러 주세요. 자동 저장되지 않습니다.'
+        : '새로 채운 칸이 없습니다.';
+      if(r.skipped>0) m += '\n'+r.skipped+'칸은 이미 내용이 있어 건너뛰었습니다.';
+      say(m);
+      toast(r.filled>0 ? (r.filled+'칸을 채웠습니다. 확인 후 저장하세요.') : '새로 채운 칸이 없습니다.');
+    });
+  }
+  wire('btnPrCopyMain','prPromptMain','btnPrSplitMain','prPasteMain','prMsgMain', pr_applyMain, '저장하기');
+  wire('btnPrCopyLp','prPromptLp','btnPrSplitLp','prPasteLp','prMsgLp', pr_applyLp, '조각 저장');
+  wire('btnPrCopyCh','prPromptCh','btnPrSplitCh','prPasteCh','prMsgCh', pr_applyCh, '조각 저장');
+})();
+
+/* v2-F6 · [외부 AI 정리본 가져오기] → 아래 접힘 블록 열고 이동 (표시 보조 전용) */
+(function(){
+  [['btnPrOpenLp','prToolLp'],['btnPrOpenCh','prToolCh']].forEach(function(pair){
+    var b=$(pair[0]);
+    if(b) b.addEventListener('click',function(){
+      var t=$(pair[1]); if(!t) return;
+      t.open=true;
+      try{ if(t.scrollIntoView) t.scrollIntoView({block:'nearest',behavior:'smooth'}); }catch(e){}
+    });
+  });
 })();
 
 </script>
