@@ -9,24 +9,27 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="사라의 집" />
 <meta name="theme-color" content="#2D3561" />
-<title>사라의 집 · 배포 전 검수판</title>
+<title>사라의 집</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --p:#6d28d9; --pl:#8b5cf6;
-  --wd-primary:#4A3F7A; --wd-navy:#2D3561; --wd-lavender:#8B7AB8;
-  --wd-text:#1A1A2E;
-  --em:#10b981; --em50:#ecfdf5; --em200:#a7f3d0; --em700:#047857;
-  --sk50:#f0f9ff; --sk200:#bae6fd; --sk700:#0369a1;
-  --am50:#fffbeb; --am200:#fde68a; --am700:#b45309;
-  --vi50:#f5f3ff; --vi200:#ddd6fe; --vi700:#6d28d9;
-  --s50:#f8fafc; --s100:#f1f5f9; --s200:#e2e8f0; --s300:#cbd5e1;
-  --s400:#94a3b8; --s500:#64748b; --s600:#475569; --s700:#334155;
-  --s800:#1e293b; --s900:#0f172a;
-  --danger:#dc2626; --border:#E8E8F0;
+  /* 톤다운: 남색 + 아이보리 + 금색 소량 */
+  --p:#2D3561; --pl:#3D4774;
+  --wd-primary:#1E2647; --wd-navy:#1A2240; --wd-lavender:#C9B26A;
+  --wd-text:#1E293B;
+  --gold:#C9B26A; --gold-soft:#E8DEC2;
+  --em:#5a7a5e; --em50:#f0f4ef; --em200:#cfdcc9; --em700:#3d5a40;
+  --sk50:#eef2f8; --sk200:#cbd8e8; --sk700:#3a4a66;
+  --am50:#faf6ec; --am200:#e8dec2; --am700:#8a6f2e;
+  --vi50:#F6F1E8; --vi200:#E8E0D2; --vi700:#8a6f2e;
+  --s50:#faf8f3; --s100:#f6f1e8; --s200:#e8e0d2; --s300:#d6cbb5;
+  --s400:#a89e88; --s500:#6e6a5e; --s600:#4d4a41; --s700:#34323a;
+  --s800:#26252a; --s900:#1a1a22;
+  --danger:#b04a3a; --border:#E8E0D2;
+  --cream:#FFFDF8; --ivory:#F7F4EE;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--s100);color:var(--s900);
+body{font-family:'Noto Sans KR',sans-serif;background:var(--ivory);color:var(--s900);
   font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;}
 button{font-family:inherit;cursor:pointer;}
 input,textarea,select{font-family:inherit;}
@@ -36,12 +39,12 @@ input,textarea,select{font-family:inherit;}
 .wrap{max-width:680px;margin:0 auto;padding:0 14px 80px;}
 
 /* 헤더 */
-.hdr{background:linear-gradient(135deg, var(--wd-navy), var(--wd-primary));color:#fff;padding:18px 16px 16px;}
+.hdr{background:var(--wd-navy);color:#F3EEDF;padding:24px 16px 22px;border-bottom:1px solid rgba(201,178,106,.25);}
 .hdr-in{max-width:680px;margin:0 auto;}
-.hdr h1{font-family:'Montserrat','Noto Sans KR',sans-serif;font-size:21px;font-weight:800;
+.hdr h1{color:#EAD9A8;font-family:'Montserrat','Noto Sans KR',sans-serif;font-size:21px;font-weight:800;
   display:flex;align-items:center;gap:9px;}
 .hdr .ko{font-family:'Noto Sans KR';font-weight:800;}
-.hdr .sub{font-size:12px;color:#d6cdf0;margin-top:5px;line-height:1.5;}
+.hdr .sub{color:rgba(243,238,223,.75);font-size:12px;color:#d6cdf0;margin-top:5px;line-height:1.5;}
 .badge-local{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;
   background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);color:#fff;
   padding:3px 10px;border-radius:999px;margin-top:9px;}
@@ -57,25 +60,25 @@ input,textarea,select{font-family:inherit;}
 .tabs::-webkit-scrollbar{display:none;}
 .tab{flex:0 0 auto;padding:8px 13px;border-radius:10px;border:none;background:none;
   font-size:12.5px;font-weight:600;color:var(--s500);white-space:nowrap;transition:all .15s;}
-.tab.on{background:var(--wd-primary);color:#fff;}
+.tab.on{background:transparent;color:var(--wd-navy);border-bottom:2px solid var(--wd-navy);border-radius:0;}
 
 /* 검색 + 새기록 */
 .toolbar{display:flex;gap:9px;margin-bottom:14px;}
 .search{flex:1;position:relative;}
 .search input{width:100%;padding:11px 13px 11px 36px;border:1px solid var(--s200);border-radius:11px;
   font-size:13.5px;color:var(--s800);background:#fff;outline:none;transition:border-color .2s;}
-.search input:focus{border-color:var(--pl);}
+.search input:focus{border-color:var(--gold);}
 .search .ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--s400);font-size:14px;}
 .btn-new{flex:0 0 auto;padding:11px 16px;border:none;border-radius:11px;
-  background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;font-size:13.5px;font-weight:700;
-  box-shadow:0 8px 20px -10px rgba(109,40,217,.6);white-space:nowrap;transition:transform .15s;}
+  background:var(--wd-navy);color:#fff;font-size:13.5px;font-weight:700;
+  box-shadow:0 8px 20px -10px rgba(20,26,58,.5);white-space:nowrap;transition:transform .15s;}
 .btn-new:hover{transform:translateY(-1px);}
 
 /* 리스트 카드 */
 .list{display:flex;flex-direction:column;gap:10px;}
-.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 16px;
+.card{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:14px 16px;
   cursor:pointer;transition:box-shadow .15s, transform .12s, border-color .15s;}
-.card:hover{box-shadow:0 6px 22px -12px rgba(15,23,42,.18);border-color:var(--vi200);transform:translateY(-1px);}
+.card:hover{box-shadow:0 1px 4px -2px rgba(26,34,64,.1);border-color:var(--s200);transform:translateY(-1px);}
 .card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
 .card-date{font-size:12px;font-weight:700;color:var(--wd-primary);}
 .card-line{font-size:15.5px;font-weight:700;color:var(--wd-text);line-height:1.5;margin-bottom:8px;word-break:keep-all;}
@@ -85,7 +88,7 @@ input,textarea,select{font-family:inherit;}
   padding:3px 9px;border-radius:999px;font-weight:600;}
 .card-seed{display:inline-flex;align-items:center;gap:4px;color:var(--am700);background:var(--am50);
   padding:3px 9px;border-radius:999px;font-weight:600;}
-.card-cat{display:inline-flex;align-items:center;gap:4px;color:var(--vi700);background:var(--vi50);
+.card-cat{display:inline-flex;align-items:center;gap:4px;color:var(--am700);background:var(--am50);
   padding:3px 9px;border-radius:999px;font-weight:600;border:1px solid var(--vi200);}
 .card-topic{color:var(--s500);font-weight:500;}
 
@@ -130,7 +133,7 @@ input,textarea,select{font-family:inherit;}
 .dsec{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;
   box-shadow:0 1px 4px rgba(0,0,0,.03);}
 .dsec-h{display:flex;align-items:center;gap:9px;padding-bottom:11px;margin-bottom:6px;border-bottom:1.5px solid var(--s100);}
-.dsec-h .mk{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--p);}
+.dsec-h .mk{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--gold);}
 .dsec-h h3{font-size:16px;font-weight:800;color:var(--wd-text);}
 .dsec.word .dsec-h{border-color:var(--sk200);} .dsec.word .dsec-h .mk{color:var(--sk700);}
 .dsec.seed .dsec-h{border-color:var(--am200);} .dsec.seed .dsec-h .mk{color:var(--am700);}
@@ -147,7 +150,7 @@ input,textarea,select{font-family:inherit;}
 .form{max-width:680px;margin:0 auto;padding:16px 16px 110px;}
 .fsec{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;}
 .fsec-h{display:flex;align-items:center;gap:9px;padding-bottom:10px;margin-bottom:13px;border-bottom:1.5px solid var(--s100);}
-.fsec-h .mk{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--p);}
+.fsec-h .mk{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--gold);}
 .fsec-h h3{font-size:15.5px;font-weight:800;color:var(--wd-text);}
 .fsec.word .fsec-h{border-color:var(--sk200);} .fsec.word .fsec-h .mk{color:var(--sk700);}
 .fsec.seed .fsec-h{border-color:var(--am200);} .fsec.seed .fsec-h .mk{color:var(--am700);}
@@ -157,9 +160,9 @@ input,textarea,select{font-family:inherit;}
 .fld label .no{color:var(--s400);font-weight:500;font-size:11px;margin-right:5px;}
 .fld textarea,.fld input[type=text],.fld input[type=date],.fld select{
   width:100%;padding:10px 12px;border:1px solid var(--s200);border-radius:10px;font-size:14px;
-  color:var(--s800);background:var(--s50);outline:none;transition:border-color .2s,box-shadow .2s;line-height:1.6;}
+  color:var(--s800);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;line-height:1.6;}
 .fld textarea{min-height:54px;resize:vertical;}
-.fld textarea:focus,.fld input:focus,.fld select:focus{border-color:var(--pl);background:#fff;box-shadow:0 0 0 3px rgba(139,92,246,.1);}
+.fld textarea:focus,.fld input:focus,.fld select:focus{border-color:var(--gold);background:var(--cream);box-shadow:0 0 0 3px rgba(139,92,246,.1);}
 .fsec.word .fld textarea:focus,.fsec.word .fld input:focus{border-color:var(--sk700);box-shadow:0 0 0 3px rgba(3,105,161,.1);}
 .row2{display:flex;gap:10px;}
 .row2 .fld{flex:1;}
@@ -179,8 +182,8 @@ input,textarea,select{font-family:inherit;}
   background:linear-gradient(180deg,rgba(241,245,249,0),var(--s100) 30%);}
 .savebar .in{max-width:680px;margin:0 auto;display:flex;gap:10px;}
 .btn-save{flex:2;padding:14px;border:none;border-radius:12px;
-  background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;font-weight:700;font-size:15px;
-  box-shadow:0 12px 28px -12px rgba(109,40,217,.55);transition:transform .15s;}
+  background:var(--wd-navy);color:#fff;font-weight:700;font-size:15px;
+  box-shadow:0 12px 28px -12px rgba(20,26,58,.55);transition:transform .15s;}
 .btn-save:hover{transform:translateY(-1px);}
 .btn-ghost{flex:1;padding:14px;border:1px solid var(--s200);border-radius:12px;background:#fff;
   color:var(--s500);font-weight:600;font-size:14px;transition:all .2s;}
@@ -193,15 +196,15 @@ input,textarea,select{font-family:inherit;}
 .toast.danger{background:var(--danger);}
 
 /* ===== 첫 화면 바로 입력 진입 카드 ===== */
-.hero-entry{background:linear-gradient(135deg,#fff,var(--vi50));
+.hero-entry{background:var(--cream);
   border:1px solid var(--vi200);border-radius:16px;padding:18px 18px 16px;
   margin:14px 0 4px;box-shadow:0 6px 22px -14px rgba(74,63,122,.4);}
 .hero-entry .he-q{font-size:15px;font-weight:800;color:var(--wd-text);line-height:1.55;
   word-break:keep-all;margin-bottom:4px;}
 .hero-entry .he-s{font-size:12.5px;color:var(--s500);line-height:1.6;margin-bottom:14px;}
 .hero-entry .he-btn{width:100%;padding:14px;border:none;border-radius:12px;
-  background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;font-size:15px;font-weight:800;
-  box-shadow:0 10px 24px -12px rgba(109,40,217,.6);transition:transform .15s;
+  background:linear-gradient(135deg,#C9B26A,#DCC684 50%,#C9B26A);color:#2A2410;font-size:15px;font-weight:800;
+  box-shadow:0 8px 20px -12px rgba(20,26,58,.5);transition:transform .15s;
   display:flex;align-items:center;justify-content:center;gap:8px;}
 .hero-entry .he-btn:hover{transform:translateY(-1px);}
 .hero-entry .he-quick{display:flex;gap:8px;margin-top:10px;}
@@ -211,30 +214,30 @@ input,textarea,select{font-family:inherit;}
 
 /* ===== 도입 화면 (인트로) ===== */
 .intro{position:fixed;inset:0;z-index:200;
-  background:linear-gradient(170deg,#0A0E20 0%,#0E1226 45%,#141A3A 100%);
+  background:linear-gradient(170deg,#1A2240 0%,#202A4D 45%,#26305A 100%);
   display:flex;align-items:center;justify-content:center;padding:28px;
   overflow:hidden;}
 .intro::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 50% at 50% 25%,rgba(80,70,150,.18) 0%,transparent 70%);
+  background:radial-gradient(ellipse 70% 50% at 50% 25%,rgba(201,178,106,.16) 0%,transparent 70%);
   pointer-events:none;}
 .intro.hide{display:none;}
 .intro-in{position:relative;width:100%;max-width:420px;text-align:center;
   display:flex;flex-direction:column;align-items:center;}
 .intro-mark{font-size:30px;margin-bottom:20px;opacity:.92;}
 .intro-title{font-family:'Montserrat','Noto Sans KR',sans-serif;
-  font-size:27px;font-weight:800;color:#fff;letter-spacing:.01em;margin-bottom:22px;}
+  font-size:27px;font-weight:800;color:#EAD9A8;letter-spacing:.01em;margin-bottom:22px;}
 .intro-div{width:42px;height:2px;border-radius:2px;margin-bottom:22px;
   background:linear-gradient(90deg,transparent,#B59A4E,transparent);}
-.intro-line{font-size:14.5px;line-height:1.95;color:rgba(214,205,240,.78);
+.intro-line{font-size:14.5px;line-height:1.95;color:rgba(224,216,194,.72);
   font-weight:500;word-break:keep-all;margin-bottom:8px;}
-.intro-line.q{color:rgba(224,216,250,.92);font-weight:600;margin-top:14px;margin-bottom:34px;}
+.intro-line.q{color:rgba(232,222,194,.78);font-weight:500;margin-top:16px;margin-bottom:40px;}
 .intro-btn{width:100%;max-width:300px;padding:15px;border:none;border-radius:14px;
   font-family:'Noto Sans KR',sans-serif;font-size:15.5px;font-weight:800;color:#0E1226;
   background:linear-gradient(135deg,#C9B26A,#E6D79A 50%,#C9B26A);
   box-shadow:0 10px 28px -12px rgba(201,178,106,.55);transition:transform .15s,opacity .15s;}
 .intro-btn:hover{transform:translateY(-1px);opacity:.94;}
 .intro-btn:focus-visible{outline:2.5px solid #fff;outline-offset:2px;}
-.intro-foot{margin-top:26px;font-size:11px;color:rgba(200,190,235,.4);
+.intro-foot{margin-top:28px;font-size:11px;color:rgba(201,178,106,.5);
   font-weight:600;letter-spacing:.06em;}
 
 /* ===== AI 자동정리 "자리" (비활성 더미) ===== */
@@ -250,14 +253,652 @@ input,textarea,select{font-family:inherit;}
   border:1px solid var(--vi200);font-size:11.5px;line-height:1.7;color:var(--wd-primary);
   display:none;}
 .ai-stub-box.show{display:block;}
+/* AI 정리 상태 작은 문구 (표시 전용) */
+.ai-stub-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  color:var(--s500);margin-bottom:8px;}
+.ai-stub-status .dot{width:7px;height:7px;border-radius:50%;background:var(--s400);flex:0 0 auto;}
+.ai-stub-status.ok{color:var(--em700);}
+.ai-stub-status.ok .dot{background:var(--em);}
+.ai-stub-status.wait{color:var(--am700);}
+.ai-stub-status.wait .dot{background:var(--gold);}
+/* ===== AI 안내 · 4단계 연결상태 · 관리자 접기 ===== */
+.ai-note{font-size:11.5px;line-height:1.8;color:var(--s500);background:#fff;
+  border:1px solid var(--vi200);border-radius:9px;padding:9px 11px;margin-bottom:10px;}
+.ai-note b{color:var(--wd-primary);font-weight:700;}
+.ai-note-h{font-weight:800;color:var(--s600);margin-bottom:4px;font-size:11.5px;}
+.field-hint{font-size:11.5px;line-height:1.6;color:var(--wd-primary);margin-top:6px;font-weight:500;}
+.ai-btn-desc{font-size:11.5px;line-height:1.75;color:var(--s500);margin:3px 0 5px;}
+.ai-btn-desc b{color:var(--wd-primary);font-weight:700;}
+.save-state{margin-top:9px;font-size:12px;font-weight:700;color:var(--s400);min-height:16px;text-align:center;}
+.save-state.local{color:var(--wd-primary);}
+.save-state.ok{color:var(--em700);}
+.save-state.warn{color:#c0392b;}
+.ai-status{margin:9px 0;padding:10px 12px;border-radius:9px;background:#fff;border:1px solid var(--vi200);}
+.ai-status-h{font-size:11px;font-weight:800;color:var(--s600);margin-bottom:8px;letter-spacing:.02em;}
+.ai-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.ai-steps li{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--s400);}
+.ai-steps li .mk{width:16px;height:16px;border-radius:50%;flex:0 0 auto;display:inline-flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;background:var(--s300);}
+.ai-steps li.wait{color:var(--s400);}
+.ai-steps li.wait .mk{background:var(--s300);}
+.ai-steps li.done{color:var(--em700);}
+.ai-steps li.done .mk{background:var(--em);}
+.ai-steps li.done .mk::after{content:"\2713";}
+.ai-steps li.err{color:#c0392b;}
+.ai-steps li.err .mk{background:#e0503a;}
+.ai-steps li.err .mk::after{content:"!";}
+.ai-status-msg{margin-top:8px;font-size:11.5px;line-height:1.6;color:var(--s500);}
+.ai-status-msg.err{color:#c0392b;font-weight:600;}
+.ai-status-msg.ok{color:var(--em700);font-weight:600;}
+.admin-guide{margin-top:10px;border-top:1px dashed var(--vi200);padding-top:9px;}
+.admin-guide summary{font-size:11.5px;font-weight:700;color:var(--s500);cursor:pointer;list-style:none;}
+.admin-guide summary::-webkit-details-marker{display:none;}
+.admin-guide summary::before{content:"\25B8 ";color:var(--wd-primary);}
+.admin-guide[open] summary::before{content:"\25BE ";}
+.admin-guide-body{font-size:11.5px;line-height:1.85;color:var(--s500);margin-top:8px;
+  background:var(--vi50);border-radius:8px;padding:9px 11px;}
+.admin-guide-body code{background:#fff;border:1px solid var(--vi200);border-radius:5px;
+  padding:1px 5px;font-size:11px;color:var(--wd-primary);}
+
+/* ============================================================
+   v2A 화면 시원화 (CSS 전용 · HTML/JS 무변경)
+   목적: 여백·호흡 확대 + 방 마커·버튼 결 정리 (이미지 9장 참고)
+   ============================================================ */
+/* [1] 넓은 화면에서 숨통 — 모바일(680px 이하)은 기존 그대로 */
+@media (min-width: 900px){
+  .wrap,.hdr-in{max-width:860px;}
+  .form,.detail{max-width:860px;}
+  .savebar .in{max-width:860px;margin:0 auto;}
+  .subbar{padding:0 22px;}
+}
+/* [2] 섹션 호흡 */
+.fsec{border-radius:16px;padding:22px 20px;margin-bottom:18px;
+  box-shadow:0 10px 26px -20px rgba(26,34,64,.3);}
+.fsec-h{gap:11px;padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--gold-soft);}
+.fsec-h h3{font-size:16.5px;font-weight:800;color:var(--wd-navy);letter-spacing:.01em;}
+/* [3] 칸 호흡 */
+.fld{margin-bottom:18px;}
+.fld:last-child{margin-bottom:4px;}
+.fld label{font-size:13px;color:var(--s600);margin-bottom:8px;line-height:1.6;}
+.fld textarea,.fld input[type=text],.fld input[type=date],.fld select{
+  padding:13px 14px;line-height:1.7;border-radius:11px;
+  transition:border-color .15s, box-shadow .15s, background .15s;}
+textarea{min-height:72px;}
+.fld textarea:focus,.fld input[type=text]:focus,.fld input[type=date]:focus,.fld select:focus{
+  border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(201,178,106,.16);}
+.fld ::placeholder{color:var(--s300);}
+/* [4] 방 마커 — 금테 원형 배지 (AI 4단계 .mk와 충돌 없게 스코프 한정) */
+.fsec-h .mk,.dsec-h .mk{
+  width:38px;height:38px;flex:0 0 38px;display:inline-flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--gold);border-radius:50%;background:var(--cream);
+  color:var(--am700);font-size:13.5px;font-weight:800;letter-spacing:0;
+  box-shadow:0 4px 10px -6px rgba(201,178,106,.5);}
+.dsec-h .mk{width:30px;height:30px;flex:0 0 30px;font-size:12px;}
+.fsec.recall .fsec-h .mk{border-color:var(--em);color:var(--em700);}
+.fsec:has(#ph_money_heart) .fsec-h .mk{border-color:#c08a4e;color:#9a6a33;}
+.fsec:has(#fl_blocked) .fsec-h .mk{border-color:var(--sk700);color:var(--sk700);}
+/* [5] 칸 번호 칩 */
+.fld .no{display:inline-flex;align-items:center;justify-content:center;
+  min-width:23px;height:19px;padding:0 4px;margin-right:8px;
+  border:1px solid var(--gold-soft);border-radius:6px;background:var(--cream);
+  color:var(--am700);font-size:10.5px;font-weight:700;}
+/* [6] 노아/나온 버튼 — 주(금)·보조(윤곽) */
+.ai-stub-btns{gap:10px;}
+#btnAiNoah{background:linear-gradient(135deg,#C9B26A,#E0CE8E 55%,#C9B26A);
+  border:none;color:#1A2240;box-shadow:0 8px 20px -10px rgba(201,178,106,.6);}
+#btnAiNoah:hover{transform:translateY(-1px);}
+#btnAiNaon{background:#fff;border:1px solid var(--s200);color:var(--s600);}
+#btnAiNaon:hover{border-color:var(--gold);color:var(--wd-navy);}
+.ai-stub-btn:disabled{opacity:.55;transform:none;}
+.ai-stub{padding:14px 14px 12px;}
+/* [7] 목록·상세 호흡 */
+.list{gap:12px;}
+.card{padding:16px 18px;}
+.card:hover{border-color:var(--gold);box-shadow:0 14px 30px -18px rgba(26,34,64,.3);transform:translateY(-1px);}
+.dsec{margin-bottom:16px;}
+.drow{padding:9px 0;}
+.drow .k{color:var(--s500);}
+.drow .v{color:var(--s800);line-height:1.75;}
+/* [8] 저장바 버튼 호흡 */
+.savebar{padding:14px 16px 16px;}
+.btn-save{border-radius:13px;}
+.btn-ghost{border-radius:13px;}
+
+
+/* ============================================================
+   v2A 모바일 최적화 (CSS 전용 · HTML/JS 무변경)
+   기준: 360~430px · 시원화 디자인 유지 + 폰 사용성 보정
+   ============================================================ */
+@media (max-width: 520px){
+  body{overflow-x:hidden;}                                   /* [검수1] 가로 넘침 방지 */
+  .wrap{padding:0 12px 84px;}
+  .form{padding:14px 12px 132px;}
+  .detail{padding:16px 12px 100px;}
+  .subbar{padding:0 12px;}
+
+  /* [2] 오늘 기록하기 — 크고 누르기 쉽게 */
+  .he-btn{min-height:52px;padding:15px;font-size:16px;border-radius:13px;}
+  /* [3] 탭 가로 스크롤 감 */
+  .tabs{-webkit-overflow-scrolling:touch;margin:12px 0 10px;}
+  .tab{padding:10px 14px;font-size:13px;}
+  /* [4] 검색창 · 새 기록 버튼 간격/높이 */
+  .toolbar{gap:8px;}
+  .search input{min-height:46px;font-size:16px;}
+  .btn-new{min-height:46px;display:inline-flex;align-items:center;}
+
+  /* [5][6] 2열(row2) → 작은 폰에서 1열 */
+  .row2{flex-direction:column;gap:0;}
+
+  /* [7][8][9] 방 카드 여백 · 마커 축소 · 제목 줄바꿈 */
+  .fsec{padding:18px 14px;margin-bottom:14px;border-radius:14px;}
+  .fsec-h{gap:10px;padding-bottom:12px;margin-bottom:14px;}
+  .fsec-h .mk{width:32px;height:32px;flex:0 0 32px;font-size:12.5px;}
+  .fsec-h h3{font-size:15.5px;line-height:1.45;word-break:keep-all;}
+
+  /* [10][11] 입력칸 높이 · 라벨 크기 (16px = iOS 포커스 자동확대 방지) */
+  .fld{margin-bottom:16px;}
+  .fld label{font-size:13.5px;line-height:1.6;}
+  textarea{min-height:84px;}
+  .fld textarea,.fld input[type=text],.fld input[type=date],.fld select{
+    font-size:16px;padding:13px;}
+
+  /* 노아/나온 버튼 — 세로 배치 + 충분한 터치 높이 */
+  .ai-stub-btns{flex-direction:column;gap:9px;}
+  .ai-stub-btn{min-width:0;width:100%;min-height:48px;font-size:14px;}
+
+  /* [12][13] 저장바 — 터치 높이 + safe-area 보정 */
+  .savebar{padding:12px 12px calc(14px + env(safe-area-inset-bottom));}
+  .btn-save{min-height:52px;font-size:16px;}
+  .btn-ghost{min-height:52px;font-size:15px;}
+
+  /* [14] 상세보기 호흡 */
+  .dsec-h .mk{width:28px;height:28px;flex:0 0 28px;font-size:11.5px;}
+  .drow{padding:10px 0;}
+  .drow .v{font-size:14.5px;}
+
+  /* [15] 목록 카드 터치감 */
+  .card{padding:15px 14px;}
+  .card:active{transform:scale(.995);}
+}
+/* 아주 좁은 폰(≤380px) 미세 보정 */
+@media (max-width: 380px){
+  .fsec{padding:16px 12px;}
+  .fsec-h h3{font-size:15px;}
+  .card{padding:14px 12px;}
+  .fld .no{min-width:21px;height:18px;font-size:10px;}
+}
+
+
+/* ============================================================
+   v2A 모바일 현관/방 구조 (CSS)
+   ============================================================ */
+/* 모바일 상단바 (520px 이하에서만) */
+.m-topbar{display:none;}
+@media (max-width:520px){
+  .m-topbar{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:70;
+    background:var(--wd-navy);color:#EAD9A8;padding:0 10px;height:50px;
+    border-bottom:1px solid rgba(201,178,106,.3);}
+  .m-menu-btn{width:44px;height:44px;border:none;background:none;color:#EAD9A8;font-size:20px;border-radius:10px;}
+  .m-menu-btn:active{background:rgba(201,178,106,.15);}
+  .m-title{font-weight:800;font-size:15.5px;letter-spacing:.02em;}
+  .m-date{margin-left:auto;font-size:12.5px;color:#CBBE8F;font-weight:700;}
+}
+/* 햄버거 메뉴 패널 */
+.house-menu-backdrop{position:fixed;inset:0;background:rgba(20,26,58,.45);z-index:80;
+  opacity:0;pointer-events:none;transition:opacity .2s;}
+.house-menu-backdrop.open{opacity:1;pointer-events:auto;}
+.house-menu{position:fixed;top:0;left:0;bottom:0;width:min(78vw,300px);z-index:90;
+  background:var(--cream);box-shadow:8px 0 32px -12px rgba(20,26,58,.4);
+  transform:translateX(-102%);transition:transform .22s ease;padding:16px 12px calc(16px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+.house-menu.open{transform:translateX(0);}
+.house-menu-h{font-weight:800;color:var(--wd-navy);font-size:16px;padding:8px 10px 14px;
+  border-bottom:1px solid var(--gold-soft);margin-bottom:6px;}
+.house-menu button{text-align:left;border:none;background:none;padding:13px 12px;min-height:46px;
+  border-radius:11px;font-size:14.5px;font-weight:600;color:var(--s700);}
+.house-menu button:active,.house-menu button:hover{background:var(--vi50);color:var(--wd-navy);}
+/* 현관 */
+.foyer{background:linear-gradient(180deg,#FFFDF8,#FAF6EC);border:1px solid var(--gold-soft);
+  border-radius:18px;padding:20px 16px;margin:14px 0 16px;
+  box-shadow:0 14px 34px -24px rgba(26,34,64,.4);}
+.foyer-date{font-size:13px;font-weight:800;color:var(--am700);letter-spacing:.03em;}
+.foyer-welcome{margin-top:8px;font-size:14.5px;line-height:1.75;color:var(--s700);}
+.foyer-status{display:inline-flex;align-items:center;margin-top:12px;padding:7px 13px;border-radius:999px;
+  font-size:12.5px;font-weight:700;background:var(--s100);color:var(--s500);border:1px solid var(--s200);}
+.foyer-status.filling{background:var(--am50);color:var(--am700);border-color:var(--am200);}
+.foyer-status.saved{background:var(--em50);color:var(--em700);border-color:var(--em200);}
+.foyer-rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;}
+@media (min-width:521px){.foyer-rooms{grid-template-columns:repeat(5,1fr);}}
+.foyer-chip{background:#fff;border:1px solid var(--s200);border-radius:11px;padding:9px 10px;
+  font-size:12px;font-weight:700;color:var(--s400);display:flex;flex-direction:column;gap:3px;}
+.foyer-chip span{font-size:11px;font-weight:600;color:var(--s300);}
+.foyer-chip.on{border-color:var(--gold);color:var(--wd-navy);}
+.foyer-chip.on span{color:var(--am700);}
+/* 방 입구 카드 */
+.foyer-ask{margin-top:18px;font-size:15px;font-weight:800;color:var(--wd-navy);}
+.room-cards{display:grid;grid-template-columns:1fr;gap:9px;margin-top:10px;}
+@media (min-width:521px){.room-cards{grid-template-columns:repeat(2,1fr);}}
+.room-card{display:flex;flex-direction:column;gap:4px;text-align:left;min-height:64px;
+  background:#fff;border:1px solid var(--s200);border-radius:13px;padding:13px 15px;
+  transition:border-color .15s, box-shadow .15s, transform .12s;}
+.room-card b{font-size:14.5px;color:var(--wd-navy);}
+.room-card span{font-size:12px;color:var(--s400);line-height:1.5;}
+.room-card:hover,.room-card:active{border-color:var(--gold);box-shadow:0 10px 24px -16px rgba(26,34,64,.35);}
+.room-card:active{transform:scale(.99);}
+/* 방 소개 */
+.room-guide{margin-top:14px;border-top:1px dashed var(--gold-soft);padding-top:12px;}
+.room-guide summary{font-size:13px;font-weight:700;color:var(--s500);cursor:pointer;list-style:none;}
+.room-guide summary::-webkit-details-marker{display:none;}
+.room-guide summary::before{content:"\25B8 ";color:var(--gold);}
+.room-guide[open] summary::before{content:"\25BE ";}
+.room-guide-body{margin-top:10px;display:flex;flex-direction:column;gap:7px;
+  font-size:12.5px;line-height:1.65;color:var(--s500);}
+.room-guide-body b{color:var(--wd-navy);font-weight:700;}
+/* 문지기 아이디 저장 */
+.gate-remember{display:flex;align-items:center;gap:7px;justify-content:center;
+  font-size:13px;color:var(--s500);margin:10px 0 14px;cursor:pointer;user-select:none;}
+.gate-remember input{width:17px;height:17px;accent-color:var(--gold);}
+/* 저장바 경량화 + 입력 가림 방지 */
+.savebar{background:linear-gradient(180deg,rgba(247,244,238,0),rgba(247,244,238,.94) 42%);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border-top:1px solid rgba(232,224,210,.7);}
+.form{padding-bottom:calc(150px + env(safe-area-inset-bottom));}
+
+
+/* ============================================================
+   v2A 모바일 앱쉘 가독성 (CSS)
+   ============================================================ */
+/* [1] 상단 중복 제거: 모바일에서 큰 헤더 숨김(상단바가 대신) */
+@media (max-width:520px){ #screen-list .hdr{display:none;} }
+/* [6] "오늘, 무엇을 남겨둘까요?" 카드 → 현관 대표 버튼으로 흡수 */
+.hero-entry{display:none;}
+.foyer-main-btn{display:block;width:100%;margin-top:12px;min-height:50px;
+  border:none;border-radius:13px;font-size:15.5px;font-weight:800;color:#2A2410;
+  background:linear-gradient(135deg,#C9B26A,#DCC684 50%,#C9B26A);
+  box-shadow:0 10px 24px -12px rgba(20,26,58,.5);transition:transform .12s;}
+.foyer-main-btn:active{transform:scale(.99);}
+/* [5] 진행도 칩 가볍게 */
+.foyer-chip{padding:7px 9px;font-size:11.5px;border-radius:10px;}
+.foyer-chip span{font-size:10.5px;}
+/* [3] 방 카드 가독성 — 아이콘·방별 색 결·진한 대비 */
+.room-card{border-left:4px solid var(--s200);gap:3px;}
+.room-card b{font-weight:800;font-size:15px;}
+.room-card span{color:var(--s500);}
+.room-card b::before{margin-right:7px;}
+.room-card[data-room="sp_situation"]{border-left-color:#C9B26A;}
+
+.room-card[data-room="mind_state"]{border-left-color:#9b8fc0;}
+
+.room-card[data-room="body_state"]{border-left-color:#7BA98B;}
+
+.room-card[data-room="fl_blocked"]{border-left-color:#7A93B8;}
+
+.room-card[data-room="relation_lesson"]{border-left-color:#B98CC4;}
+
+.room-card[data-room="past"]{border-left-color:#A99F8C;}
+
+/* [4] 햄버거 메뉴 그룹·닫기·현재 위치 */
+.house-menu-h{display:flex;align-items:center;justify-content:space-between;}
+.hm-close{border:none;background:none;font-size:16px;color:var(--s400);
+  width:38px;height:38px;border-radius:10px;}
+.hm-close:active{background:var(--vi50);}
+.hm-group{font-size:11px;font-weight:800;color:var(--s300);letter-spacing:.08em;
+  padding:10px 10px 2px;}
+.house-menu button.cur{background:var(--vi50);color:var(--wd-navy);
+  box-shadow:inset 3px 0 0 var(--gold);}
+/* [2] 하단 네비게이션 (모바일 전용) */
+.bottom-nav{display:none;}
+@media (max-width:520px){
+  .bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:65;
+    background:rgba(255,253,248,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    border-top:1px solid var(--gold-soft);
+    padding:6px 6px calc(6px + env(safe-area-inset-bottom));}
+  .bottom-nav button{flex:1;border:none;background:none;display:flex;flex-direction:column;
+    align-items:center;gap:2px;padding:6px 0;font-size:17px;color:var(--s400);border-radius:12px;}
+  .bottom-nav button span{font-size:10.5px;font-weight:700;}
+  .bottom-nav button.cur{color:var(--wd-navy);}
+  .bottom-nav .bn-center{flex:1.2;margin-top:-18px;}
+  .bottom-nav .bn-center{background:linear-gradient(135deg,#C9B26A,#DCC684 55%,#C9B26A);
+    color:#2A2410;border-radius:18px;box-shadow:0 10px 22px -10px rgba(201,178,106,.7);
+    padding:10px 0 8px;min-height:56px;}
+  .bottom-nav .bn-center span{font-size:11px;font-weight:800;}
+  /* 네비에 가리지 않게 목록 하단 여유 */
+  #screen-list .wrap{padding-bottom:calc(120px + env(safe-area-inset-bottom));}
+}
+/* [8] 입력화면 방 이동 필 (상단 고정) */
+.room-pills{position:sticky;top:0;z-index:55;display:flex;gap:7px;overflow-x:auto;
+  scrollbar-width:none;background:rgba(247,244,238,.95);backdrop-filter:blur(4px);
+  padding:9px 12px;border-bottom:1px solid var(--gold-soft);}
+.room-pills::-webkit-scrollbar{display:none;}
+.room-pills button{flex:0 0 auto;border:1px solid var(--s200);background:#fff;
+  border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:700;color:var(--s600);min-height:38px;}
+.room-pills button:active{border-color:var(--gold);color:var(--wd-navy);}
+
+
+/* ============================================================
+   v2A 럭셔리 정돈 (이모지 제거 · 문패/안내판 톤)
+   팔레트: 남색 · 아이보리 · 샴페인 골드 · 그레이지만 사용
+   ============================================================ */
+.room-card[data-room="sp_situation"],.room-card[data-room="mind_state"],
+.room-card[data-room="body_state"],.room-card[data-room="fl_blocked"],
+.room-card[data-room="relation_lesson"],.room-card[data-room="past"]{border-left-color:var(--gold-soft);}
+.room-card b{display:flex;align-items:center;}
+.room-card b::before{display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;flex:0 0 24px;margin-right:9px;
+  border:1px solid var(--gold);border-radius:50%;background:var(--cream);
+  color:var(--am700);font-size:11.5px;font-weight:800;}
+.room-card[data-room="sp_situation"] b::before{content:"영";}
+.room-card[data-room="mind_state"] b::before{content:"혼";}
+.room-card[data-room="body_state"] b::before{content:"육";}
+.room-card[data-room="fl_blocked"] b::before{content:"흐";}
+.room-card[data-room="relation_lesson"] b::before{content:"원";}
+.room-card[data-room="past"] b::before{content:"기";}
+.room-card:hover,.room-card:active{box-shadow:0 8px 18px -14px rgba(26,34,64,.28);}
+.hm-mk{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;margin-right:9px;flex:0 0 22px;
+  border:1px solid var(--gold);border-radius:50%;background:var(--cream);
+  color:var(--am700);font-size:10.5px;font-weight:800;}
+.house-menu button{display:flex;align-items:center;}
+.house-menu-h .brand{display:inline-flex;align-items:center;gap:7px;color:var(--wd-navy);}
+.house-menu-h .brand .ic{color:var(--gold);}
+.bottom-nav button{color:var(--s400);}
+.bottom-nav button .ic{width:22px;height:22px;}
+.bottom-nav button.cur{color:var(--am700);}
+.bottom-nav button.cur span{color:var(--wd-navy);}
+@media (max-width:520px){
+  .bottom-nav .bn-center{background:var(--gold);color:#2A2410;margin-top:-10px;
+    border-radius:16px;box-shadow:0 5px 12px -7px rgba(146,120,55,.5);padding:9px 0 7px;min-height:52px;}
+}
+.foyer-main-btn{background:var(--gold);box-shadow:0 6px 14px -9px rgba(146,120,55,.5);}
+#btnAiNoah{background:var(--gold);box-shadow:0 6px 14px -9px rgba(146,120,55,.45);}
+.brand-h{display:inline-flex;vertical-align:-3px;margin-right:8px;color:var(--gold);}
+.intro-mark .ic{color:var(--gold);}
+.m-menu-btn{display:inline-flex;align-items:center;justify-content:center;}
+.m-menu-btn .ic{color:#EAD9A8;}
+.search .ico .ic{color:var(--s300);display:block;}
+
+
+/* ===== 연대기·조명의 방 (자리 준비 · 저장 필드 없음) ===== */
+.room-card[data-room="chron"],.room-card[data-room="light"]{border-left-color:var(--gold-soft);}
+.room-card[data-room="chron"] b::before{content:"연";}
+.room-card[data-room="light"] b::before{content:"조";}
+.room-card[data-room="chron"] b::after,.room-card[data-room="light"] b::after{
+  content:"준비 중";margin-left:8px;font-size:10px;font-weight:700;color:var(--s300);
+  border:1px solid var(--s200);border-radius:999px;padding:2px 7px;}
+
+
+/* ============================================================
+   v2A 눈검수 보정 1차 (CSS 전용 · 사라님 폰 검수 피드백 6건)
+   ============================================================ */
+/* [1] 첫 화면 길이 — 삭제 없이 밀도 조정 */
+@media (max-width:520px){
+  .foyer{padding:17px 14px;margin:12px 0 14px;}
+  /* 진행도 5카드 → 한 줄 가로 스크롤 */
+  .foyer-rooms{display:flex;overflow-x:auto;scrollbar-width:none;gap:7px;
+    margin:10px -14px 0;padding:0 14px;}
+  .foyer-rooms::-webkit-scrollbar{display:none;}
+  .foyer-chip{flex:0 0 auto;min-width:86px;}
+  /* 방 카드 2열 컴팩트 */
+  .room-cards{grid-template-columns:1fr 1fr;gap:8px;}
+  .room-card{padding:11px 11px;min-height:0;}
+  .room-card b{font-size:13.5px;flex-wrap:wrap;row-gap:3px;}
+  .room-card b::before{width:21px;height:21px;flex:0 0 21px;font-size:10.5px;margin-right:7px;}
+  .room-card span{font-size:11px;line-height:1.45;color:var(--s500);}
+  .foyer-ask{margin-top:15px;}
+}
+/* [2] 진행도 카드 글씨 또렷하게 */
+.foyer-chip{color:var(--s600);border-color:var(--s200);}
+.foyer-chip span{color:var(--s500);font-weight:700;}
+.foyer-chip.on{color:var(--wd-navy);}
+.foyer-chip.on span{color:var(--am700);}
+/* [3] 오늘 기록하기 버튼 — 낮고 차분하게 */
+.foyer-main-btn{min-height:44px;padding:10px 14px;font-size:14.5px;font-weight:700;
+  border-radius:11px;letter-spacing:.02em;margin-top:11px;
+  box-shadow:0 3px 8px -6px rgba(146,120,55,.5);}
+.foyer-main-btn:active{transform:none;opacity:.92;}
+/* [4] 하단 네비가 목록을 가리지 않게 여유 확대 */
+@media (max-width:520px){
+  #screen-list .wrap{padding-bottom:calc(136px + env(safe-area-inset-bottom));}
+}
+/* [5] 햄버거 메뉴 하단 잘림 여유 */
+.house-menu{padding-bottom:calc(36px + env(safe-area-inset-bottom));}
+.house-menu button:last-child{margin-bottom:6px;}
+/* [6] '준비 중' 배지 또렷하게 */
+.room-card[data-room="chron"] b::after,.room-card[data-room="light"] b::after{
+  color:var(--s500);border-color:var(--s300);font-weight:800;}
+
+
+/* ============================================================
+   v2A 상단바 보완 (CSS 전용 · 현관 문패 톤)
+   ============================================================ */
+@media (max-width:520px){
+  /* [1] 배경 — 남색 유지 + 아주 은은한 세로 그라데이션 (광택 없음) */
+  .m-topbar{background:linear-gradient(180deg,#212A50 0%,var(--wd-navy) 78%);}
+  /* [2] 하단 얇은 샴페인 골드 라인 + 은은한 내림 그림자 */
+  .m-topbar{border-bottom:1px solid rgba(201,178,106,.42);
+    box-shadow:0 8px 16px -14px rgba(10,14,34,.55);}
+  /* [3] 햄버거 버튼 — 약한 둥근 배경감만 */
+  .m-menu-btn{background:rgba(234,217,168,.07);border-radius:12px;}
+  .m-menu-btn:active{background:rgba(234,217,168,.16);}
+  /* [4] 제목 — 문패처럼 정돈 (작은 골드 점 + 자간 미세 조정) */
+  .m-title{display:inline-flex;align-items:center;gap:8px;
+    letter-spacing:.055em;font-weight:700;color:#F0E3BE;}
+  .m-title::before{content:"";width:5px;height:5px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 0 2.5px rgba(201,178,106,.18);}
+  /* [5] 날짜 — 아주 작은 캡슐 */
+  .m-date{border:1px solid rgba(201,178,106,.32);background:rgba(201,178,106,.08);
+    border-radius:999px;padding:3px 9px;font-size:11px;color:#D8C68F;}
+}
+/* [6] 메뉴 패널 헤더 — 문패 정돈 + 구분선 선명하게 */
+.house-menu-h{padding:10px 10px 15px;border-bottom:1px solid rgba(201,178,106,.5);}
+.house-menu-h .brand{font-weight:800;letter-spacing:.045em;font-size:15.5px;}
+
+
+/* ============================================================
+   v2A 메뉴판 보완 (CSS 중심 · 방 안내판 톤)
+   ============================================================ */
+/* 패널 바탕 — 평평한 흰 판 → 아주 은은한 아이보리 결 */
+.house-menu{background:linear-gradient(180deg,#FFFDF8 0%,#F7F1E4 100%);
+  border-right:1px solid rgba(201,178,106,.28);}
+/* [1] 헤더 문패 + 안내 문구 */
+.house-menu-h{padding:12px 10px 10px;border-bottom:none;margin-bottom:0;}
+.hm-sub{font-size:11px;color:var(--s400);padding:0 10px 12px;letter-spacing:.02em;
+  border-bottom:1px solid rgba(201,178,106,.45);margin-bottom:8px;}
+/* [2] 그룹명 — 선명하되 튀지 않게 (얇은 골드 꼬리선) */
+.hm-group{display:flex;align-items:center;gap:8px;color:var(--s500);
+  font-size:11px;font-weight:800;letter-spacing:.1em;padding:12px 10px 4px;}
+.hm-group::after{content:"";flex:1;height:1px;background:rgba(201,178,106,.28);}
+/* [3] 항목 밀도 정돈 */
+.house-menu{gap:2px;}
+.house-menu button{padding:11px 12px;min-height:44px;font-size:14px;font-weight:650;
+  transition:background .12s;}
+/* [4] hover/active 톤 살짝 · 현재 위치 유지 */
+.house-menu button:hover{background:rgba(201,178,106,.08);}
+.house-menu button:active{background:#F1EAD6;}
+.house-menu button.cur{background:var(--vi50);box-shadow:inset 3px 0 0 var(--gold);}
+/* [5] 안내판 느낌 — 오른쪽 얇은 화살 표식(글리프) + 배지 정돈 */
+.house-menu button::after{content:"\203A";margin-left:auto;color:var(--s300);
+  font-size:15px;line-height:1;padding-left:8px;}
+.house-menu button.cur::after{color:var(--am700);}
+.hm-close::after{content:none;}
+.hm-mk{box-shadow:0 0 0 2px rgba(201,178,106,.12);}
+/* [6] 하단 여백 넉넉히 */
+.house-menu{padding-bottom:calc(52px + env(safe-area-inset-bottom));}
+
+
+/* ============================================================
+   v2A 메뉴판 재정돈 — 목록이 아니라 "방 안내판"
+   ============================================================ */
+/* 패널 바탕: 카드가 얹히는 조용한 아이보리 */
+.house-menu{background:#F4EFE3;gap:10px;padding:12px 12px calc(56px + env(safe-area-inset-bottom));}
+/* [1] 상단 문패 — 네이비 카드 */
+.hm-plate{position:relative;background:linear-gradient(180deg,#222B50,var(--wd-navy) 80%);
+  border:1px solid rgba(201,178,106,.4);border-radius:15px;
+  padding:16px 14px 14px;box-shadow:0 8px 18px -14px rgba(10,14,34,.5);}
+.hm-plate-mk{display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;
+  color:#EAD9A8;font-size:12px;font-weight:800;background:rgba(201,178,106,.1);margin-bottom:9px;}
+.hm-plate-t{color:#F2E7C8;font-size:16.5px;font-weight:800;letter-spacing:.05em;}
+.hm-plate-s{color:#B9AF8E;font-size:11px;margin-top:5px;letter-spacing:.02em;}
+.hm-plate .hm-close{position:absolute;top:8px;right:8px;color:#CBBE8F;width:36px;height:36px;}
+.hm-plate .hm-close:active{background:rgba(234,217,168,.14);}
+/* [2] 그룹 카드 블록 */
+.hm-card{background:#FFFDF8;border:1px solid rgba(201,178,106,.3);border-radius:14px;
+  padding:5px 6px 6px;box-shadow:0 4px 12px -11px rgba(26,34,64,.35);}
+.hm-card-t{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:var(--am700);
+  padding:8px 9px 5px;}
+/* [3] 방 행 — 같은 스타일의 안내판 행 */
+.hm-card button{width:100%;padding:11px 9px;min-height:44px;border-radius:10px;
+  font-size:14px;font-weight:650;color:var(--s700);}
+.hm-card button + button{border-top:1px solid rgba(201,178,106,.16);border-radius:0 0 10px 10px;}
+.hm-card button:first-of-type{border-radius:10px 10px 0 0;}
+.house-menu button::after{color:var(--s400);font-size:16px;}
+/* [4] 현재 위치 — 더 확실히 */
+.house-menu button.cur{background:#F3EBD6;box-shadow:inset 3px 0 0 var(--gold);
+  color:var(--wd-navy);font-weight:800;}
+.house-menu button.cur::after{color:var(--am700);}
+/* 이전 헤더 규칙 무력화(구 요소 제거됨) */
+.hm-sub{display:none;}
+
+
+/* ===== 메뉴판 최종 보완 (미세 3건) ===== */
+/* [1] 닫기 X 옆 › 표식 제거 (우선순위 확보) */
+.house-menu .hm-close::after,.hm-plate .hm-close::after{content:none;}
+/* [2] 문패 카드 높이 살짝 낮춤 (안내 문구 유지) */
+.hm-plate{padding:12px 14px 11px;}
+.hm-plate-mk{width:26px;height:26px;font-size:11px;margin-bottom:6px;}
+.hm-plate-t{font-size:15.5px;}
+.hm-plate-s{font-size:10.5px;margin-top:3px;}
+/* [3] 하단 스크롤 여백 — 현재 값 유지 (변경 없음) */
+
+
+/* ===== 사용감 최종 (여백 미세 정돈) ===== */
+.room-guide{padding-bottom:2px;}
+.room-guide[open]{padding-bottom:6px;}
+@media (max-width:520px){
+  .foyer{margin-bottom:17px;}
+  #screen-list .toolbar{margin-top:2px;}
+}
+
+
+/* ============================================================
+   v2-D 조명의 방 (sara_house_pieces · lp_)
+   ============================================================ */
+.room-card[data-room="light"] b::after{content:none;}   /* 준비 중 칩 제거 (조명만) */
+.lp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  background:linear-gradient(180deg,#FFFDF8,#FAF6EC);border:1px solid var(--gold-soft);
+  border-radius:16px;padding:16px 14px;margin:14px 0 12px;}
+.lp-mk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+  border:1.5px solid var(--gold);border-radius:50%;background:var(--cream);
+  color:var(--am700);font-size:12px;font-weight:800;margin-right:9px;vertical-align:-7px;}
+.lp-head-t{font-size:16px;font-weight:800;color:var(--wd-navy);}
+.lp-head-s{font-size:11.5px;color:var(--s500);margin-top:6px;line-height:1.6;}
+.lp-filter{margin:10px 0 8px;}
+.lp-filter input{width:100%;border:1px solid var(--s200);border-radius:11px;padding:11px 13px;
+  font-size:16px;background:#fff;}
+.lp-filter input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,178,106,.16);}
+.lp-sync{font-size:11.5px;color:var(--am700);margin:2px 2px 8px;min-height:1px;}
+.lp-list{display:flex;flex-direction:column;gap:10px;padding-bottom:24px;}
+.lp-card{background:#fff;border:1px solid var(--s200);border-left:3px solid var(--gold-soft);
+  border-radius:13px;padding:13px 14px;cursor:pointer;transition:border-color .15s, box-shadow .15s;}
+.lp-card:hover,.lp-card:active{border-color:var(--gold);box-shadow:0 10px 22px -16px rgba(26,34,64,.3);}
+.lp-card-top{display:flex;align-items:center;gap:8px;}
+.lp-type{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--am700);
+  border:1px solid var(--gold-soft);border-radius:6px;padding:2px 7px;background:var(--cream);}
+.lp-card-t{font-size:14px;font-weight:750;color:var(--wd-navy);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lp-card-sub{font-size:12px;color:var(--s500);margin-top:5px;line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.lp-card-meta{display:flex;gap:8px;align-items:center;margin-top:7px;font-size:11px;color:var(--s400);}
+.lp-unsync{color:#c0392b;font-weight:700;border:1px solid #e6b8b0;border-radius:999px;padding:1px 7px;}
+.lp-lock{color:var(--s500);font-weight:700;}
+.lp-empty{text-align:center;color:var(--s400);font-size:13px;padding:34px 10px;line-height:1.8;}
+.lp-hint{font-size:11px;line-height:1.7;color:#8a8a97;margin:-8px 0 12px;}
+.lp-actions{display:flex;gap:9px;margin-top:14px;}
+.lp-actions .btn-save{flex:1.4;min-height:48px;}
+.lp-actions .btn-ghost{flex:1;min-height:48px;}
+.lp-savestate{margin-top:9px;font-size:12px;font-weight:700;text-align:center;min-height:16px;color:var(--s400);}
+.lp-savestate.ok{color:var(--em700);}
+.lp-savestate.warn{color:#c0392b;}
+.lp-seed-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;}
+#lpSeedWrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;}
+#lpSeedWrap .chip2{border:1px solid var(--s200);border-radius:999px;padding:7px 12px;
+  font-size:12px;font-weight:600;color:var(--s600);background:#fff;cursor:pointer;}
+#lpSeedWrap .chip2.on{border-color:var(--gold);background:var(--cream);color:var(--wd-navy);font-weight:700;}
+.lp-drow{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--s100);}
+.lp-drow .k{flex:0 0 108px;font-size:11.5px;color:var(--s500);font-weight:700;line-height:1.6;}
+.lp-drow .v{flex:1;font-size:13.5px;color:var(--s800);line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+.lp-reveal{text-align:center;padding:22px 8px;color:var(--s500);font-size:13px;line-height:1.8;}
+.lp-reveal button{margin-top:10px;border:1px solid var(--gold);background:var(--cream);
+  color:var(--am700);border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;}
+@media (max-width:520px){
+  #screen-light .wrap{padding-bottom:calc(60px + env(safe-area-inset-bottom));}
+}
+
+
+/* ============================================================
+   v2-E 연대기의 방 (sara_house_pieces kind='chron' · ch_)
+   lp-* 스타일 계승한 ch-* 전용 클래스 — 조명 CSS 무수정
+   ============================================================ */
+.room-card[data-room="chron"] b::after{content:none;}   /* 준비 중 칩 제거 (연대기만) */
+.ch-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  background:linear-gradient(180deg,#FFFDF8,#FAF6EC);border:1px solid var(--gold-soft);
+  border-radius:16px;padding:16px 14px;margin:14px 0 10px;}
+.ch-mk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+  border:1.5px solid var(--gold);border-radius:50%;background:var(--cream);
+  color:var(--am700);font-size:12px;font-weight:800;margin-right:9px;vertical-align:-7px;}
+.ch-head-t{font-size:16px;font-weight:800;color:var(--wd-navy);}
+.ch-head-s{font-size:11.5px;color:var(--s500);margin-top:6px;line-height:1.6;}
+.ch-guide{font-size:11.5px;line-height:1.75;color:var(--s500);
+  border:1px dashed var(--gold-soft);border-radius:12px;background:#FFFDF8;
+  padding:11px 13px;margin:0 0 10px;}
+.ch-filter{margin:10px 0 8px;}
+.ch-filter input{width:100%;border:1px solid var(--s200);border-radius:11px;padding:11px 13px;
+  font-size:16px;background:#fff;}
+.ch-filter input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,178,106,.16);}
+.ch-sync{font-size:11.5px;color:var(--am700);margin:2px 2px 8px;min-height:1px;}
+.ch-list{display:flex;flex-direction:column;gap:10px;padding-bottom:24px;}
+.ch-card{background:#fff;border:1px solid var(--s200);border-left:3px solid var(--gold-soft);
+  border-radius:13px;padding:13px 14px;cursor:pointer;transition:border-color .15s, box-shadow .15s;}
+.ch-card:hover,.ch-card:active{border-color:var(--gold);box-shadow:0 10px 22px -16px rgba(26,34,64,.3);}
+.ch-card-top{display:flex;align-items:center;gap:8px;}
+.ch-period{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--am700);
+  border:1px solid var(--gold-soft);border-radius:6px;padding:2px 7px;background:var(--cream);
+  max-width:118px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ch-card-t{font-size:14px;font-weight:750;color:var(--wd-navy);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ch-card-meta{display:flex;gap:8px;align-items:center;margin-top:7px;font-size:11px;color:var(--s400);}
+.ch-unsync{color:#c0392b;font-weight:700;border:1px solid #e6b8b0;border-radius:999px;padding:1px 7px;}
+.ch-lock{color:var(--s500);font-weight:700;}
+.ch-empty{text-align:center;color:var(--s400);font-size:13px;padding:34px 10px;line-height:1.8;}
+.ch-hint{font-size:11px;line-height:1.7;color:#8a8a97;margin:-8px 0 12px;}
+.ch-actions{display:flex;gap:9px;margin-top:14px;}
+.ch-actions .btn-save{flex:1.4;min-height:48px;}
+.ch-actions .btn-ghost{flex:1;min-height:48px;}
+.ch-savestate{margin-top:9px;font-size:12px;font-weight:700;text-align:center;min-height:16px;color:var(--s400);}
+.ch-savestate.ok{color:var(--em700);}
+.ch-savestate.warn{color:#c0392b;}
+.ch-seed-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;}
+#chSeedWrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;}
+#chSeedWrap .chip2{border:1px solid var(--s200);border-radius:999px;padding:7px 12px;
+  font-size:12px;font-weight:600;color:var(--s600);background:#fff;cursor:pointer;}
+#chSeedWrap .chip2.on{border-color:var(--gold);background:var(--cream);color:var(--wd-navy);font-weight:700;}
+.ch-drow{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--s100);}
+.ch-drow .k{flex:0 0 108px;font-size:11.5px;color:var(--s500);font-weight:700;line-height:1.6;}
+.ch-drow .v{flex:1;font-size:13.5px;color:var(--s800);line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+.ch-reveal{text-align:center;padding:22px 8px;color:var(--s500);font-size:13px;line-height:1.8;}
+.ch-reveal button{margin-top:10px;border:1px solid var(--gold);background:var(--cream);
+  color:var(--am700);border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;}
+@media (max-width:520px){
+  #screen-chron .wrap{padding-bottom:calc(60px + env(safe-area-inset-bottom));}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ===== Supabase 설정 자리 (사라님이 직접 채움) =====
-   아래 두 값은 Supabase 콘솔 → Settings → API 에서 복사.
-   - SB_URL  : Project URL
-   - SB_ANON : anon public key  (절대 service_role key 금지)
-   값을 채우기 전까지는 로컬(localStorage)만 동작합니다. */
+/* ===== Supabase 설정 (기본값 내장 · anon public key) =====
+   SB_URL / SB_ANON 기본값이 채워져 있어 클라우드 동기화가 기본 동작합니다.
+   필요 시 localStorage('sara_sb_url' / 'sara_sb_anon')로 덮어쓸 수 있습니다.
+   anon public key만 사용 (service_role key 절대 금지). */
 /* 사라의 집 전용 Supabase (anon public key · RLS로 보호됨)
    anon key는 공개용이라 코드에 둬도 안전합니다. service_role은 절대 금지. */
 const SB_URL_DEFAULT  = "https://koqptuxtnmvwgxwtyvrx.supabase.co";
@@ -265,8 +906,9 @@ const SB_ANON_DEFAULT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 let SB_URL  = localStorage.getItem('sara_sb_url')  || SB_URL_DEFAULT;
 let SB_ANON = localStorage.getItem('sara_sb_anon') || SB_ANON_DEFAULT;
 const SB_TABLE = "sara_house_entries";
+const CLASSIFY_FN = "classify-sara-house";  // Supabase Edge Function 이름
 let _sb = null;          // Supabase 클라이언트
-let _sbReady = false;    // 설정값이 채워졌는지
+let _sbReady = false;    // Supabase 클라이언트 준비 여부
 let _sbUser = null;      // 로그인 사용자
 function sbConfigured(){
   return !!(SB_URL && SB_ANON && SB_URL.indexOf("http")===0);
@@ -274,17 +916,47 @@ function sbConfigured(){
 </script>
 </head>
 <body>
+<!-- ===== 연결진단 열기 버튼 (진단 사본 전용 · 운영본에 없음) ===== -->
+<button type="button" id="btnDiagOpen" style="position:fixed;top:10px;right:10px;z-index:210;
+  font:11px monospace;background:#2a355e;color:#EAD9A8;border:1px solid #4a568c;
+  border-radius:7px;padding:5px 10px;box-shadow:0 2px 8px rgba(0,0,0,.25);">연결진단</button>
+
+<!-- ===== 진단 모달 (진단 사본 전용 · 운영본에 없음) ===== -->
+<div id="diagPanel" style="display:none;position:fixed;inset:0;z-index:99999;
+  background:rgba(10,14,30,.55);align-items:center;justify-content:center;padding:16px;">
+  <div style="width:100%;max-width:480px;max-height:80vh;overflow:auto;
+    background:#101528;color:#cfe3ff;font:11px/1.65 ui-monospace,Menlo,monospace;
+    padding:10px 12px;border-radius:10px;border:1px solid #35406b;">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+      <b style="color:#EAD9A8;">v2-E 진단 패널</b>
+      <button type="button" id="btnDiagPing" style="font:11px monospace;background:#2a355e;color:#EAD9A8;border:1px solid #4a568c;border-radius:7px;padding:3px 9px;">연결 진단 실행</button>
+      <button type="button" id="btnDiagToggle" style="font:11px monospace;background:none;color:#8fa0d0;border:1px solid #35406b;border-radius:7px;padding:3px 9px;margin-left:auto;">접기</button>
+      <button type="button" id="btnDiagClose" style="font:12px monospace;background:none;color:#ff9c8f;border:1px solid #35406b;border-radius:7px;padding:3px 9px;">닫기 ✕</button>
+    </div>
+    <div id="diagStatus"></div>
+    <div id="diagLast" style="margin-top:6px;color:#ffd9d0;"></div>
+  </div>
+</div>
+
 
 <!-- ============ 도입 화면 (인트로) ============ -->
 <div id="screen-intro" class="intro">
   <div class="intro-in">
-    <div class="intro-mark">🕯️</div>
+    <div class="intro-mark"><svg class="ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2c1.2 1.4 1.9 2.5 1.9 3.4A1.9 1.9 0 0 1 12 8.5a1.9 1.9 0 0 1-1.9-1.9c0-.9.7-2 1.9-3.4Z"/><rect x="9.6" y="11" width="4.8" height="8.6" rx="1.1"/><path d="M7.5 19.6h9"/></svg></div>
     <div class="intro-title">사라의 집</div>
     <div class="intro-div"></div>
-    <p class="intro-line">흩어진 마음과 기억을<br>잠시 내려놓는 방</p>
-    <p class="intro-line q">오늘, 이 집에 무엇을 적어 둘까요?</p>
-    <button class="intro-btn" id="btnIntroEnter">사라의 집에 들어가기</button>
-    <p class="intro-foot">개인 내부 전용 · 배포 전 검수판</p>
+    <p class="intro-line">흩어진 마음을<br>잠시 내려놓는 방</p>
+    <p class="intro-line q">오늘도 나에게로 돌아오세요.</p>
+    <div style="width:100%;max-width:300px;margin-top:20px;">
+      <input type="text" id="gateId" placeholder="아이디" autocomplete="username"
+        style="width:100%;box-sizing:border-box;padding:14px 18px;margin-bottom:11px;border-radius:14px;border:1px solid rgba(201,178,106,.22);background:rgba(255,253,248,.06);color:#F3EEDF;font-size:15px;outline:none;text-align:center;">
+      <input type="password" id="gatePw" placeholder="비밀번호" autocomplete="current-password"
+        style="width:100%;box-sizing:border-box;padding:14px 18px;margin-bottom:16px;border-radius:14px;border:1px solid rgba(201,178,106,.22);background:rgba(255,253,248,.06);color:#F3EEDF;font-size:15px;outline:none;text-align:center;letter-spacing:.1em;">
+      <label class="gate-remember"><input type="checkbox" id="gateRememberId" /> 아이디 저장</label>
+      <button class="intro-btn" id="btnIntroEnter">집으로 들어가기</button>
+      <p id="gateErr" style="color:#F4A3A3;font-size:13px;font-weight:700;text-align:center;margin-top:12px;min-height:18px;"></p>
+    </div>
+    <p class="intro-foot">개인 내부 전용 공간</p>
   </div>
 </div>
 
@@ -292,31 +964,89 @@ function sbConfigured(){
 
 <!-- ============ 메인: 리스트 ============ -->
 <div id="screen-list" class="scr">
+  <div class="m-topbar">
+    <button type="button" class="m-menu-btn" id="btnHouseMenu" aria-label="메뉴 열기"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+    <div class="m-title">사라의 집</div>
+    <div class="m-date" id="mTopDate"></div>
+  </div>
+  <div class="house-menu-backdrop" id="houseMenuBackdrop"></div>
+  <nav class="house-menu" id="houseMenu">
+    <div class="hm-plate">
+      <button type="button" class="hm-close" id="btnMenuClose" aria-label="메뉴 닫기">✕</button>
+      <div class="hm-plate-mk">집</div>
+      <div class="hm-plate-t">사라의 집</div>
+      <div class="hm-plate-s">오늘 필요한 방으로 천천히 들어가세요</div>
+    </div>
+    <div class="hm-card">
+      <div class="hm-card-t">오늘</div>
+      <button type="button" data-room="foyer" data-loc="list">현관</button>
+      <button type="button" data-room="new" data-loc="edit">오늘 기록하기</button>
+    </div>
+    <div class="hm-card">
+      <div class="hm-card-t">방</div>
+      <button type="button" data-room="sp_situation"><span class="hm-mk">영</span>영의 방</button>
+      <button type="button" data-room="mind_state"><span class="hm-mk">혼</span>혼의 방</button>
+      <button type="button" data-room="body_state"><span class="hm-mk">육</span>육의 방</button>
+      <button type="button" data-room="fl_blocked"><span class="hm-mk">흐</span>흐름 점검</button>
+      <button type="button" data-room="relation_lesson"><span class="hm-mk">원</span>삶의 원석</button>
+      <button type="button" data-room="chron"><span class="hm-mk">연</span>연대기의 방</button>
+      <button type="button" data-room="light"><span class="hm-mk">조</span>조명의 방</button>
+    </div>
+    <div class="hm-card">
+      <div class="hm-card-t">기록</div>
+      <button type="button" data-room="past"><span class="hm-mk">기</span>지난 기록</button>
+    </div>
+    <div class="hm-card">
+      <div class="hm-card-t">안내</div>
+      <button type="button" data-room="guide">방 소개</button>
+    </div>
+  </nav>
   <div class="hdr">
     <div class="hdr-in">
-      <h1>🕯️ <span class="ko">사라의 집</span></h1>
-      <div class="sub">오늘 하루를 말씀 안에서 돌아보고, 흩어진 마음과 기억을 한 곳에 적어 두는 나의 기록 방입니다.</div>
-      <span class="badge-local">배포 전 검수판</span>
+      <h1><span class="brand-h"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2c1.2 1.4 1.9 2.5 1.9 3.4A1.9 1.9 0 0 1 12 8.5a1.9 1.9 0 0 1-1.9-1.9c0-.9.7-2 1.9-3.4Z"/><rect x="9.6" y="11" width="4.8" height="8.6" rx="1.1"/><path d="M7.5 19.6h9"/></svg></span><span class="ko">사라의 집</span></h1>
+      <div class="sub">오늘의 마음, 말씀, 기억을 조용히 모아두는 방입니다.</div>
     </div>
-  </div>
-
-  <div class="warn">
-    <b>배포 전 검수판입니다.</b> 이 브라우저에만 임시 저장됩니다 ·
-    민감한 실명 기록은 입력하지 마세요 · 운영 저장은 추후 Supabase 암호화 저장판에서 진행합니다.
   </div>
 
   <div class="wrap">
+    <div class="foyer" id="foyer">
+      <div class="foyer-date" id="foyerDate"></div>
+      <div class="foyer-status" id="foyerStatus"></div>
+      <button type="button" class="foyer-main-btn" data-room="new">오늘 기록하기</button>
+      <div class="foyer-rooms" id="foyerRooms"></div>
+      <div class="foyer-ask">오늘은 어디로 가실까요?</div>
+      <div class="room-cards">
+        <button type="button" class="room-card" data-room="sp_situation"><b>영의 방</b><span>말씀과 기도로 다시 해석하는 방</span></button>
+        <button type="button" class="room-card" data-room="mind_state"><b>혼의 방</b><span>마음, 기억, 반응을 회수하는 방</span></button>
+        <button type="button" class="room-card" data-room="body_state"><b>육의 방</b><span>몸, 돈, 현실을 점검하는 방</span></button>
+        <button type="button" class="room-card" data-room="fl_blocked"><b>흐름 점검</b><span>영·혼·육이 어디서 막혔는지 보는 방</span></button>
+        <button type="button" class="room-card" data-room="relation_lesson"><b>삶의 원석</b><span>깨달음과 씨앗을 보관하는 방</span></button>
+        <button type="button" class="room-card" data-room="chron"><b>연대기의 방</b><span>기억나는 조각을 순서 없이 모아, 나중에 삶의 흐름으로 맞추는 방</span></button>
+        <button type="button" class="room-card" data-room="light"><b>조명의 방</b><span>들은 이야기와 깨달음을 말씀의 빛으로 다시 비추는 방</span></button>
+        <button type="button" class="room-card" data-room="past"><b>지난 기록</b><span>예전 기록과 앨범을 꺼내보는 곳</span></button>
+      </div>
+      <details class="room-guide" id="roomGuide">
+        <summary>방 소개</summary>
+        <div class="room-guide-body">
+          <div><b>현관</b> — 오늘 내가 어디에 있는지 확인하는 곳</div>
+          <div><b>영의 방</b> — 말씀과 기도로 다시 해석하는 곳</div>
+          <div><b>혼의 방</b> — 마음과 기억과 반응을 회수하는 곳</div>
+          <div><b>육의 방</b> — 몸과 돈과 현실을 피하지 않고 보는 곳</div>
+          <div><b>흐름 점검</b> — 영·혼·육의 연결을 보는 곳</div>
+          <div><b>삶의 원석</b> — 깨달음과 사명 씨앗을 보관하는 곳</div>
+          <div><b>지난 기록</b> — 예전 기록을 앨범처럼 다시 꺼내보는 곳</div>
+        </div>
+      </details>
+    </div>
     <div class="hero-entry">
-      <div class="he-q">오늘, 무엇을 이 집에 적어 둘까요?</div>
-      <div class="he-s">지금 해결하지 않아도 됩니다. 떠오른 마음·기억·말씀을 그냥 적어 두면 됩니다.</div>
-      <button class="he-btn" id="btnHeroNew">✏️ 오늘 하루 바로 적기</button>
+      <div class="he-q">오늘, 무엇을 남겨둘까요?</div>
+      <div class="he-s">지금 정리하지 않아도 괜찮아요. 떠오른 마음을 그저 적어 두세요.</div>
+      <button class="he-btn" id="btnHeroNew">오늘 기록하기</button>
       <div class="he-quick">
-        <button id="btnHeroWord">📖 말씀만 적기</button>
-        <button id="btnHeroOneline">💬 한 문장만 적기</button>
+        <button id="btnHeroWord">말씀 기록하기</button>
+        <button id="btnHeroOneline">한 문장 남기기</button>
       </div>
     </div>
-    <div class="guide-motto">“빈방은 저장할 그릇이고, 연결구조는 나중에 찾을 길이며, 원석은 천천히 넣는다.”</div>
-    <div class="guide-note">001~018은 기존 5개월 회수 기록 체계입니다. 새 종합 회수 묶음은 019로 자동 생성하지 않고, 사라님이 확정한 이름으로만 관리합니다.</div>
     <div class="tabs" id="tabs">
       <button class="tab on" data-tab="전체">전체</button>
       <button class="tab" data-tab="일반기록">일반기록</button>
@@ -330,14 +1060,22 @@ function sbConfigured(){
 
     <div class="toolbar">
       <div class="search">
-        <span class="ico">🔍</span>
-        <input id="searchInput" type="text" placeholder="날짜·말씀·내용 검색" />
+        <span class="ico"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.6"/><path d="m16.3 16.3 3.4 3.4"/></svg></span>
+        <input id="searchInput" type="text" placeholder="기억·말씀·사람·주제 검색" />
       </div>
-      <button id="btnNew" class="btn-new">＋ 오늘 하루 회수하기</button>
+      <button id="btnNew" class="btn-new">＋ 오늘 기록</button>
     </div>
 
     <div class="list" id="list"></div>
   </div>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <button type="button" data-nav="foyer" class="cur"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10.5V19h11v-8.5"/></svg><span>현관</span></button>
+    <button type="button" data-nav="rooms"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="1.2"/><path d="M14 11.6v1.2"/></svg><span>방</span></button>
+    <button type="button" data-nav="new" class="bn-center"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5l4 4"/><path d="M6 18l.5-2.6L16.6 5.3a1.9 1.9 0 0 1 2.7 2.7L9.2 18.1 6.6 18.6 6 18Z"/></svg><span>오늘 기록</span></button>
+    <button type="button" data-nav="album"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v15H7.5A2.5 2.5 0 0 0 5 20.5V5.5Z"/><path d="M19 18H7.5"/></svg><span>앨범</span></button>
+    <button type="button" data-nav="search"><svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.6"/><path d="m16.3 16.3 3.4 3.4"/></svg><span>검색</span></button>
+  </nav>
 </div>
 
 <!-- ============ 상세 ============ -->
@@ -353,11 +1091,157 @@ function sbConfigured(){
 </div>
 
 <!-- ============ 입력/수정 ============ -->
+<!-- ============ 조명의 방 (v2-D · sara_house_pieces) ============ -->
+<div id="screen-light" class="scr">
+  <div class="subbar">
+    <button class="lk" id="btnLightBack" type="button">← 돌아가기</button>
+    <div class="ttl" id="lpTitle">조명의 방</div>
+    <div class="r"></div>
+  </div>
+  <div class="wrap">
+
+    <!-- 패널 1: 목록 -->
+    <div id="lpPanelList">
+      <div class="lp-head">
+        <div class="lp-head-l">
+          <div class="lp-head-t"><span class="lp-mk">조</span>조명의 방</div>
+          <div class="lp-head-s">들은 이야기와 깨달음을 말씀의 빛으로 다시 비추는 방</div>
+        </div>
+        <button type="button" class="btn-new" id="btnLpNew">+ 새 조각</button>
+      </div>
+      <div class="tabs" id="lpTypeChips"></div>
+      <div class="lp-filter"><input type="text" id="lpFilterText" placeholder="조각 내용 필터 (보호 조각 제외)" /></div>
+      <div class="lp-sync" id="lpSyncNote"></div>
+      <div class="lp-list" id="lpList"></div>
+    </div>
+
+    <!-- 패널 2: 입력/수정 -->
+    <div id="lpPanelForm" style="display:none;">
+      <div class="fsec">
+        <div class="fsec-h"><span class="mk">조</span><h3 id="lpFormTitle">새 조각</h3></div>
+        <div class="fld"><label>누구에게서 · 어디서</label><input type="text" id="lp_source" placeholder="예: 김미경 강연, 김형석 교수님 책, 오은영 박사님 영상, 지인과의 대화" /></div>
+        <div class="lp-hint">공인이 아닌 지인의 이야기는 실명 대신 표현을 고르고, 필요하면 보호 등급을 함께 지정합니다.</div>
+        <div class="fld"><label>형태</label><select id="lp_source_type">
+          <option>강연</option><option>책</option><option>영상</option><option>설교</option><option>대화</option><option>기타</option>
+        </select></div>
+        <div class="fld"><label>남은 문장</label><textarea id="lp_quote" placeholder="마음에 남은 문장을 짧게 — 긴 원문 통째 옮기지 않기"></textarea></div>
+        <div class="lp-hint">강연·책의 문장은 개인 기록으로는 짧게 남기고, 콘텐츠로 흘려보낼 때는 인용·출처를 따로 점검합니다.</div>
+        <div class="fld"><label>내 삶과 연결되는 지점</label><textarea id="lp_my_link" placeholder="이 이야기가 내 기억·상황의 어디와 만나는지"></textarea></div>
+        <div class="fld"><label>기도하며 다시 본 의미</label><textarea id="lp_prayer_view" placeholder="하나님 앞에서 기도할 때 이 이야기가 어떻게 다시 보였는지"></textarea></div>
+        <div class="fld"><label>비춰진 말씀 구절</label><input type="text" id="lp_word_ref" placeholder="예: 잠언 16:3" /></div>
+        <div class="fld"><label>말씀으로 비춰진 깨달음</label><textarea id="lp_word_light" placeholder="말씀의 빛으로 이 이야기를 다시 해석한 내용"></textarea></div>
+        <div class="fld"><label>흘려보내고 싶은 방향</label><textarea id="lp_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정 — 누구에게 어떤 형태로"></textarea></div>
+        <div class="fld"><label class="lp-seed-toggle"><input type="checkbox" id="lp_is_seed" /> 씨앗 후보로 심기</label>
+          <div id="lpSeedWrap" style="display:none;"></div></div>
+        <div class="row2">
+          <div class="fld"><label>들은 날짜</label><input type="date" id="lp_piece_date" /></div>
+          <div class="fld"><label>보호 등급</label><select id="lp_protect">
+            <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
+          </select></div>
+        </div>
+        <div class="lp-actions">
+          <button type="button" class="btn-save" id="btnLpSave">조각 저장</button>
+          <button type="button" class="btn-ghost" id="btnLpCancel">목록으로</button>
+        </div>
+        <div class="lp-savestate" id="lpSaveState"></div>
+      </div>
+    </div>
+
+    <!-- 패널 3: 상세 -->
+    <div id="lpPanelDetail" style="display:none;">
+      <div class="fsec">
+        <div class="fsec-h"><span class="mk">조</span><h3>조각 상세</h3></div>
+        <div id="lpDetailBody"></div>
+        <div class="lp-actions">
+          <button type="button" class="btn-save" id="btnLpEdit">수정</button>
+          <button type="button" class="btn-ghost" id="btnLpDelete">삭제</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ 연대기의 방 (v2-E · sara_house_pieces kind='chron') ============ -->
+<div id="screen-chron" class="scr">
+  <div class="subbar">
+    <button class="lk" id="btnChronBack" type="button">← 돌아가기</button>
+    <div class="ttl" id="chTitle">연대기의 방</div>
+    <div class="r"></div>
+  </div>
+  <div class="wrap">
+
+    <!-- 패널 1: 목록 -->
+    <div id="chPanelList">
+      <div class="ch-head">
+        <div class="ch-head-l">
+          <div class="ch-head-t"><span class="ch-mk">연</span>연대기의 방</div>
+          <div class="ch-head-s">기억나는 조각을 순서 없이 모아, 나중에 삶의 흐름으로 맞추는 방</div>
+        </div>
+        <button type="button" class="btn-new" id="btnChNew">+ 새 조각</button>
+      </div>
+      <div class="ch-guide">아픔을 억지로 파내는 방이 아닙니다. 기억나는 조각만, 기억나는 만큼만 담아두세요. 순서는 나중에 맞춥니다.</div>
+      <div class="ch-filter"><input type="text" id="chFilterText" placeholder="조각 내용 필터 (보호 조각 제외)" /></div>
+      <div class="ch-sync" id="chSyncNote"></div>
+      <div class="ch-list" id="chList"></div>
+    </div>
+
+    <!-- 패널 2: 입력/수정 -->
+    <div id="chPanelForm" style="display:none;">
+      <div class="fsec">
+        <div class="fsec-h"><span class="mk">연</span><h3 id="chFormTitle">새 조각</h3></div>
+        <div class="fld"><label>언제쯤의 기억인가</label><input type="text" id="ch_period" placeholder="예: 일곱 살 무렵, 첫 직장 시절, 결혼 전, 아이 낳고 얼마 안 됐을 때" /></div>
+        <div class="fld"><label>기억 장면</label><textarea id="ch_scene" placeholder="그때 있었던 일을 기억나는 대로, 짧아도 괜찮게"></textarea></div>
+        <div class="fld"><label>함께 있던 사람</label><input type="text" id="ch_people" placeholder="실명 대신 표현도 괜찮음 (예: 그때 담임 선생님)" /></div>
+        <div class="ch-hint">공인이 아닌 사람은 실명 대신 표현을 고르고, 필요하면 보호 등급을 함께 지정합니다.</div>
+        <div class="fld"><label>그때의 마음</label><textarea id="ch_feeling" placeholder="그때 느꼈던 감정, 아픔, 기쁨을 그대로"></textarea></div>
+        <div class="fld"><label>지금의 나에게 남긴 것</label><textarea id="ch_effect" placeholder="이 기억이 지금의 내 패턴·선택에 어떻게 남아 있는지"></textarea></div>
+        <div class="fld"><label>지나며 받은 은혜·회복</label><textarea id="ch_grace" placeholder="그 시절을 지나오게 하신 손길이 있었다면 (선택)"></textarea></div>
+        <div class="fld"><label>하나님 앞에서 다시 본 의미</label><textarea id="ch_god_view" placeholder="지금 시점에서 하나님 앞에 이 기억을 놓고 다시 보면"></textarea></div>
+        <div class="fld"><label>흘려보내고 싶은 방향</label><textarea id="ch_flow_to" placeholder="간증 / 강연 / 책 / 콘텐츠 / 아직 미정"></textarea></div>
+        <div class="fld"><label class="ch-seed-toggle"><input type="checkbox" id="ch_is_seed" /> 씨앗 후보로 심기</label>
+          <div id="chSeedWrap" style="display:none;"></div></div>
+        <div class="row2">
+          <div class="fld"><label>정확한 날짜 (아는 경우만)</label><input type="date" id="ch_piece_date" /></div>
+          <div class="fld"><label>보호 등급</label><select id="ch_protect">
+            <option>공개 가능</option><option>부분 보호</option><option>강한 보호</option><option>절대 비공개</option><option selected>추후 판단</option>
+          </select></div>
+        </div>
+        <div class="ch-actions">
+          <button type="button" class="btn-save" id="btnChSave">조각 저장</button>
+          <button type="button" class="btn-ghost" id="btnChCancel">목록으로</button>
+        </div>
+        <div class="ch-savestate" id="chSaveState"></div>
+      </div>
+    </div>
+
+    <!-- 패널 3: 상세 -->
+    <div id="chPanelDetail" style="display:none;">
+      <div class="fsec">
+        <div class="fsec-h"><span class="mk">연</span><h3>조각 상세</h3></div>
+        <div id="chDetailBody"></div>
+        <div class="ch-actions">
+          <button type="button" class="btn-save" id="btnChEdit">수정</button>
+          <button type="button" class="btn-ghost" id="btnChDelete">삭제</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div id="screen-edit" class="scr">
   <div class="subbar">
     <div class="l"><button class="bk" id="btnEditCancel">← 취소</button></div>
     <div class="ttl" id="editTitle">새 기록</div>
     <div class="r"></div>
+  </div>
+  <div class="room-pills" id="roomPills">
+    <button type="button" data-jump="영의 방">영</button>
+    <button type="button" data-jump="혼의 방">혼</button>
+    <button type="button" data-jump="육의 방">육</button>
+    <button type="button" data-jump="흐름 점검">흐름</button>
+    <button type="button" data-jump="삶의 원석">원석</button>
   </div>
 
   <div class="form">
@@ -420,17 +1304,47 @@ function sbConfigured(){
     </div>
 
     <div class="fsec">
-      <div class="fsec-h"><span class="mk">영</span><h3>기록 본문 · 검색 키워드</h3></div>
+      <div class="fsec-h"><span class="mk">글</span><h3>기록 본문 · 검색 키워드</h3></div>
       <div class="fld">
         <label>사건 요약 / 기록 본문 <span style="font-size:11px;color:var(--s400);font-weight:400;">노아 정리방·삶 운영방에서 회수한 내용을 그대로 붙여넣기</span></label>
         <textarea id="f_content" style="min-height:160px;" placeholder="정리본 또는 원문을 그대로 붙여넣기 — 각색하지 말고 원문 그대로"></textarea>
+        <div class="field-hint">처음에는 본문만 붙여넣어도 됩니다. 나머지 칸은 노아/나온 버튼으로 정리할 수 있습니다.</div>
         <div class="ai-stub">
-          <div class="ai-stub-btns">
-            <button type="button" class="ai-stub-btn" id="btnAiNoah">📋 노아에게 정리시키기</button>
-            <button type="button" class="ai-stub-btn" id="btnAiNaon">🧩 나온 형식으로 칸 나누기</button>
+          <div class="ai-note">
+            <div class="ai-note-h">AI 정리 안내</div>
+            <div>이 화면에는 API 키를 입력하지 않습니다.</div>
+            <div>본문을 붙여넣고 버튼을 누르면 빈칸만 자동으로 정리됩니다.</div>
+            <div>설정 정보는 관리자 안내에서 확인할 수 있습니다.</div>
           </div>
-          <div class="ai-stub-note">현재 배포 전 검수판에서는 AI 자동정리를 실행하지 않습니다. 본문을 복사해 노아에게 정리 요청 후, 결과를 각 칸에 직접 확인해 넣어주세요.</div>
+          <div class="ai-stub-btns">
+            <button type="button" class="ai-stub-btn" id="btnAiNoah">노아에게 정리시키기</button>
+            <button type="button" class="ai-stub-btn" id="btnAiNaon">나온 형식으로 칸 나누기</button>
+          </div>
+          <div class="ai-btn-desc">
+            <div><b>노아</b>: 마음과 의미를 정리합니다.</div>
+            <div><b>나온</b>: 분류와 태그를 정리합니다.</div>
+          </div>
+          <div class="ai-status" id="aiStatusBox">
+            <div class="ai-status-h">AI 연결 상태</div>
+            <ol class="ai-steps">
+              <li id="aist1"><span class="mk"></span><span>Supabase 준비됨</span></li>
+              <li id="aist2"><span class="mk"></span><span>AI 함수 배포</span></li>
+              <li id="aist3"><span class="mk"></span><span>AI 함수 응답 확인</span></li>
+              <li id="aist4"><span class="mk"></span><span>AI 정리 사용 가능</span></li>
+            </ol>
+            <div class="ai-status-msg" id="aiStatusMsg">버튼을 누르면 AI 연결 상태를 확인합니다.</div>
+          </div>
+          <div class="ai-stub-note">본문을 붙여넣고 버튼을 누르면, AI가 빈 칸만 자동으로 채워줍니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다.</div>
           <div class="ai-stub-box" id="aiStubBox"></div>
+          <details class="admin-guide">
+            <summary>관리자 설정 안내</summary>
+            <div class="admin-guide-body">
+              Supabase Dashboard → Edge Functions → Manage secrets<br>
+              Secret 이름: <code>ANTHROPIC_API_KEY</code><br>
+              Value: 실제 Anthropic API Key<br>
+              Edge Function: <code>classify-sara-house</code>
+            </div>
+          </details>
         </div>
       </div>
       <div class="fld">
@@ -465,40 +1379,62 @@ function sbConfigured(){
       </div>
     </div>
 
-    <div class="fsec recall">
-      <div class="fsec-h"><span class="mk">하나</span><h3>기억 회수</h3></div>
-      <div class="fld"><label><span class="no">2</span>오늘 몸 상태</label><textarea id="body_state"></textarea></div>
-      <div class="fld"><label><span class="no">3</span>오늘 마음 상태</label><textarea id="mind_state"></textarea></div>
-      <div class="fld"><label><span class="no">4</span>오늘 떠오른 과거의 기억</label><textarea id="past_memory"></textarea></div>
-      <div class="fld"><label><span class="no">5</span>반복하고 싶지 않은 나의 패턴</label><textarea id="pattern"></textarea></div>
-      <div class="fld"><label><span class="no">6</span>그때의 나는 무엇이 아팠나</label><textarea id="what_hurt"></textarea></div>
-      <div class="fld"><label><span class="no">7</span>지금의 내가 그때의 나에게 해주고 싶은 말</label><textarea id="to_past_me"></textarea></div>
+    <div class="fsec word">
+      <div class="fsec-h"><span class="mk">영</span><h3>영의 방 · 말씀 연결 흐름</h3></div>
+      <div style="font-size:11.5px;line-height:1.7;color:#8a8a97;margin:2px 0 8px;">상황 → 마음 → 말씀 → 해석 → 기준 → 전할 말 → 기도의 흐름으로 정리합니다. 사람 실명이나 민감한 관계 내용이 들어가면 "연결 · 보호"에서 보호 등급을 함께 지정해 주세요.</div>
+      <div class="fld"><label><span class="no">2</span>오늘 만난 상황</label><input type="text" id="sp_situation" placeholder="오늘 마음에 남은 상황을 한 줄로 적어주세요. 예: 어르신의 말, 문병, 돈 걱정, 관계 대화" /></div>
+      <div class="fld"><label><span class="no">3</span>그 상황에서 올라온 마음</label><textarea id="heart_before_word"></textarea></div>
+      <div class="fld"><label><span class="no">4</span>오늘 마음에 붙든 말씀 구절</label><input type="text" id="scripture_ref" placeholder="예) 시편 23:1" /></div>
+      <div class="fld"><label><span class="no">5</span>말씀 본문</label><textarea id="scripture_text"></textarea></div>
+      <div class="fld"><label><span class="no">6</span>하나님 앞에서 다시 해석한 의미 <span style="font-size:11px;color:var(--s400);font-weight:400;">기준 문서 14항</span></label><textarea id="god_interpretation"></textarea></div>
+      <div class="fld"><label><span class="no">7</span>나에게 주시는 기준</label><textarea id="god_left_sentence"></textarea></div>
+      <div class="fld"><label><span class="no">8</span>사람에게 상처 없이 전할 문장</label><textarea id="sp_share_word" placeholder="이 기준을 상대가 상처받지 않게, 사랑과 분별로 전한다면 뭐라고 말할까 — 정죄 없이, 내 언어로"></textarea></div>
+      <div style="font-size:11.5px;line-height:1.7;color:#8a8a97;margin:-4px 0 8px;">설교가 아니라, 관계 안에서 건넬 한 문장을 미리 다듬는 자리입니다. 정죄하거나 고치려는 말보다, 사랑과 분별로 전할 말을 적습니다.</div>
+      <div class="fld"><label><span class="no">9</span>하나님께 올려드릴 기도</label><textarea id="prayer_to_god"></textarea></div>
+      <div class="fld"><label><span class="no">10</span>아직 더 기도해야 할 것</label><textarea id="needs_more_prayer"></textarea></div>
+      <div class="fld"><label><span class="no">11</span>치유의 한 문장</label><textarea id="healing_sentence"></textarea></div>
+      <div class="fld"><label><span class="no">12</span>오늘의 분별</label><textarea id="sp_discern" placeholder="오늘 하나님 앞에서 분별이 필요한 일과, 지금 드는 판단"></textarea></div>
+      <div class="fld"><label><span class="no">13</span>사명과 순종</label><textarea id="sp_mission" placeholder="오늘 사명과 연결된 일, 순종할 한 걸음"></textarea></div>
     </div>
 
-    <div class="fsec word">
-      <div class="fsec-h"><span class="mk">둘</span><h3>말씀 연결 지도</h3></div>
-      <div class="fld"><label><span class="no">8</span>오늘 마음에 붙든 말씀 구절</label><input type="text" id="scripture_ref" placeholder="예) 시편 23:1" /></div>
-      <div class="fld"><label><span class="no">9</span>말씀 본문</label><textarea id="scripture_text"></textarea></div>
-      <div class="fld"><label><span class="no">10</span>이 말씀 앞에서 떠오른 내 마음</label><textarea id="heart_before_word"></textarea></div>
-      <div class="fld"><label><span class="no">11</span>하나님께 올려드릴 기도</label><textarea id="prayer_to_god"></textarea></div>
-      <div class="fld"><label><span class="no">12</span>오늘 하나님이 내게 남기시는 문장</label><textarea id="god_left_sentence"></textarea></div>
-      <div class="fld"><label><span class="no">13</span>아직 더 기도해야 할 것</label><textarea id="needs_more_prayer"></textarea></div>
-      <div class="fld"><label><span class="no">14</span>치유의 한 문장</label><textarea id="healing_sentence"></textarea></div>
-      <div class="fld"><label>하나님 앞에서 다시 해석한 의미 <span style="font-size:11px;color:var(--s400);font-weight:400;">기준 문서 14항</span></label><textarea id="god_interpretation"></textarea></div>
+    <div class="fsec recall">
+      <div class="fsec-h"><span class="mk">혼</span><h3>혼의 방 · 기억 회수</h3></div>
+      <div class="fld"><label><span class="no">14</span>오늘 마음 상태</label><textarea id="mind_state"></textarea></div>
+      <div class="fld"><label><span class="no">15</span>오늘 떠오른 과거의 기억</label><textarea id="past_memory"></textarea></div>
+      <div class="fld"><label><span class="no">16</span>반복하고 싶지 않은 나의 패턴</label><textarea id="pattern"></textarea></div>
+      <div class="fld"><label><span class="no">17</span>그때의 나는 무엇이 아팠나</label><textarea id="what_hurt"></textarea></div>
+      <div class="fld"><label><span class="no">18</span>지금의 내가 그때의 나에게 해주고 싶은 말</label><textarea id="to_past_me"></textarea></div>
+      <div class="fld"><label><span class="no">19</span>내가 한 반응</label><textarea id="so_reaction" placeholder="오늘 그 상황에서 내가 실제로 한 말과 반응 — 잘한 것도, 아쉬운 것도 그대로"></textarea></div>
+    </div>
+
+    <div class="fsec">
+      <div class="fsec-h"><span class="mk">육</span><h3>육의 방 · 현실 점검</h3></div>
+      <div class="fld"><label><span class="no">20</span>몸 상태와 생활 리듬</label><textarea id="body_state" placeholder="오늘 몸 컨디션, 수면, 식사, 생활 리듬"></textarea></div>
+      <div class="fld"><label><span class="no">21</span>돈 때문에 올라온 마음</label><textarea id="ph_money_heart" placeholder="돈 생각을 할 때 올라오는 마음을 솔직하게"></textarea></div>
+      <div class="fld"><label><span class="no">22</span>오늘 할 작은 행동</label><textarea id="ph_small_action" placeholder="오늘 현실에서 할 수 있는 작은 행동 딱 하나"></textarea></div>
+      <div class="fld"><label><span class="no">23</span>이번 달 꼭 확인할 것</label><textarea id="ph_month_check" placeholder="이번 달 확인할 결제·정리·연락"></textarea></div>
+    </div>
+
+    <div class="fsec">
+      <div class="fsec-h"><span class="mk">흐름</span><h3>흐름 점검</h3></div>
+      <div style="font-size:11.5px;line-height:1.7;color:#8a8a97;margin:2px 0 8px;">영·혼·육은 따로 있지 않습니다. 오늘 서로 어떻게 연결되어 있는지만 가볍게 봅니다.</div>
+      <div class="fld"><label><span class="no">24</span>지금 막힌 곳</label><textarea id="fl_blocked" placeholder="지금 영·혼·육 중 어디가 막혀 있는지"></textarea></div>
+      <div class="fld"><label><span class="no">25</span>서로 영향을 주는 것</label><textarea id="fl_influence" placeholder="무엇이 무엇에 영향을 주고 있는지 (예: 돈 걱정 → 마음 → 기도)"></textarea></div>
+      <div class="fld"><label><span class="no">26</span>가장 먼저 회복할 한 가지</label><textarea id="fl_first_recover" placeholder="오늘 가장 먼저 회복할 한 가지"></textarea></div>
     </div>
 
     <div class="fsec seed">
       <div class="fsec-h"><span class="mk">셋</span><h3>삶의 원석 정리</h3></div>
-      <div class="fld"><label><span class="no">15</span>오늘 관계에서 배운 기준</label><textarea id="relation_lesson"></textarea></div>
-      <div class="fld"><label><span class="no">16</span>가족과 관련해 남은 마음</label><textarea id="family_note"></textarea></div>
-      <div class="fld"><label><span class="no">17</span>하나님 앞에 남길 문장</label><textarea id="before_god"></textarea></div>
-      <div class="fld"><label><span class="no">18</span>지금은 보호해야 할 내용</label><textarea id="protect_now"></textarea></div>
+      <div class="fld"><label><span class="no">27</span>오늘 관계에서 배운 기준</label><textarea id="relation_lesson"></textarea></div>
+      <div class="fld"><label><span class="no">28</span>가족과 관련해 남은 마음</label><textarea id="family_note"></textarea></div>
+      <div class="fld"><label><span class="no">29</span>하나님 앞에 남길 문장</label><textarea id="before_god"></textarea></div>
+      <div class="fld"><label><span class="no">30</span>지금은 보호해야 할 내용</label><textarea id="protect_now"></textarea></div>
       <div class="seed-toggle">
         <input type="checkbox" id="is_seed" />
-        <label for="is_seed">19 · 나중에 책 / 프로그램 / 콘텐츠로 자랄 수 있는 원석이다</label>
+        <label for="is_seed">31 · 나중에 책 / 프로그램 / 콘텐츠로 자랄 수 있는 원석이다</label>
       </div>
       <div class="fld">
-        <label><span class="no">20</span>원석 유형 후보 <span style="color:var(--s400);font-weight:400;">(해당되는 것 모두)</span></label>
+        <label><span class="no">32</span>원석 유형 후보 <span style="color:var(--s400);font-weight:400;">(해당되는 것 모두)</span></label>
         <div class="chips">
           <span class="chip"><input type="checkbox" id="st_book" value="책"><label for="st_book">책</label></span>
           <span class="chip"><input type="checkbox" id="st_lecture" value="강의"><label for="st_lecture">강의</label></span>
@@ -511,15 +1447,16 @@ function sbConfigured(){
           <span class="chip"><input type="checkbox" id="st_undecided" value="아직 미정"><label for="st_undecided">아직 미정</label></span>
         </div>
       </div>
-      <div class="fld"><label><span class="no">21</span>오늘의 한 문장</label><input type="text" id="one_line" placeholder="오늘을 한 문장으로" /></div>
+      <div class="fld"><label><span class="no">32</span>오늘의 한 문장</label><input type="text" id="one_line" placeholder="오늘을 한 문장으로" /></div>
     </div>
   </div>
 
   <div class="savebar">
     <div class="in">
-      <button id="btnSave" class="btn-save">저장 (이 브라우저)</button>
+      <button id="btnSave" class="btn-save">저장하기</button>
       <button id="btnClearForm" class="btn-ghost">입력 비우기</button>
     </div>
+    <div id="ml-saveState" class="save-state" aria-live="polite"></div>
   </div>
 </div>
 
@@ -527,34 +1464,43 @@ function sbConfigured(){
 
 <script>
 /* ============================================================
-   사라의 집 · 배포 전 검수판 (본진 업무센터 결)
-   Supabase 없음 / 로그인 없음 / 암호화 없음
-   localStorage 임시 저장만 — 키: sara_house_local_review_v1
+   사라의 집 · 개인 내부 기록 공간
+   - localStorage 우선 저장 (키: sara_house_local_review_v1)
+   - Supabase 준비 시 클라우드 동기화 시도 (테이블: sara_house_entries)
+   - AI 정리는 Supabase Edge Function 'classify-sara-house' 호출
    ============================================================ */
 const STORE_KEY='sara_house_local_review_v1';
 const FIELD_IDS=['body_state','mind_state','past_memory','pattern','what_hurt','to_past_me',
   'scripture_ref','scripture_text','heart_before_word','prayer_to_god','god_left_sentence',
   'needs_more_prayer','healing_sentence','relation_lesson','family_note','before_god','protect_now','one_line',
-  'f_content','f_keywords','f_relation','f_protect','f_protect_reason','f_tags','god_interpretation'];
+  'f_content','f_keywords','f_relation','f_protect','f_protect_reason','f_tags','god_interpretation',
+  'sp_situation','sp_share_word','sp_discern','sp_mission','so_reaction',
+  'ph_money_heart','ph_small_action','ph_month_check','fl_blocked','fl_influence','fl_first_recover'];
 const SEED_CHIP_IDS=['st_book','st_lecture','st_coaching','st_youtube','st_testimony','st_life','st_pb','st_insurance','st_undecided'];
 const STATUS_CLASS={'일반기록':'recall','치유문장':'heal','말씀묵상':'word','원석보호':'seed',
   '보호기록':'protect','회수완료':'pray','보류':'recall'};
 const FIELD_LABEL={
-  body_state:'오늘 몸 상태',mind_state:'오늘 마음 상태',past_memory:'오늘 떠오른 과거의 기억',
+  body_state:'몸 상태와 생활 리듬',mind_state:'오늘 마음 상태',past_memory:'오늘 떠오른 과거의 기억',
   pattern:'반복하고 싶지 않은 나의 패턴',what_hurt:'그때의 나는 무엇이 아팠나',to_past_me:'그때의 나에게 해주고 싶은 말',
-  scripture_ref:'오늘 마음에 붙든 말씀 구절',scripture_text:'말씀 본문',heart_before_word:'이 말씀 앞에서 떠오른 내 마음',
-  prayer_to_god:'하나님께 올려드릴 기도',god_left_sentence:'오늘 하나님이 내게 남기시는 문장',
+  scripture_ref:'오늘 마음에 붙든 말씀 구절',scripture_text:'말씀 본문',heart_before_word:'그 상황에서 올라온 마음',
+  prayer_to_god:'하나님께 올려드릴 기도',god_left_sentence:'나에게 주시는 기준',
   needs_more_prayer:'아직 더 기도해야 할 것',healing_sentence:'치유의 한 문장',
   relation_lesson:'오늘 관계에서 배운 기준',family_note:'가족과 관련해 남은 마음',
   before_god:'하나님 앞에 남길 문장',protect_now:'지금은 보호해야 할 내용',one_line:'오늘의 한 문장',
   f_content:'사건 요약 / 기록 본문',f_keywords:'검색 키워드',
   f_relation:'관련 관계',f_protect:'보호 여부',f_protect_reason:'보호 이유',f_tags:'연결 태그',
-  god_interpretation:'하나님 앞에서 다시 해석한 의미'};
+  god_interpretation:'하나님 앞에서 다시 해석한 의미',
+  sp_situation:'오늘 만난 상황',sp_share_word:'사람에게 상처 없이 전할 문장',
+  sp_discern:'오늘의 분별',sp_mission:'사명과 순종',so_reaction:'내가 한 반응',
+  ph_money_heart:'돈 때문에 올라온 마음',ph_small_action:'오늘 할 작은 행동',ph_month_check:'이번 달 꼭 확인할 것',
+  fl_blocked:'지금 막힌 곳',fl_influence:'서로 영향을 주는 것',fl_first_recover:'가장 먼저 회복할 한 가지'};
 const SECTIONS=[
-  {cls:'',mk:'영',title:'기록 본문 · 검색 키워드',keys:['f_content','f_keywords']},
+  {cls:'',mk:'글',title:'기록 본문 · 검색 키워드',keys:['f_content','f_keywords']},
   {cls:'',mk:'연결',title:'연결 · 보호',keys:['f_relation','f_protect','f_protect_reason','f_tags']},
-  {cls:'',mk:'하나',title:'기억 회수',keys:['body_state','mind_state','past_memory','pattern','what_hurt','to_past_me']},
-  {cls:'word',mk:'둘',title:'말씀 연결 지도',keys:['scripture_ref','scripture_text','heart_before_word','prayer_to_god','god_left_sentence','needs_more_prayer','healing_sentence','god_interpretation']},
+  {cls:'word',mk:'영',title:'영의 방 · 말씀 연결 흐름',keys:['sp_situation','heart_before_word','scripture_ref','scripture_text','god_interpretation','god_left_sentence','sp_share_word','prayer_to_god','needs_more_prayer','healing_sentence','sp_discern','sp_mission']},
+  {cls:'',mk:'혼',title:'혼의 방 · 기억 회수',keys:['mind_state','past_memory','pattern','what_hurt','to_past_me','so_reaction']},
+  {cls:'',mk:'육',title:'육의 방 · 현실 점검',keys:['body_state','ph_money_heart','ph_small_action','ph_month_check']},
+  {cls:'',mk:'흐름',title:'흐름 점검',keys:['fl_blocked','fl_influence','fl_first_recover']},
   {cls:'seed',mk:'셋',title:'삶의 원석 정리',keys:['relation_lesson','family_note','before_god','protect_now','one_line']}
 ];
 
@@ -582,19 +1528,19 @@ function renderList(){
     arr=arr.filter(e=>[e.date,e.status,e.category,e.topic,e.source||'',e.bundle||'',...FIELD_IDS.map(k=>e[k]||''),(e.seed_types||[]).join(' ')].join(' ').toLowerCase().includes(q));
   }
   if(arr.length===0){
-    box.innerHTML=`<div class="empty-list"><div class="big">🕯️</div>
+    box.innerHTML=`<div class="empty-list"><div class="big"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#C9B26A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c1.2 1.4 1.9 2.5 1.9 3.4A1.9 1.9 0 0 1 12 8.5a1.9 1.9 0 0 1-1.9-1.9c0-.9.7-2 1.9-3.4Z"/><rect x="9.6" y="11" width="4.8" height="8.6" rx="1.1"/><path d="M7.5 19.6h9"/></svg></div>
       <div class="t">${(_search||_tab!=='전체')?'해당하는 기록이 없습니다':'아직 회수한 하루가 없습니다'}</div>
-      <div class="s">${(_search||_tab!=='전체')?'다른 탭이나 검색어를 시도해 보세요':'＋ 오늘 하루 회수하기로 시작해 보세요'}</div></div>`;
+      <div class="s">${(_search||_tab!=='전체')?'다른 탭이나 검색어를 시도해 보세요':'＋ 오늘 기록로 시작해 보세요'}</div></div>`;
     return;
   }
   box.innerHTML=arr.map(e=>{
     const st=e.status||'일반기록';
     const oneLine=e.one_line?esc(e.one_line):'(오늘의 한 문장 없음)';
-    const sc=e.scripture_ref?`<span class="card-scripture">📖 ${esc(e.scripture_ref)}</span>`:'';
-    const seed=e.is_seed?`<span class="card-seed">💎 ${(e.seed_types&&e.seed_types.length)?esc(e.seed_types.join(', ')):'원석'}</span>`:'';
+    const sc=e.scripture_ref?`<span class="card-scripture">말씀 ${esc(e.scripture_ref)}</span>`:'';
+    const seed=e.is_seed?`<span class="card-seed">원석 · ${(e.seed_types&&e.seed_types.length)?esc(e.seed_types.join(', ')):'원석'}</span>`:'';
     const cat=e.category?`<span class="card-cat">${esc(e.category)}</span>`:'';
     const topic=e.topic?`<span class="card-topic">· ${esc(e.topic)}</span>`:'';
-    const src=e.source?`<span class="card-topic" style="color:var(--em700);">📥 ${esc(e.source)}</span>`:'';
+    const src=e.source?`<span class="card-topic" style="color:var(--em700);">${esc(e.source)}</span>`:'';
     const bndl=e.bundle?`<span class="card-cat" style="background:var(--em50);color:var(--em700);border-color:var(--em200);">${esc(e.bundle)}</span>`:'';
     const opts=Object.keys(STATUS_CLASS).map(s=>`<option ${s===st?'selected':''}>${s}</option>`).join('');
     return `<div class="card" data-date="${e.date}">
@@ -624,12 +1570,12 @@ function openDetail(date){
   if(!e){toast('기록을 찾을 수 없습니다.',true);return;}
   const st=e.status||'일반기록';
   const seedLine=e.is_seed
-    ? `<div class="dchips">${(e.seed_types||[]).map(t=>`<span class="dchip">💎 ${esc(t)}</span>`).join('')||'<span class="dchip">💎 원석</span>'}</div>`
+    ? `<div class="dchips">${(e.seed_types||[]).map(t=>`<span class="dchip">${esc(t)}</span>`).join('')||'<span class="dchip">원석</span>'}</div>`
     : '<span class="v empty">원석 표시 없음</span>';
   let html=`<div class="detail-head">
       <div class="detail-date">${fmtDate(date)}</div>
       <div class="detail-sub"><span class="stb ${STATUS_CLASS[st]}">${st}</span>
-        ${e.source?`<span class="card-topic" style="color:var(--em700);">📥 ${esc(e.source)}</span>`:''}
+        ${e.source?`<span class="card-topic" style="color:var(--em700);">${esc(e.source)}</span>`:''}
         ${e.bundle?`<span class="card-cat" style="background:var(--em50);color:var(--em700);border-color:var(--em200);">${esc(e.bundle)}</span>`:''}
         ${e.category?`<span class="card-cat">${esc(e.category)}</span>`:''}
         ${e.topic?`<span>· ${esc(e.topic)}</span>`:''}
@@ -703,9 +1649,10 @@ function saveEdit(){
   store[date]=data;
   if(!saveStore(store)){toast('저장하지 못했습니다. 저장 공간을 확인해 주세요.',true);return;}
   _editingDate=null;
+  setSaveState(_sbReady ? 'saving' : 'localonly');   // 로컬 저장은 확정 · 클라우드는 sbSyncStatus가 비동기 갱신
   renderList();
   toast(overwrite?'덮어썼습니다. (이 브라우저)':'저장했습니다. (이 브라우저)');
-  show('screen-list');
+  setTimeout(function(){ show('screen-list'); }, 900);
 }
 
 function deleteEntry(date){
@@ -730,14 +1677,21 @@ function sbInit(){
   }catch(e){ _sbReady=false; return false; }
 }
 
+/* 저장 상태 문구 (저장 버튼 근처 표시 · 표시 전용) */
+function setSaveState(kind){
+  var el=document.getElementById('ml-saveState'); if(!el) return;
+  el.classList.remove('local','ok','warn');
+  if(kind==='localonly'){ el.textContent='저장 상태: 이 기기에 저장됨'; el.classList.add('local'); }
+  else if(kind==='saving'){ el.textContent='저장 상태: 저장 중…'; }
+  else if(kind==='cloud'){ el.textContent='저장 상태: 클라우드 동기화 완료'; el.classList.add('ok'); }
+  else if(kind==='local'){ el.textContent='저장 상태: 클라우드 실패 · 이 기기에만 저장됨'; el.classList.add('warn'); }
+}
+
 /* 동기화 상태 표시 (저장 성공/실패 구분) */
 function sbSyncStatus(kind, msg){
-  // kind: 'cloud'(초록) | 'local'(노랑) | 'fail'(빨강) | 'saving'
-  var el = document.getElementById('ml-saveState') || null;
-  // 공용 토스트로도 알림
-  if(kind==='cloud') toast('저장 완료 · 클라우드 동기화됨');
-  else if(kind==='local') toast('이 기기에만 임시 저장됨 · 클라우드 실패', true);
-  else if(kind==='fail') toast('저장 실패', true);
+  if(kind==='cloud'){ setSaveState('cloud'); toast('저장 완료 · 클라우드 동기화됨'); }
+  else if(kind==='local'){ setSaveState('local'); toast('이 기기에만 임시 저장됨 · 클라우드 실패', true); }
+  else if(kind==='fail'){ toast('저장 실패', true); }
 }
 
 /* 로그인 */
@@ -853,6 +1807,171 @@ deleteEntry = function(date){
   }
 };
 
+/* ========================================================
+   AI 칸 자동분류 (신규 · 기존 함수 미변경)
+   - f_content 원문을 Supabase Edge Function classify-sara-house로 보냄
+   - 반환 JSON을 "빈칸만" 채움 (이미 입력된 칸 보존)
+   - 자동 저장하지 않음. 사라님 확인 후 기존 저장 버튼 사용.
+   ======================================================== */
+
+/* AI 결과를 빈칸에만 적용 */
+function applyAiResultToEmptyFields(result){
+  if(!result || typeof result!=='object') return 0;
+  var filled = 0;
+  // 문자열 필드 (FIELD_IDS 중 f_content 제외)
+  FIELD_IDS.forEach(function(id){
+    if(id==='f_content') return; // 원문 보존
+    var el = $(id); if(!el) return;
+    var cur = (el.value||'').trim();
+    var val = result[id];
+    if(cur==='' && typeof val==='string' && val.trim()!==''){
+      el.value = val.trim(); filled++;
+    }
+  });
+  // status / category / topic / source / bundle (select·input)
+  ['status','category','topic','source','bundle'].forEach(function(key){
+    var elId = (key==='status') ? 'f_status'
+             : (key==='category') ? 'f_category'
+             : (key==='topic') ? 'f_topic'
+             : (key==='source') ? 'f_source'
+             : 'f_bundle';
+    var el = $(elId); if(!el) return;
+    var cur = (el.value||'').trim();
+    var val = result[key];
+    // status는 빈 옵션이 없어 기본값 '일반기록'이 늘 선택됨 → 기본값일 때만 교체
+    var isEmpty = (key==='status') ? (cur==='' || cur==='일반기록') : (cur==='');
+    if(isEmpty && typeof val==='string' && val.trim()!==''){
+      el.value = val.trim(); filled++;
+    }
+  });
+  // is_seed (체크박스) — 현재 미체크일 때만 true로
+  if(result.is_seed===true){
+    var seedEl = $('is_seed');
+    if(seedEl && !seedEl.checked){ seedEl.checked = true; filled++; }
+  }
+  // seed_types (체크박스 그룹) — 현재 비어있을 때만 적용
+  if(Array.isArray(result.seed_types) && result.seed_types.length){
+    var anyChecked = SEED_CHIP_IDS.some(function(id){ var e=$(id); return e && e.checked; });
+    if(!anyChecked){
+      var set = {}; result.seed_types.forEach(function(v){ set[v]=true; });
+      SEED_CHIP_IDS.forEach(function(id){
+        var e = $(id); if(e && set[e.value]){ e.checked = true; filled++; }
+      });
+    }
+  }
+  return filled;
+}
+
+/* AI 연결 상태 4단계 렌더러 (표시 전용) */
+function setAiSteps(s1,s2,s3,s4,msg,msgKind){
+  var st=[s1,s2,s3,s4];
+  for(var i=1;i<=4;i++){
+    var li=$('aist'+i); if(!li) continue;
+    li.classList.remove('wait','done','err');
+    li.classList.add(st[i-1]||'wait');
+  }
+  var m=$('aiStatusMsg');
+  if(m){ m.textContent=msg||''; m.classList.remove('err','ok'); if(msgKind) m.classList.add(msgKind); }
+}
+function renderAiStatus(kind){
+  switch(kind){
+    case 'init':
+      if(_sbReady) setAiSteps('done','wait','wait','wait','버튼을 누르면 AI 연결 상태를 확인합니다.','');
+      else         setAiSteps('err','wait','wait','wait','Supabase 준비가 필요합니다.','err');
+      break;
+    case 'checking':
+      setAiSteps(_sbReady?'done':'err','wait','wait','wait','AI 연결을 확인하는 중입니다…','');
+      break;
+    case 'sb_need':        setAiSteps('err','wait','wait','wait','Supabase 준비가 필요합니다.','err'); break;
+    case 'deploy_need':    setAiSteps('done','err','wait','wait','classify-sara-house 함수가 아직 배포되지 않았습니다.','err'); break;   // 404
+    case 'perm_need':      setAiSteps('done','err','wait','wait','함수 호출 권한 설정 확인이 필요합니다.','err'); break;               // 401
+    case 'secret_need':    setAiSteps('done','done','err','wait','ANTHROPIC_API_KEY Secret 설정이 필요합니다.','err'); break;          // 500
+    case 'anthropic_need': setAiSteps('done','done','err','wait','Claude/Anthropic 응답 확인이 필요합니다.','err'); break;             // 502
+    case 'ok':             setAiSteps('done','done','done','done','AI 정리 사용 가능','ok'); break;
+    case 'answered_empty': setAiSteps('done','done','done','wait','AI 함수는 응답했지만 새로 채울 빈칸은 없습니다.',''); break;
+    default:               setAiSteps('done','err','wait','wait','AI 정리에 실패했습니다. 잠시 후 다시 시도해 주세요.','err');
+  }
+}
+/* 초기 표시 (init에서 호출) */
+function refreshAiStatus(){ renderAiStatus('init'); }
+
+/* invoke 오류에서 HTTP 상태코드 추출 */
+function readInvokeStatus(err){
+  try{
+    if(err){
+      if(err.context && typeof err.context.status==='number') return err.context.status;
+      if(typeof err.status==='number') return err.status;
+      var mm=(err.message||'').match(/\b(40[0-9]|50[0-9])\b/);
+      if(mm) return parseInt(mm[1],10);
+    }
+  }catch(_e){}
+  return 0;
+}
+/* 상태코드 → 상태갱신 + 화면 문구 */
+function applyAiErrorByStatus(st, showMsg){
+  var kind, msg;
+  if(st===404){ kind='deploy_need'; msg='classify-sara-house 함수가 아직 배포되지 않았습니다.'; }
+  else if(st===401||st===403){ kind='perm_need'; msg='함수 호출 권한 설정 확인이 필요합니다.'; }
+  else if(st===500){ kind='secret_need'; msg='ANTHROPIC_API_KEY Secret 설정이 필요합니다.'; }
+  else if(st===502||st===503||st===504){ kind='anthropic_need'; msg='Claude/Anthropic 응답 확인이 필요합니다.'; }
+  else { kind='fail'; msg='AI 정리에 실패했습니다. 잠시 후 다시 시도해 주세요. (원문과 기존 입력은 그대로 유지됩니다.)'; }
+  renderAiStatus(kind);
+  if(typeof showMsg==='function') showMsg(msg);
+  toast('AI 정리 실패'+(st?(' ('+st+')'):'')+'.', true);
+}
+
+/* 버튼 → 서버 함수 호출 → 빈칸 채움 */
+async function aiClassifyFill(mode){
+  var box = $('aiStubBox');
+  var content = ($('f_content') && $('f_content').value || '').trim();
+  function showMsg(msg){ if(box){ box.classList.add('show'); box.textContent = msg; } }
+
+  if(content===''){
+    showMsg('먼저 "사건 요약 / 기록 본문" 칸에 정리할 내용을 붙여넣어 주세요.');
+    toast('본문이 비어 있습니다.', true);
+    return;
+  }
+  showMsg('AI가 내용을 읽고 칸을 정리하는 중입니다…');
+  // 버튼 비활성화 (중복 클릭 방지)
+  var b1=$('btnAiNoah'), b2=$('btnAiNaon');
+  if(b1) b1.disabled=true; if(b2) b2.disabled=true;
+  // Supabase Edge Function 준비 확인
+  if(!_sbReady || !_sb || !_sb.functions){
+    renderAiStatus('sb_need');
+    showMsg('AI 정리는 클라우드 연결 후 사용할 수 있습니다.');
+    toast('Supabase 준비가 필요합니다.', true);
+    if(b1) b1.disabled=false; if(b2) b2.disabled=false;
+    return;
+  }
+  renderAiStatus('checking');
+  try{
+    var inv = await _sb.functions.invoke(CLASSIFY_FN, {
+      body: { text: content, mode: mode||'noah' }
+    });
+    if(inv.error){
+      applyAiErrorByStatus(readInvokeStatus(inv.error), showMsg);
+      return;
+    }
+    var data = inv.data;
+    // {result:{...}} 또는 {...} 형태 둘 다 허용
+    var result = (data && data.result) ? data.result : data;
+    var n = applyAiResultToEmptyFields(result);
+    if(n>0){
+      renderAiStatus('ok');
+      showMsg('AI가 비어 있던 '+n+'개 칸을 채웠습니다. 내용을 확인하고, 맞으면 아래 "저장하기"를 눌러 저장하세요. (자동 저장되지 않습니다.)');
+      toast(n+'개 칸을 채웠습니다. 확인 후 저장하세요.');
+    } else {
+      renderAiStatus('answered_empty');
+      showMsg('AI 함수는 응답했지만 새로 채울 빈칸은 없습니다. 이미 입력된 칸은 그대로 두었습니다.');
+      toast('채울 빈칸이 없습니다.');
+    }
+  }catch(e){
+    applyAiErrorByStatus(readInvokeStatus(e), showMsg);
+  }finally{
+    if(b1) b1.disabled=false; if(b2) b2.disabled=false;
+  }
+}
+
 function init(){
   $('tabs').querySelectorAll('.tab').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -872,40 +1991,806 @@ function init(){
   $('btnEditCancel').addEventListener('click',()=>{_editingDate=null;show('screen-list');});
   $('btnSave').addEventListener('click',saveEdit);
   $('btnClearForm').addEventListener('click',()=>{fillForm(null);$('f_status').value='일반기록';toast('입력칸을 비웠습니다.');});
-  // AI 자동정리 "자리" — 실제 실행 없음. 안내 박스/토스트만 표시.
+  // AI 칸 자동분류 — 서버 함수 호출 → 빈칸만 채움 (자동 저장 없음)
   var aiNoah=$('btnAiNoah');
-  if(aiNoah) aiNoah.addEventListener('click',function(){
-    var box=$('aiStubBox');
-    if(box){box.classList.add('show');
-      box.innerHTML='이 버튼은 아직 자동으로 정리하지 않습니다. 위 본문을 복사해 노아에게 \'각 칸에 맞게 정리해줘\'라고 요청한 뒤, 결과를 사라님이 직접 확인하고 각 칸에 넣어주세요.';}
-    toast('지금은 자동정리를 실행하지 않습니다. 본문을 복사해 노아에게 요청하세요.');
-  });
+  if(aiNoah) aiNoah.addEventListener('click',function(){ aiClassifyFill('noah'); });
   var aiNaon=$('btnAiNaon');
-  if(aiNaon) aiNaon.addEventListener('click',function(){
-    var box=$('aiStubBox');
-    if(box){box.classList.add('show');
-      box.innerHTML='나온 형식 칸: 기억 회수(몸·마음·과거기억·패턴·아픔·해주고 싶은 말) / 말씀 연결(구절·본문·기도·남기시는 문장·치유 문장) / 삶의 원석(관계 기준·가족·하나님 앞 문장·보호 내용·한 문장). 정식판에서 사라님 승인 후 자동 분배를 검토합니다. 지금은 직접 넣어주세요.';}
-    toast('정식판에서만 자동 분배를 검토합니다. 지금은 안내만 표시합니다.');
-  });
+  if(aiNaon) aiNaon.addEventListener('click',function(){ aiClassifyFill('naon'); });
 
   // Supabase 초기화 (로그인 없이 owner_id 'sara_house' 고정으로 동작)
   sbInit();
+  refreshAiStatus();   // AI 정리 상태 작은 문구 갱신 (표시 전용)
 
   // 도입 화면 "들어가기" → 클라우드에서 먼저 불러오고 바로 목록
-  var introEnter=$('btnIntroEnter');
-  if(introEnter) introEnter.addEventListener('click',async function(){
+  // 개인 문지기 (아이디/비번)
+  const GATE_ID = "kfcyk20";
+  const GATE_PW = "003200";
+  async function enterHouse(){
+    var id=($('gateId').value||'').trim();
+    var pw=$('gatePw').value||'';
+    var err=$('gateErr');
+    if(id!==GATE_ID || pw!==GATE_PW){
+      if(err) err.textContent='아이디 또는 비밀번호가 맞지 않습니다.';
+      return;
+    }
     var intro=$('screen-intro'); if(intro) intro.classList.add('hide');
     if(_sbReady){
       try{ await sbFetchAll(); }catch(e){}
     }
     renderList(); show('screen-list');
     if(_sbReady) toast('클라우드 연결됨 · 자동 동기화');
-  });
+  }
+  var introEnter=$('btnIntroEnter');
+  if(introEnter) introEnter.addEventListener('click', enterHouse);
+  // 엔터로도 입장
+  var gpw=$('gatePw'); if(gpw) gpw.addEventListener('keydown',e=>{ if(e.key==='Enter') enterHouse(); });
+  var gid=$('gateId'); if(gid) gid.addEventListener('keydown',e=>{ if(e.key==='Enter'){ var p=$('gatePw'); if(p)p.focus(); } });
 
   renderList();
   // 첫 화면은 인트로만 보이게 (인트로는 .scr 위에 오버레이로 떠 있음)
 }
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+
+/* ============================================================
+   v2A 모바일 현관/방 구조 (JS · 추가 전용 · 기존 함수 무수정)
+   ============================================================ */
+const REMEMBER_ID_KEY='sara_house_remember_id';  // 아이디만 저장. 비밀번호 저장 안 함.
+function fmtFoyerDate(){var d=new Date();var w=['주일','월요일','화요일','수요일','목요일','금요일','토요일'];
+  return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 · '+w[d.getDay()];}
+/* 현관 상태 계산 — 읽기 전용 (저장/DB 쓰기 없음) */
+function getTodayHouseStatus(){
+  var t=todayStr(); var rec=(loadStore()||{})[t]||null;
+  var has=function(k){return !!(rec&&typeof rec[k]==='string'&&rec[k].trim());};
+  var rooms={
+    spirit:['scripture_ref','scripture_text','prayer_to_god','sp_situation'].some(has),
+    soul:['mind_state','past_memory','so_reaction'].some(has),
+    body:['body_state','ph_money_heart','ph_small_action','ph_month_check'].some(has),
+    flow:['fl_blocked','fl_influence','fl_first_recover'].some(has),
+    seed:!!(rec&&(rec.is_seed===true||has('one_line')||has('before_god')))
+  };
+  var filled=0; if(rec){FIELD_IDS.forEach(function(k){if(has(k))filled++;});}
+  return {exists:!!rec, filled:filled, rooms:rooms};
+}
+function renderFoyer(){
+  var el=$('foyer'); if(!el) return;
+  var st=getTodayHouseStatus();
+  var d1=$('foyerDate'); if(d1)d1.textContent=fmtFoyerDate();
+  var d2=$('mTopDate'); if(d2){var dd=new Date();d2.textContent=(dd.getMonth()+1)+'.'+dd.getDate()+'.';}
+  var msg,cls;
+  if(!st.exists){msg='오늘의 집은 아직 비어 있어요.';cls='';}
+  else if(st.filled<3){msg='오늘의 집이 채워지고 있어요.';cls='filling';}
+  else{msg='오늘 기록이 저장되어 있어요.';cls='saved';}
+  var sc=$('foyerStatus'); if(sc){sc.textContent=msg;sc.className='foyer-status'+(cls?' '+cls:'');}
+  var map=[['spirit','영의 방'],['soul','혼의 방'],['body','육의 방'],['flow','흐름 점검'],['seed','삶의 원석']];
+  var wrap=$('foyerRooms');
+  if(wrap){wrap.innerHTML=map.map(function(p){
+    var on=st.rooms[p[0]];
+    var word=(p[0]==='seed')?(on?'원석 있음':'비어 있음'):(on?'기록 있음':'비어 있음');
+    return '<div class="foyer-chip'+(on?' on':'')+'">'+p[1]+'<span>'+word+'</span></div>';
+  }).join('');}
+}
+/* 방 이동 — 오늘 기록이 있으면 그 기록을, 없으면 새 기록을 열고 해당 칸으로 */
+function openTodayRoom(targetId){
+  closeHouseMenu();
+  var t=todayStr(); var rec=(loadStore()||{})[t];
+  openEdit(rec?t:null);
+  setTimeout(function(){
+    var el=$(targetId); if(!el) return;
+    if(el.scrollIntoView){try{el.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
+    if(el.focus){try{el.focus({preventScroll:true});}catch(e){try{el.focus();}catch(e2){}}}
+  },180);
+}
+function goPastRecords(){closeHouseMenu();show('screen-list');
+  setTimeout(function(){var el=document.querySelector('#screen-list .tabs');
+    if(el&&el.scrollIntoView){try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}},80);}
+function goFoyer(){closeHouseMenu();show('screen-list');
+  setTimeout(function(){var el=$('foyer');
+    if(el&&el.scrollIntoView){try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}},80);}
+function goRoomGuide(){closeHouseMenu();show('screen-list');
+  setTimeout(function(){var g=$('roomGuide');
+    if(g){g.open=true;if(g.scrollIntoView){try{g.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}}},80);}
+function openHouseMenu(){var m=$('houseMenu'),b=$('houseMenuBackdrop');
+  if(m)m.classList.add('open'); if(b)b.classList.add('open');}
+function closeHouseMenu(){var m=$('houseMenu'),b=$('houseMenuBackdrop');
+  if(m)m.classList.remove('open'); if(b)b.classList.remove('open');}
+/* 아이디 저장 — 아이디만. 비밀번호는 어떤 경우에도 저장하지 않는다. */
+function saveRememberId(){try{
+  var cb=$('gateRememberId'),id=$('gateId'); if(!cb||!id)return;
+  if(cb.checked&&id.value.trim())localStorage.setItem(REMEMBER_ID_KEY,id.value.trim());
+  else if(!cb.checked)localStorage.removeItem(REMEMBER_ID_KEY);
+}catch(e){}}
+function applyRememberId(){try{
+  var v=localStorage.getItem(REMEMBER_ID_KEY);
+  if(v){var id=$('gateId'),cb=$('gateRememberId');
+    if(id&&!id.value)id.value=v; if(cb)cb.checked=true;}
+}catch(e){}}
+/* 배선 (전부 추가 전용) */
+(function(){
+  applyRememberId();
+  var be=$('btnIntroEnter'); if(be)be.addEventListener('click',saveRememberId);
+  var gp=$('gatePw'); if(gp)gp.addEventListener('keydown',function(e){if(e.key==='Enter')saveRememberId();});
+  var cb=$('gateRememberId'); if(cb)cb.addEventListener('change',saveRememberId);
+  var mb=$('btnHouseMenu'); if(mb)mb.addEventListener('click',function(){
+    var m=$('houseMenu'); if(m&&m.classList.contains('open'))closeHouseMenu(); else openHouseMenu();});
+  var bd=$('houseMenuBackdrop'); if(bd)bd.addEventListener('click',closeHouseMenu);
+  document.querySelectorAll('[data-room]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var r=btn.getAttribute('data-room');
+      if(r==='past')goPastRecords();
+      else if(r==='foyer')goFoyer();
+      else if(r==='guide')goRoomGuide();
+      else if(r==='new')openTodayRoom('f_content');
+      else openTodayRoom(r);
+    });
+  });
+  /* 화면이 목록으로 돌아올 때마다 현관 상태 갱신 (기존 함수 무수정) */
+  var sl=document.getElementById('screen-list');
+  if(sl&&window.MutationObserver){
+    new MutationObserver(function(){if(sl.classList.contains('on'))renderFoyer();})
+      .observe(sl,{attributes:true,attributeFilter:['class']});
+  }
+  renderFoyer();
+})();
+
+
+/* ===== v2A 앱쉘 가독성 (JS · 추가 전용) ===== */
+function jumpRoom(label){
+  var secs=document.querySelectorAll('#screen-edit .fsec');
+  for(var i=0;i<secs.length;i++){
+    var h=secs[i].querySelector('.fsec-h h3');
+    if(h&&h.textContent.indexOf(label)>=0){
+      if(secs[i].scrollIntoView){try{secs[i].scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}
+      return;
+    }
+  }
+}
+function setBottomNav(name){
+  document.querySelectorAll('#bottomNav button').forEach(function(b){
+    b.classList.toggle('cur', b.getAttribute('data-nav')===name);
+  });
+}
+(function(){
+  var mc=$('btnMenuClose'); if(mc)mc.addEventListener('click',closeHouseMenu);
+  /* 메뉴 열 때 현재 위치 표시 */
+  var mb2=$('btnHouseMenu');
+  if(mb2)mb2.addEventListener('click',function(){
+    var inEdit=document.getElementById('screen-edit').classList.contains('on');
+    document.querySelectorAll('#houseMenu button[data-loc]').forEach(function(b){
+      b.classList.toggle('cur', b.getAttribute('data-loc')===(inEdit?'edit':'list'));
+    });
+  });
+  /* 하단 네비 */
+  document.querySelectorAll('#bottomNav button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var n=btn.getAttribute('data-nav'); setBottomNav(n);
+      if(n==='foyer')goFoyer();
+      else if(n==='rooms'){show('screen-list');setTimeout(function(){
+        var el=document.querySelector('#screen-list .room-cards');
+        if(el&&el.scrollIntoView){try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}},80);}
+      else if(n==='new')openTodayRoom('f_content');
+      else if(n==='album')goPastRecords();
+      else if(n==='guide')goRoomGuide();
+      else if(n==='search'){show('screen-list');setTimeout(function(){
+        var si=document.getElementById('searchInput');
+        if(si){if(si.scrollIntoView){try{si.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
+          try{si.focus({preventScroll:true});}catch(e){try{si.focus();}catch(e2){}}}},90);}
+    });
+  });
+  /* 입력화면 방 이동 필 */
+  document.querySelectorAll('#roomPills button').forEach(function(btn){
+    btn.addEventListener('click',function(){jumpRoom(btn.getAttribute('data-jump'));});
+  });
+})();
+
+
+/* ===== 연대기·조명의 방 자리 (다음 단계에서 개방 · 저장/필드 없음) ===== */
+(function(){
+  document.addEventListener('click',function(e){
+    var b=e.target&&e.target.closest?e.target.closest('[data-room="chron"],[data-room="light"]'):null;
+    if(!b)return;
+    e.stopPropagation();e.preventDefault();
+    closeHouseMenu();
+    if(b.getAttribute('data-room')==='light'){ lpEnter(); return; }   // 조명의 방 개방 (v2-D)
+    chEnter();   // 연대기의 방 개방 (v2-E)
+  },true);
+})();
+
+
+/* ============================================================
+   v2-D 조명의 방 — sara_house_pieces (전부 신규 lp_ 함수)
+   기존 오늘기록 저장 흐름·sara_house_entries 와 완전 분리.
+   ============================================================ */
+const LP_TABLE = 'sara_house_pieces';
+const LP_CACHE = 'sara_house_pieces_cache_v1';   // 캐시 전용 (기준 저장소 아님)
+const LP_FIELDS = ['li_source','li_source_type','li_quote','li_my_link','li_prayer_view','li_word_ref','li_word_light','li_flow_to'];
+const LP_LABEL = {li_source:'누구에게서 · 어디서', li_source_type:'형태', li_quote:'남은 문장',
+  li_my_link:'내 삶과 연결되는 지점', li_prayer_view:'기도하며 다시 본 의미',
+  li_word_ref:'비춰진 말씀 구절', li_word_light:'말씀으로 비춰진 깨달음', li_flow_to:'흘려보내고 싶은 방향'};
+const LP_TYPES = ['강연','책','영상','설교','대화','기타'];
+const LP_SEED = ['책','강의','코칭 프로그램','유튜브','말씀/간증','삶 운영 기준','퍼스널브랜딩 사례','보험 상담 사례','아직 미정'];
+let _lpPieces = [];
+let _lpLoadedOnce = false;
+let _lpFilterType = '전체';
+let _lpEditId = null;
+let _lpDetailId = null;
+
+function lpIsProtected(p){ return p && (p.protect==='부분 보호'||p.protect==='강한 보호'||p.protect==='절대 비공개'); }
+function lpCacheSave(){ try{ localStorage.setItem(LP_CACHE, JSON.stringify(_lpPieces)); }catch(e){} }
+function lpCacheLoad(){ try{ var v=localStorage.getItem(LP_CACHE); _lpPieces = v?JSON.parse(v):[]; }catch(e){ _lpPieces=[]; } }
+
+/* ---- 조회: Supabase 기준, 실패 시 캐시 (정직 표시) ---- */
+async function lpFetchPieces(){
+  if(_sbReady && _sb){
+    try{
+      var res = await _sb.from(LP_TABLE).select('*')
+        .eq('owner_id','sara_house').eq('kind','light')
+        .order('created_at',{ascending:false});
+      if(!res.error && Array.isArray(res.data)){
+        var locals = _lpPieces.filter(function(p){ return p._unsynced; });   // 미동기 로컬 조각 보존
+        _lpPieces = locals.concat(res.data);
+        lpCacheSave();
+        return true;
+      }
+      if(res && res.error){ diagSet('조명 · 목록 조회', res.error); }
+    }catch(e){ diagSet('조명 · 목록 조회(예외)', e); }
+  }
+  lpCacheLoad();
+  return false;
+}
+
+/* ---- 저장: Supabase 메인 · 실패 시 임시 보관(미동기) ---- */
+async function lpSavePiece(){
+  var d = {};
+  LP_FIELDS.forEach(function(k){ var el=$('lp_'+k.slice(3)); d[k]= el?(el.value||'').trim():''; });
+  d.li_source_type = $('lp_source_type').value;
+  d.is_seed = $('lp_is_seed').checked || undefined;
+  var seeds=[].slice.call(document.querySelectorAll('#lpSeedWrap .chip2.on')).map(function(c){return c.textContent;});
+  if(d.is_seed && seeds.length) d.seed_types = seeds;
+  var hasContent = LP_FIELDS.some(function(k){ return k!=='li_source_type' && d[k]; });
+  if(!hasContent){ toast('내용을 한 칸이라도 적어주세요.', true); return; }
+  var rec = { owner_id:'sara_house', kind:'light',
+    piece_date: $('lp_piece_date').value || null,
+    data: d, protect: $('lp_protect').value,
+    updated_at: new Date().toISOString() };
+
+  var st=$('lpSaveState'); if(st){ st.textContent='저장 중…'; st.className='lp-savestate'; }
+  var existing = _lpEditId ? _lpPieces.find(function(p){return p.id===_lpEditId;}) : null;
+  var isLocalId = _lpEditId && String(_lpEditId).indexOf('local_')===0;
+
+  if(_sbReady && _sb){
+    try{
+      var res;
+      if(existing && !isLocalId){
+        res = await _sb.from(LP_TABLE).update(rec).eq('id',_lpEditId).eq('owner_id','sara_house').select().single();
+      }else{
+        res = await _sb.from(LP_TABLE).insert(rec).select().single();
+      }
+      if(!res.error && res.data){
+        if(existing){ var i=_lpPieces.indexOf(existing); _lpPieces.splice(i,1,res.data); }
+        else{ _lpPieces.unshift(res.data); }
+        lpCacheSave();
+        if(st){ st.textContent='클라우드 저장됨'; st.className='lp-savestate ok'; }
+        toast('조각이 클라우드에 저장되었습니다.');
+        setTimeout(function(){ lpShow('list'); lpRenderList(); }, 700);
+        return;
+      }
+      if(res && res.error){ diagSet('조명 · 저장(DB 응답)', res.error); }
+    }catch(e){ diagSet('조명 · 저장(예외)', e); }
+  }
+  /* 실패 경로 — 위장 금지, 임시 보관 + 미동기 표시 */
+  var localPiece = existing || { id:'local_'+Date.now()+Math.floor(Math.random()*1e4), created_at:new Date().toISOString() };
+  localPiece.owner_id='sara_house'; localPiece.kind='light';
+  localPiece.piece_date=rec.piece_date; localPiece.data=rec.data;
+  localPiece.protect=rec.protect; localPiece.updated_at=rec.updated_at;
+  localPiece._unsynced=true;
+  if(!existing) _lpPieces.unshift(localPiece);
+  lpCacheSave();
+  if(st){ st.textContent='클라우드 실패 · 이 기기에 임시 보관됨(미동기)'; st.className='lp-savestate warn'; }
+  toast('클라우드 실패 · 이 기기에 임시 보관됨(미동기)', true);
+  setTimeout(function(){ lpShow('list'); lpRenderList(); }, 900);
+}
+
+/* ---- 삭제: 확인창 1회 → 완전 삭제 (D-L6) ---- */
+async function lpDeletePiece(id){
+  var p=_lpPieces.find(function(x){return x.id===id;}); if(!p) return;
+  if(!confirm('이 조각을 완전히 삭제할까요? 되돌릴 수 없습니다.')) return;
+  if(String(id).indexOf('local_')!==0 && _sbReady && _sb){
+    try{
+      var res=await _sb.from(LP_TABLE).delete().eq('id',id).eq('owner_id','sara_house');
+      if(res.error){ toast('삭제 실패 · 클라우드 연결을 확인해 주세요.', true); return; }
+    }catch(e){ toast('삭제 실패 · 클라우드 연결을 확인해 주세요.', true); return; }
+  }
+  _lpPieces=_lpPieces.filter(function(x){return x.id!==id;});
+  lpCacheSave();
+  toast('조각을 삭제했습니다.');
+  lpShow('list'); lpRenderList();
+}
+
+/* ---- 목록 대표 표시 규칙 (D-L3) ---- */
+function lpRepTitle(p){
+  var d=p.data||{};
+  var cut=function(t){ t=(t||'').trim(); return t.length>30 ? t.slice(0,30)+'…' : t; };
+  if(d.li_source && d.li_source.trim()) return {t:cut(d.li_source), from:'source'};
+  if(d.li_quote && d.li_quote.trim()) return {t:cut(d.li_quote), from:'quote'};
+  if(d.li_word_light && d.li_word_light.trim()) return {t:cut(d.li_word_light), from:'light'};
+  return {t:'(무제 조각)', from:'none'};
+}
+function lpPieceText(p){ var d=p.data||{}; return LP_FIELDS.map(function(k){return d[k]||'';}).join(' ').toLowerCase(); }
+
+/* ---- 목록 렌더 ---- */
+function lpRenderChips(){
+  var box=$('lpTypeChips'); if(!box) return;
+  var all=['전체'].concat(LP_TYPES);
+  box.innerHTML=all.map(function(t){
+    return '<button type="button" class="tab'+(t===_lpFilterType?' on':'')+'" data-lptype="'+t+'">'+t+'</button>';
+  }).join('');
+  box.querySelectorAll('[data-lptype]').forEach(function(b){
+    b.addEventListener('click',function(){ _lpFilterType=b.getAttribute('data-lptype'); lpRenderList(); });
+  });
+}
+function lpRenderList(){
+  lpRenderChips();
+  var box=$('lpList'); if(!box) return;
+  var q=(($('lpFilterText')||{}).value||'').trim().toLowerCase();
+  var items=_lpPieces.filter(function(p){
+    if(_lpFilterType!=='전체' && ((p.data||{}).li_source_type||'기타')!==_lpFilterType) return false;
+    if(q){ if(lpIsProtected(p)) return false;                 // 보호 조각은 텍스트 필터 제외
+           if(lpPieceText(p).indexOf(q)<0) return false; }
+    return true;
+  });
+  var note=$('lpSyncNote');
+  if(note){
+    var un=_lpPieces.filter(function(p){return p._unsynced;}).length;
+    note.textContent = !_sbReady ? '클라우드 미연결 — 이 기기에 보관된 조각만 보입니다.'
+      : (un>0 ? '미동기 조각 '+un+'개 — 열어서 다시 저장하면 클라우드로 올라갑니다.' : '');
+  }
+  if(!items.length){
+    box.innerHTML='<div class="lp-empty">아직 조각이 없습니다.<br>오늘 들은 이야기를 첫 조각으로 남겨보세요.</div>';
+    return;
+  }
+  box.innerHTML=items.map(function(p){
+    var dateTxt = p.piece_date || (p.created_at||'').slice(0,10);
+    if(lpIsProtected(p)){
+      return '<div class="lp-card" data-lpid="'+p.id+'"><div class="lp-card-top">'+
+        '<span class="lp-lock">보호 조각</span></div>'+
+        '<div class="lp-card-meta"><span>'+esc(dateTxt)+'</span>'+
+        (p._unsynced?'<span class="lp-unsync">미동기</span>':'')+'</div></div>';
+    }
+    var rep=lpRepTitle(p); var d=p.data||{};
+    var sub=(rep.from!=='quote' && d.li_quote)? '<div class="lp-card-sub">'+esc(d.li_quote)+'</div>' : '';
+    return '<div class="lp-card" data-lpid="'+p.id+'"><div class="lp-card-top">'+
+      '<span class="lp-type">'+esc(d.li_source_type||'기타')+'</span>'+
+      '<div class="lp-card-t">'+esc(rep.t)+'</div></div>'+sub+
+      '<div class="lp-card-meta"><span>'+esc(dateTxt)+'</span>'+
+      (p._unsynced?'<span class="lp-unsync">미동기</span>':'')+'</div></div>';
+  }).join('');
+  box.querySelectorAll('[data-lpid]').forEach(function(c){
+    c.addEventListener('click',function(){ lpOpenPiece(c.getAttribute('data-lpid')); });
+  });
+}
+
+/* ---- 패널 전환 ---- */
+function lpShow(panel){
+  var m={list:'lpPanelList',form:'lpPanelForm',detail:'lpPanelDetail'};
+  Object.keys(m).forEach(function(k){ var el=$(m[k]); if(el) el.style.display=(k===panel)?'':'none'; });
+  var t=$('lpTitle'); if(t) t.textContent = panel==='form' ? ($('lpFormTitle').textContent) : (panel==='detail'?'조각 상세':'조명의 방');
+}
+
+/* ---- 입력/수정 폼 ---- */
+function lpSeedChipsRender(sel){
+  var w=$('lpSeedWrap'); if(!w) return;
+  sel=sel||[];
+  w.innerHTML=LP_SEED.map(function(t){
+    return '<span class="chip2'+(sel.indexOf(t)>=0?' on':'')+'">'+t+'</span>';
+  }).join('');
+  w.querySelectorAll('.chip2').forEach(function(c){
+    c.addEventListener('click',function(){ c.classList.toggle('on'); });
+  });
+}
+function lpOpenForm(id){
+  _lpEditId=id||null;
+  var p=id?_lpPieces.find(function(x){return x.id===id;}):null;
+  var d=(p&&p.data)||{};
+  $('lpFormTitle').textContent = p?'조각 수정':'새 조각';
+  $('lp_source').value=d.li_source||'';
+  $('lp_source_type').value=d.li_source_type||'강연';
+  $('lp_quote').value=d.li_quote||'';
+  $('lp_my_link').value=d.li_my_link||'';
+  $('lp_prayer_view').value=d.li_prayer_view||'';
+  $('lp_word_ref').value=d.li_word_ref||'';
+  $('lp_word_light').value=d.li_word_light||'';
+  $('lp_flow_to').value=d.li_flow_to||'';
+  $('lp_is_seed').checked=!!d.is_seed;
+  $('lpSeedWrap').style.display = d.is_seed?'':'none';
+  lpSeedChipsRender(d.seed_types||[]);
+  $('lp_piece_date').value = (p&&p.piece_date) ? p.piece_date : todayStr();
+  $('lp_protect').value = (p&&p.protect) || '추후 판단';
+  var st=$('lpSaveState'); if(st){ st.textContent=''; st.className='lp-savestate'; }
+  lpShow('form');
+}
+
+/* ---- 상세 ---- */
+function lpRenderDetailBody(p, revealed){
+  var body=$('lpDetailBody'); if(!body) return;
+  if(lpIsProtected(p) && !revealed){
+    body.innerHTML='<div class="lp-reveal">이 조각은 보호 등급('+esc(p.protect)+')으로 가려져 있습니다.<br>'+
+      '<button type="button" id="btnLpReveal">열어보기</button></div>';
+    var rb=$('btnLpReveal'); if(rb) rb.addEventListener('click',function(){ lpRenderDetailBody(p,true); });
+    return;
+  }
+  var d=p.data||{};
+  var rows=LP_FIELDS.filter(function(k){return d[k];}).map(function(k){
+    return '<div class="lp-drow"><div class="k">'+LP_LABEL[k]+'</div><div class="v">'+esc(d[k])+'</div></div>';
+  });
+  if(d.is_seed) rows.push('<div class="lp-drow"><div class="k">씨앗 후보</div><div class="v">'+esc((d.seed_types||[]).join(', ')||'유형 미정')+'</div></div>');
+  rows.push('<div class="lp-drow"><div class="k">들은 날짜</div><div class="v">'+esc(p.piece_date||(p.created_at||'').slice(0,10))+'</div></div>');
+  rows.push('<div class="lp-drow"><div class="k">보호 등급</div><div class="v">'+esc(p.protect||'추후 판단')+'</div></div>');
+  if(lpIsProtected(p)) rows.push('<div class="lp-reveal" style="padding:12px 0 2px;"><button type="button" id="btnLpHide">다시 숨기기</button></div>');
+  body.innerHTML=rows.join('');
+  var hb=$('btnLpHide'); if(hb) hb.addEventListener('click',function(){ lpRenderDetailBody(p,false); });
+}
+function lpOpenPiece(id){
+  var p=_lpPieces.find(function(x){return x.id===id;}); if(!p) return;
+  _lpDetailId=id;
+  lpRenderDetailBody(p,false);
+  lpShow('detail');
+}
+
+/* ---- 진입 ---- */
+async function lpEnter(){
+  show('screen-light');
+  lpShow('list');
+  if(!_lpLoadedOnce){ lpCacheLoad(); _lpLoadedOnce=true; lpRenderList(); }
+  await lpFetchPieces();
+  lpRenderList();
+}
+
+/* ---- 배선 (전부 신규 요소 대상) ---- */
+(function(){
+  var back=$('btnLightBack');
+  if(back) back.addEventListener('click',function(){
+    var listVisible = $('lpPanelList') && $('lpPanelList').style.display!=='none';
+    if(listVisible){ show('screen-list'); } else { lpShow('list'); lpRenderList(); }
+  });
+  var nb=$('btnLpNew'); if(nb) nb.addEventListener('click',function(){ lpOpenForm(null); });
+  var sv=$('btnLpSave'); if(sv) sv.addEventListener('click',lpSavePiece);
+  var cc=$('btnLpCancel'); if(cc) cc.addEventListener('click',function(){ lpShow('list'); lpRenderList(); });
+  var ed=$('btnLpEdit'); if(ed) ed.addEventListener('click',function(){ if(_lpDetailId) lpOpenForm(_lpDetailId); });
+  var dl=$('btnLpDelete'); if(dl) dl.addEventListener('click',function(){ if(_lpDetailId) lpDeletePiece(_lpDetailId); });
+  var ft=$('lpFilterText'); if(ft) ft.addEventListener('input',function(){ lpRenderList(); });
+  var seed=$('lp_is_seed'); if(seed) seed.addEventListener('change',function(){
+    $('lpSeedWrap').style.display = seed.checked?'':'none';
+  });
+})();
+
+
+/* ============================================================
+   v2-E 연대기의 방 — sara_house_pieces kind='chron' (전부 신규 ch_ 함수)
+   조명의 방(lp_)·오늘기록·entries 와 완전 분리.
+   ============================================================ */
+const CH_TABLE = 'sara_house_pieces';
+const CH_CACHE = 'sara_house_pieces_chron_cache_v1';   // 캐시 전용 (기준 저장소 아님)
+const CH_FIELDS = ['ch_period','ch_scene','ch_people','ch_feeling','ch_effect','ch_grace','ch_god_view','ch_flow_to'];
+const CH_LABEL = {ch_period:'언제쯤의 기억인가', ch_scene:'기억 장면', ch_people:'함께 있던 사람',
+  ch_feeling:'그때의 마음', ch_effect:'지금의 나에게 남긴 것', ch_grace:'지나며 받은 은혜·회복',
+  ch_god_view:'하나님 앞에서 다시 본 의미', ch_flow_to:'흘려보내고 싶은 방향'};
+const CH_SEED = ['책','강의','코칭 프로그램','유튜브','말씀/간증','삶 운영 기준','퍼스널브랜딩 사례','보험 상담 사례','아직 미정'];
+let _chPieces = [];
+let _chLoadedOnce = false;
+let _chEditId = null;
+let _chDetailId = null;
+
+function chIsProtected(p){ return p && (p.protect==='부분 보호'||p.protect==='강한 보호'||p.protect==='절대 비공개'); }
+function chCacheSave(){ try{ localStorage.setItem(CH_CACHE, JSON.stringify(_chPieces)); }catch(e){} }
+function chCacheLoad(){ try{ var v=localStorage.getItem(CH_CACHE); _chPieces = v?JSON.parse(v):[]; }catch(e){ _chPieces=[]; } }
+
+/* ---- 조회: Supabase 기준, 실패 시 캐시 (정직 표시) ---- */
+async function chFetchPieces(){
+  if(_sbReady && _sb){
+    try{
+      var res = await _sb.from(CH_TABLE).select('*')
+        .eq('owner_id','sara_house').eq('kind','chron')
+        .order('created_at',{ascending:false});
+      if(!res.error && Array.isArray(res.data)){
+        var locals = _chPieces.filter(function(p){ return p._unsynced; });
+        _chPieces = locals.concat(res.data);
+        chCacheSave();
+        return true;
+      }
+      if(res && res.error){ diagSet('연대기 · 목록 조회', res.error); }
+    }catch(e){ diagSet('연대기 · 목록 조회(예외)', e); }
+  }
+  chCacheLoad();
+  return false;
+}
+
+/* ---- 저장: Supabase 메인 · 실패 시 임시 보관(미동기) ---- */
+async function chSavePiece(){
+  var d = {};
+  CH_FIELDS.forEach(function(k){ var el=$(k); d[k]= el?(el.value||'').trim():''; });
+  d.is_seed = $('ch_is_seed').checked || undefined;
+  var seeds=[].slice.call(document.querySelectorAll('#chSeedWrap .chip2.on')).map(function(c){return c.textContent;});
+  if(d.is_seed && seeds.length) d.seed_types = seeds;
+  var hasContent = CH_FIELDS.some(function(k){ return d[k]; });
+  if(!hasContent){ toast('내용을 한 칸이라도 적어주세요.', true); return; }
+  var rec = { owner_id:'sara_house', kind:'chron',
+    piece_date: $('ch_piece_date').value || null,      // 기본 빈칸 — 아는 경우만
+    data: d, protect: $('ch_protect').value,
+    updated_at: new Date().toISOString() };
+
+  var st=$('chSaveState'); if(st){ st.textContent='저장 중…'; st.className='ch-savestate'; }
+  var existing = _chEditId ? _chPieces.find(function(p){return p.id===_chEditId;}) : null;
+  var isLocalId = _chEditId && String(_chEditId).indexOf('local_')===0;
+
+  if(_sbReady && _sb){
+    try{
+      var res;
+      if(existing && !isLocalId){
+        res = await _sb.from(CH_TABLE).update(rec).eq('id',_chEditId).eq('owner_id','sara_house').select().single();
+      }else{
+        res = await _sb.from(CH_TABLE).insert(rec).select().single();
+      }
+      if(!res.error && res.data){
+        if(existing){ var i=_chPieces.indexOf(existing); _chPieces.splice(i,1,res.data); }
+        else{ _chPieces.unshift(res.data); }
+        chCacheSave();
+        if(st){ st.textContent='클라우드 저장됨'; st.className='ch-savestate ok'; }
+        toast('조각이 클라우드에 저장되었습니다.');
+        setTimeout(function(){ chShow('list'); chRenderList(); }, 700);
+        return;
+      }
+      if(res && res.error){ diagSet('연대기 · 저장(DB 응답)', res.error); }
+    }catch(e){ diagSet('연대기 · 저장(예외)', e); }
+  }
+  /* 실패 경로 — 위장 금지, 임시 보관 + 미동기 표시 */
+  var localPiece = existing || { id:'local_'+Date.now()+Math.floor(Math.random()*1e4), created_at:new Date().toISOString() };
+  localPiece.owner_id='sara_house'; localPiece.kind='chron';
+  localPiece.piece_date=rec.piece_date; localPiece.data=rec.data;
+  localPiece.protect=rec.protect; localPiece.updated_at=rec.updated_at;
+  localPiece._unsynced=true;
+  if(!existing) _chPieces.unshift(localPiece);
+  chCacheSave();
+  if(st){ st.textContent='클라우드 실패 · 이 기기에 임시 보관됨(미동기)'; st.className='ch-savestate warn'; }
+  toast('클라우드 실패 · 이 기기에 임시 보관됨(미동기)', true);
+  setTimeout(function(){ chShow('list'); chRenderList(); }, 900);
+}
+
+/* ---- 삭제: 확인창 1회 → 완전 삭제 (D-C5) ---- */
+async function chDeletePiece(id){
+  var p=_chPieces.find(function(x){return x.id===id;}); if(!p) return;
+  if(!confirm('이 조각을 완전히 삭제할까요? 되돌릴 수 없습니다.')) return;
+  if(String(id).indexOf('local_')!==0 && _sbReady && _sb){
+    try{
+      var res=await _sb.from(CH_TABLE).delete().eq('id',id).eq('owner_id','sara_house');
+      if(res.error){ toast('삭제 실패 · 클라우드 연결을 확인해 주세요.', true); return; }
+    }catch(e){ toast('삭제 실패 · 클라우드 연결을 확인해 주세요.', true); return; }
+  }
+  _chPieces=_chPieces.filter(function(x){return x.id!==id;});
+  chCacheSave();
+  toast('조각을 삭제했습니다.');
+  chShow('list'); chRenderList();
+}
+
+/* ---- 목록 대표 표시 규칙 ---- */
+function chRepTitle(p){
+  var d=p.data||{};
+  var cut=function(t){ t=(t||'').trim(); return t.length>30 ? t.slice(0,30)+'…' : t; };
+  if(d.ch_scene && d.ch_scene.trim()) return cut(d.ch_scene);
+  if(d.ch_god_view && d.ch_god_view.trim()) return cut(d.ch_god_view);
+  return '(무제 조각)';
+}
+function chPeriodBadge(p){
+  var t=((p.data||{}).ch_period||'').trim();
+  if(!t) return '시기 미정';
+  return t.length>12 ? t.slice(0,12)+'…' : t;
+}
+function chPieceText(p){ var d=p.data||{}; return CH_FIELDS.map(function(k){return d[k]||'';}).join(' ').toLowerCase(); }
+
+/* ---- 목록 렌더 (텍스트 필터 1개만 · D-C6) ---- */
+function chRenderList(){
+  var box=$('chList'); if(!box) return;
+  var q=(($('chFilterText')||{}).value||'').trim().toLowerCase();
+  var items=_chPieces.filter(function(p){
+    if(q){ if(chIsProtected(p)) return false;
+           if(chPieceText(p).indexOf(q)<0) return false; }
+    return true;
+  });
+  var note=$('chSyncNote');
+  if(note){
+    var un=_chPieces.filter(function(p){return p._unsynced;}).length;
+    note.textContent = !_sbReady ? '클라우드 미연결 — 이 기기에 보관된 조각만 보입니다.'
+      : (un>0 ? '미동기 조각 '+un+'개 — 열어서 다시 저장하면 클라우드로 올라갑니다.' : '');
+  }
+  if(!items.length){
+    box.innerHTML='<div class="ch-empty">아직 조각이 없습니다.<br>오늘 문득 떠오른 기억 하나면 충분합니다.</div>';
+    return;
+  }
+  box.innerHTML=items.map(function(p){
+    var dateTxt = p.piece_date || (p.created_at||'').slice(0,10);
+    if(chIsProtected(p)){
+      return '<div class="ch-card" data-chid="'+p.id+'"><div class="ch-card-top">'+
+        '<span class="ch-lock">보호 조각</span></div>'+
+        '<div class="ch-card-meta"><span>'+esc(dateTxt)+'</span>'+
+        (p._unsynced?'<span class="ch-unsync">미동기</span>':'')+'</div></div>';
+    }
+    return '<div class="ch-card" data-chid="'+p.id+'"><div class="ch-card-top">'+
+      '<span class="ch-period">'+esc(chPeriodBadge(p))+'</span>'+
+      '<div class="ch-card-t">'+esc(chRepTitle(p))+'</div></div>'+
+      '<div class="ch-card-meta"><span>'+esc(dateTxt)+'</span>'+
+      (p._unsynced?'<span class="ch-unsync">미동기</span>':'')+'</div></div>';
+  }).join('');
+  box.querySelectorAll('[data-chid]').forEach(function(c){
+    c.addEventListener('click',function(){ chOpenPiece(c.getAttribute('data-chid')); });
+  });
+}
+
+/* ---- 패널 전환 ---- */
+function chShow(panel){
+  var m={list:'chPanelList',form:'chPanelForm',detail:'chPanelDetail'};
+  Object.keys(m).forEach(function(k){ var el=$(m[k]); if(el) el.style.display=(k===panel)?'':'none'; });
+  var t=$('chTitle'); if(t) t.textContent = panel==='form' ? ($('chFormTitle').textContent) : (panel==='detail'?'조각 상세':'연대기의 방');
+}
+
+/* ---- 입력/수정 폼 ---- */
+function chSeedChipsRender(sel){
+  var w=$('chSeedWrap'); if(!w) return;
+  sel=sel||[];
+  w.innerHTML=CH_SEED.map(function(t){
+    return '<span class="chip2'+(sel.indexOf(t)>=0?' on':'')+'">'+t+'</span>';
+  }).join('');
+  w.querySelectorAll('.chip2').forEach(function(c){
+    c.addEventListener('click',function(){ c.classList.toggle('on'); });
+  });
+}
+function chOpenForm(id){
+  _chEditId=id||null;
+  var p=id?_chPieces.find(function(x){return x.id===id;}):null;
+  var d=(p&&p.data)||{};
+  $('chFormTitle').textContent = p?'조각 수정':'새 조각';
+  CH_FIELDS.forEach(function(k){ var el=$(k); if(el) el.value=d[k]||''; });
+  $('ch_is_seed').checked=!!d.is_seed;
+  $('chSeedWrap').style.display = d.is_seed?'':'none';
+  chSeedChipsRender(d.seed_types||[]);
+  $('ch_piece_date').value = (p&&p.piece_date) ? p.piece_date : '';   // 기본 빈칸
+  $('ch_protect').value = (p&&p.protect) || '추후 판단';
+  var st=$('chSaveState'); if(st){ st.textContent=''; st.className='ch-savestate'; }
+  chShow('form');
+}
+
+/* ---- 상세 ---- */
+function chRenderDetailBody(p, revealed){
+  var body=$('chDetailBody'); if(!body) return;
+  if(chIsProtected(p) && !revealed){
+    body.innerHTML='<div class="ch-reveal">이 조각은 보호 등급('+esc(p.protect)+')으로 가려져 있습니다.<br>'+
+      '<button type="button" id="btnChReveal">열어보기</button></div>';
+    var rb=$('btnChReveal'); if(rb) rb.addEventListener('click',function(){ chRenderDetailBody(p,true); });
+    return;
+  }
+  var d=p.data||{};
+  var rows=CH_FIELDS.filter(function(k){return d[k];}).map(function(k){
+    return '<div class="ch-drow"><div class="k">'+CH_LABEL[k]+'</div><div class="v">'+esc(d[k])+'</div></div>';
+  });
+  if(d.is_seed) rows.push('<div class="ch-drow"><div class="k">씨앗 후보</div><div class="v">'+esc((d.seed_types||[]).join(', ')||'유형 미정')+'</div></div>');
+  rows.push('<div class="ch-drow"><div class="k">정확한 날짜</div><div class="v">'+esc(p.piece_date||'모름 · 기록일 '+(p.created_at||'').slice(0,10))+'</div></div>');
+  rows.push('<div class="ch-drow"><div class="k">보호 등급</div><div class="v">'+esc(p.protect||'추후 판단')+'</div></div>');
+  if(chIsProtected(p)) rows.push('<div class="ch-reveal" style="padding:12px 0 2px;"><button type="button" id="btnChHide">다시 숨기기</button></div>');
+  body.innerHTML=rows.join('');
+  var hb=$('btnChHide'); if(hb) hb.addEventListener('click',function(){ chRenderDetailBody(p,false); });
+}
+function chOpenPiece(id){
+  var p=_chPieces.find(function(x){return x.id===id;}); if(!p) return;
+  _chDetailId=id;
+  chRenderDetailBody(p,false);
+  chShow('detail');
+}
+
+/* ---- 진입 ---- */
+async function chEnter(){
+  show('screen-chron');
+  chShow('list');
+  if(!_chLoadedOnce){ chCacheLoad(); _chLoadedOnce=true; chRenderList(); }
+  await chFetchPieces();
+  chRenderList();
+}
+
+/* ---- 배선 (전부 신규 요소 대상) ---- */
+(function(){
+  var back=$('btnChronBack');
+  if(back) back.addEventListener('click',function(){
+    var listVisible = $('chPanelList') && $('chPanelList').style.display!=='none';
+    if(listVisible){ show('screen-list'); } else { chShow('list'); chRenderList(); }
+  });
+  var nb=$('btnChNew'); if(nb) nb.addEventListener('click',function(){ chOpenForm(null); });
+  var sv=$('btnChSave'); if(sv) sv.addEventListener('click',chSavePiece);
+  var cc=$('btnChCancel'); if(cc) cc.addEventListener('click',function(){ chShow('list'); chRenderList(); });
+  var ed=$('btnChEdit'); if(ed) ed.addEventListener('click',function(){ if(_chDetailId) chOpenForm(_chDetailId); });
+  var dl=$('btnChDelete'); if(dl) dl.addEventListener('click',function(){ if(_chDetailId) chDeletePiece(_chDetailId); });
+  var ft=$('chFilterText'); if(ft) ft.addEventListener('input',function(){ chRenderList(); });
+  var seed=$('ch_is_seed'); if(seed) seed.addEventListener('change',function(){
+    $('chSeedWrap').style.display = seed.checked?'':'none';
+  });
+})();
+
+
+/* ===== v2-E 진단 (진단 사본 전용 · 운영본에 없음) ===== */
+window._diagLast=null;
+function diagSet(stage, err){
+  err=err||{};
+  window._diagLast={ stage:stage,
+    message: err.message||String(err)||'(메시지 없음)',
+    code: err.code||'', details: err.details||'', hint: err.hint||'',
+    time: new Date().toLocaleTimeString() };
+  diagRender();
+}
+function diagStatusHtml(){
+  var cdn = (typeof window.supabase!=='undefined');
+  var ready = (typeof _sbReady!=='undefined') ? _sbReady : '(변수 없음)';
+  var url='', keyInfo='';
+  try{ url = SB_URL_DEFAULT; }catch(e){ url='(확인 불가)'; }
+  try{ keyInfo = 'anon 키 길이 '+SB_ANON_DEFAULT.length+' · 앞 10자 '+SB_ANON_DEFAULT.slice(0,10)+'…'; }catch(e){ keyInfo='(확인 불가)'; }
+  return '접속 origin: '+location.origin+'<br>'+
+    'supabase-js CDN: '+(cdn?'<b style="color:#9fe3b0">로드됨</b>':'<b style="color:#ff9c8f">미로드 — CDN 차단/실패</b>')+'<br>'+
+    '클라이언트 준비(_sbReady): '+(ready===true?'<b style="color:#9fe3b0">true</b>':'<b style="color:#ff9c8f">'+ready+'</b>')+'<br>'+
+    'Supabase URL: '+url+'<br>'+keyInfo;
+}
+function diagRender(){
+  var st=document.getElementById('diagStatus');
+  if(st) st.innerHTML=diagStatusHtml();
+  var la=document.getElementById('diagLast');
+  if(la){
+    var d=window._diagLast;
+    la.innerHTML = d ? ('<b>마지막 오류</b> ['+d.time+'] '+d.stage+'<br>message: '+d.message+
+      (d.code?('<br>code: '+d.code):'')+(d.details?('<br>details: '+d.details):'')+(d.hint?('<br>hint: '+d.hint):''))
+      : '<span style="color:#8fa0d0">아직 포착된 오류 없음 — 조각 저장을 한 번 시도해 보세요.</span>';
+  }
+}
+(function(){
+  var openBtn=document.getElementById('btnDiagOpen');
+  var panel=document.getElementById('diagPanel');
+  var closeBtn=document.getElementById('btnDiagClose');
+  if(openBtn && panel) openBtn.addEventListener('click',function(){ panel.style.display='flex'; });
+  if(closeBtn && panel) closeBtn.addEventListener('click',function(){ panel.style.display='none'; });
+  if(panel) panel.addEventListener('click',function(ev){ if(ev.target===panel) panel.style.display='none'; });
+})();
+/* ===== show() 감싸기 (신규 · 원본 show()는 수정하지 않음) =====
+   목적: 연결진단 버튼을 메인 목록 화면(screen-list)에서만 보이게 하고,
+   그 외 화면(상세/편집/조명의 방/연대기의 방) 진입 시 버튼을 숨기고
+   모달이 열려 있었다면 자동으로 닫는다. */
+(function(){
+  var _origShow = show;
+  show = function(id){
+    _origShow(id);
+    var diagOpenBtn = document.getElementById('btnDiagOpen');
+    var diagModal = document.getElementById('diagPanel');
+    if(diagOpenBtn){ diagOpenBtn.style.display = (id==='screen-list') ? '' : 'none'; }
+    if(id!=='screen-list' && diagModal && diagModal.style.display!=='none'){
+      diagModal.style.display='none';
+    }
+  };
+})();
+(function(){
+  var t=document.getElementById('btnDiagToggle');
+  if(t) t.addEventListener('click',function(){
+    var st=document.getElementById('diagStatus'), la=document.getElementById('diagLast');
+    var hide = st.style.display!=='none';
+    st.style.display=hide?'none':''; la.style.display=hide?'none':'';
+    t.textContent=hide?'펼치기':'접기';
+  });
+  var p=document.getElementById('btnDiagPing');
+  if(p) p.addEventListener('click', async function(){
+    if(typeof _sb==='undefined' || !_sb){ diagSet('연결 진단',{message:'클라이언트 없음(_sb null) — supabase-js CDN 로드 실패 가능'}); return; }
+    try{
+      var r=await _sb.from('sara_house_pieces').select('id',{count:'exact',head:true}).eq('owner_id','sara_house');
+      if(r.error){ diagSet('연결 진단(테이블 접근)', r.error); }
+      else { diagSet('연결 진단', {message:'테이블 접근 OK · sara_house_pieces 행 수 '+(r.count==null?'?':r.count)}); }
+    }catch(e){ diagSet('연결 진단(예외)', e); }
+  });
+  window.addEventListener('error',function(ev){ if(ev&&ev.message) diagSet('전역 오류',{message:ev.message}); });
+  window.addEventListener('unhandledrejection',function(ev){ diagSet('전역 rejection',{message:(ev.reason&&ev.reason.message)||String(ev.reason)}); });
+  diagRender();
+  setInterval(function(){ var st=document.getElementById('diagStatus'); if(st&&st.style.display!=='none') st.innerHTML=diagStatusHtml(); }, 2000);
+})();
+
 </script>
 </body>
 </html>
