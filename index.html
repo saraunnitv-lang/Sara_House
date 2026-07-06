@@ -1268,12 +1268,13 @@ function sbConfigured(){
         <div class="ai-stub pr-aistub">
           <div class="ai-note">
             <div class="ai-note-h">AI 정리는 선택입니다</div>
-            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI 정리는 아직 준비 중이며, 지금은 외부 AI 정리본을 가져오는 방식입니다.</div>
+            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI로 바로 정리하거나, 외부 AI 정리본을 가져와 칸에 나눌 수 있습니다.</div>
           </div>
           <div class="ai-stub-btns">
-            <button type="button" class="ai-stub-btn pr-wait" disabled>앱 안 AI 정리 준비 중</button>
+            <button type="button" class="ai-stub-btn" id="btnAiLp">AI에게 정리시키기</button>
             <button type="button" class="ai-stub-btn" id="btnPrOpenLp">외부 AI 정리본 가져오기</button>
           </div>
+          <div class="pr-msg" id="aiMsgLp"></div>
           <div class="ai-stub-note">AI는 빈 칸만 채웁니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다. 정리된 초안은 내가 확인한 뒤 저장합니다.</div>
         </div>
         <details class="fold-tool" id="prToolLp">
@@ -1418,12 +1419,13 @@ function sbConfigured(){
         <div class="ai-stub pr-aistub">
           <div class="ai-note">
             <div class="ai-note-h">AI 정리는 선택입니다</div>
-            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI 정리는 아직 준비 중이며, 지금은 외부 AI 정리본을 가져오는 방식입니다.</div>
+            <div>먼저 내 말로 남겨도 괜찮습니다. 필요할 때만 AI가 빈칸 정리를 도와줍니다.<br>앱 안 AI로 바로 정리하거나, 외부 AI 정리본을 가져와 칸에 나눌 수 있습니다.</div>
           </div>
           <div class="ai-stub-btns">
-            <button type="button" class="ai-stub-btn pr-wait" disabled>앱 안 AI 정리 준비 중</button>
+            <button type="button" class="ai-stub-btn" id="btnAiCh">AI에게 정리시키기</button>
             <button type="button" class="ai-stub-btn" id="btnPrOpenCh">외부 AI 정리본 가져오기</button>
           </div>
+          <div class="pr-msg" id="aiMsgCh"></div>
           <div class="ai-stub-note">AI는 빈 칸만 채웁니다. 이미 입력한 칸과 원문은 그대로 유지되며, 자동 저장되지 않습니다. 정리된 초안은 내가 확인한 뒤 저장합니다.</div>
         </div>
         <details class="fold-tool" id="prToolCh">
@@ -2688,6 +2690,117 @@ function setBottomNav(name){
   var lf=$('lpAllFold'); if(lf) lf.addEventListener('toggle',function(){ lpRenderList(); });
   var cf=$('chAllFold'); if(cf) cf.addEventListener('toggle',function(){ chRenderList(); });
   var rf=$('recListFold'); if(rf) rf.addEventListener('toggle',function(){ renderList(); });   /* v2-F13 */
+})();
+
+/* ============================================================
+   v2-F14 · 연대기/조명 앱 안 AI 정리 (전부 신규)
+   - classify-sara-house 호출: { text, mode:'light'|'chron' }
+   - 응답 키는 LP_LABEL/CH_LABEL 한글 라벨(또는 li_/ch_ 저장키) 기대
+   - 채움은 기존 pr_applyLp / pr_applyCh 재사용 → 빈칸만 · 자동 저장 없음
+   - 서버에 light/chron 모드가 없으면 정직하게 안내 (입력 유지)
+   ============================================================ */
+async function lpAiFill(){
+  var msg=$('aiMsgLp'); function say(m){ if(msg) msg.textContent=m; }
+  var lines=[];
+  LP_FIELDS.forEach(function(k){
+    var el=$('lp_'+k.slice(3)); if(!el) return;
+    var v=(el.value||'').trim();
+    if(k==='li_source_type'){ if(v && v!=='강연') lines.push(LP_LABEL[k]+': '+v); return; }
+    if(v) lines.push(LP_LABEL[k]+': '+v);
+  });
+  if(!lines.length){ say('먼저 한 칸이라도 적어 주세요. AI는 적힌 내용을 근거로 빈칸만 정리합니다.'); toast('내용이 비어 있습니다.', true); return; }
+  var b=$('btnAiLp'); if(b) b.disabled=true;
+  try{
+    if(!_sbReady || !_sb || !_sb.functions){
+      say('AI 정리는 클라우드 연결 후 사용할 수 있습니다.'); toast('Supabase 준비가 필요합니다.', true); return;
+    }
+    say('AI가 내용을 읽고 빈칸을 정리하는 중입니다…');
+    var inv=await _sb.functions.invoke(CLASSIFY_FN,{ body:{ text: lines.join('\n'), mode:'light' } });
+    if(inv.error){
+      var st=readInvokeStatus(inv.error), m;
+      if(st===404) m='classify-sara-house 함수가 배포되지 않았습니다.';
+      else if(st===401||st===403) m='함수 호출 권한 설정 확인이 필요합니다.';
+      else if(st===500) m='ANTHROPIC_API_KEY Secret 설정이 필요합니다.';
+      else if(st===502||st===503||st===504) m='Claude/Anthropic 응답 확인이 필요합니다.';
+      else m='AI 정리에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+      say(m+' (입력한 내용은 그대로 유지됩니다.)'); toast('AI 정리 실패'+(st?(' ('+st+')'):'')+'.', true); return;
+    }
+    var data=inv.data; var result=(data && data.result)?data.result:data;
+    if(!result || typeof result!=='object'){ say('AI 응답 형식을 읽지 못했습니다. 입력한 내용은 그대로 유지됩니다.'); return; }
+    var labelVals=Object.keys(LP_LABEL).map(function(k){return LP_LABEL[k];});
+    var parsed={};
+    Object.keys(result).forEach(function(k){
+      var v=result[k]; if(typeof v!=='string' || !v.trim()) return;
+      if(labelVals.indexOf(k)>=0) parsed[k]=v;
+      else if(k.indexOf('li_')===0 && LP_LABEL[k]) parsed[LP_LABEL[k]]=v;
+    });
+    if(!Object.keys(parsed).length){
+      say('서버 AI가 아직 조명의 방(light) 정리를 지원하지 않는 응답을 보냈습니다. Edge Function 확장 배포가 필요합니다. 입력한 내용은 그대로 유지됩니다.');
+      toast('light 모드 응답 없음', true); return;
+    }
+    var r=pr_applyLp(parsed);
+    var m2=(r.filled>0)? r.filled+'칸을 채웠습니다. 확인 후 조각 저장을 눌러 주세요. 자동 저장되지 않습니다.' : '새로 채울 빈칸이 없습니다.';
+    if(r.skipped>0) m2+='\n'+r.skipped+'칸은 이미 내용이 있어 건너뛰었습니다.';
+    say(m2); toast(r.filled>0?(r.filled+'칸을 채웠습니다. 확인 후 저장하세요.'):'새로 채울 빈칸이 없습니다.');
+  }catch(e){
+    var st2=readInvokeStatus(e);
+    say('AI 정리에 실패했습니다'+(st2?(' ('+st2+')'):'')+'. 입력한 내용은 그대로 유지됩니다.');
+    toast('AI 정리 실패.', true);
+  }finally{ if(b) b.disabled=false; }
+}
+
+async function chAiFill(){
+  var msg=$('aiMsgCh'); function say(m){ if(msg) msg.textContent=m; }
+  var lines=[];
+  CH_FIELDS.forEach(function(k){
+    var el=$(k); if(!el) return;
+    var v=(el.value||'').trim();
+    if(v) lines.push(CH_LABEL[k]+': '+v);
+  });
+  if(!lines.length){ say('먼저 한 칸이라도 적어 주세요. AI는 적힌 내용을 근거로 빈칸만 정리합니다.'); toast('내용이 비어 있습니다.', true); return; }
+  var b=$('btnAiCh'); if(b) b.disabled=true;
+  try{
+    if(!_sbReady || !_sb || !_sb.functions){
+      say('AI 정리는 클라우드 연결 후 사용할 수 있습니다.'); toast('Supabase 준비가 필요합니다.', true); return;
+    }
+    say('AI가 내용을 읽고 빈칸을 정리하는 중입니다…');
+    var inv=await _sb.functions.invoke(CLASSIFY_FN,{ body:{ text: lines.join('\n'), mode:'chron' } });
+    if(inv.error){
+      var st=readInvokeStatus(inv.error), m;
+      if(st===404) m='classify-sara-house 함수가 배포되지 않았습니다.';
+      else if(st===401||st===403) m='함수 호출 권한 설정 확인이 필요합니다.';
+      else if(st===500) m='ANTHROPIC_API_KEY Secret 설정이 필요합니다.';
+      else if(st===502||st===503||st===504) m='Claude/Anthropic 응답 확인이 필요합니다.';
+      else m='AI 정리에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+      say(m+' (입력한 내용은 그대로 유지됩니다.)'); toast('AI 정리 실패'+(st?(' ('+st+')'):'')+'.', true); return;
+    }
+    var data=inv.data; var result=(data && data.result)?data.result:data;
+    if(!result || typeof result!=='object'){ say('AI 응답 형식을 읽지 못했습니다. 입력한 내용은 그대로 유지됩니다.'); return; }
+    var labelVals=Object.keys(CH_LABEL).map(function(k){return CH_LABEL[k];});
+    var parsed={};
+    Object.keys(result).forEach(function(k){
+      var v=result[k]; if(typeof v!=='string' || !v.trim()) return;
+      if(labelVals.indexOf(k)>=0 || k==='보호 등급 후보') parsed[k]=v;
+      else if(k.indexOf('ch_')===0 && CH_LABEL[k]) parsed[CH_LABEL[k]]=v;
+    });
+    if(!Object.keys(parsed).length){
+      say('서버 AI가 아직 연대기의 방(chron) 정리를 지원하지 않는 응답을 보냈습니다. Edge Function 확장 배포가 필요합니다. 입력한 내용은 그대로 유지됩니다.');
+      toast('chron 모드 응답 없음', true); return;
+    }
+    var r=pr_applyCh(parsed);
+    var m2=(r.filled>0)? r.filled+'칸을 채웠습니다. 확인 후 조각 저장을 눌러 주세요. 자동 저장되지 않습니다.' : '새로 채울 빈칸이 없습니다.';
+    if(r.skipped>0) m2+='\n'+r.skipped+'칸은 이미 내용이 있어 건너뛰었습니다.';
+    say(m2); toast(r.filled>0?(r.filled+'칸을 채웠습니다. 확인 후 저장하세요.'):'새로 채울 빈칸이 없습니다.');
+  }catch(e){
+    var st2=readInvokeStatus(e);
+    say('AI 정리에 실패했습니다'+(st2?(' ('+st2+')'):'')+'. 입력한 내용은 그대로 유지됩니다.');
+    toast('AI 정리 실패.', true);
+  }finally{ if(b) b.disabled=false; }
+}
+
+(function(){
+  var a=$('btnAiLp'); if(a) a.addEventListener('click',function(){ lpAiFill(); });
+  var c=$('btnAiCh'); if(c) c.addEventListener('click',function(){ chAiFill(); });
 })();
 
 
