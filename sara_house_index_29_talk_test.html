@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>사라의 집 · 대화형 연결 테스트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* ============================================================
+   sara_house_index_29_talk_test — 대화형 UI + conversation-guide 연결 테스트
+   Edge Function classify-sara-house(conversation-guide)만 호출 · DB 접근 없음
+   저장 없음 · JS 메모리 변수만 사용 · 새로고침하면 모든 내용이 사라짐
+   운영본 교체용 아님 — 통과 후에만 index (29) 승격 검토
+   팔레트: index (28) 참고 (남색 / 아이보리 / 샴페인 골드)
+   ============================================================ */
+:root{
+  --navy:#2D3561;
+  --navy-deep:#1A2240;
+  --navy-soft:#3D4774;
+  --gold:#C9B26A;
+  --gold-soft:#E8DEC2;
+  --gold-glow:#EAD9A8;
+  --ivory:#F7F4EE;
+  --cream:#FFFDF8;
+  --border:#E8E0D2;
+  --text:#2A2F3E;
+  --text-soft:#6B6F7E;
+  --ember:#b04a3a;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Noto Sans KR',-apple-system,sans-serif;
+  background:var(--ivory);
+  color:var(--text);
+  line-height:1.7;
+  min-height:100vh;
+}
+button{font-family:inherit;cursor:pointer;}
+textarea{font-family:inherit;}
+
+/* ---------- 프로토타입 표시 리본 ---------- */
+.proto-ribbon{
+  background:var(--navy-deep);
+  color:var(--gold-soft);
+  font-size:12px;
+  letter-spacing:.08em;
+  text-align:center;
+  padding:8px 12px;
+}
+.proto-ribbon b{color:var(--gold-glow);font-weight:700;}
+
+/* ---------- 상단 ---------- */
+.hdr{
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+  padding:34px 20px 30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+/* 시그니처: 제목 뒤의 은은한 촛불빛 하나 */
+.hdr::before{
+  content:"";
+  position:absolute;
+  top:-40px;left:50%;
+  width:260px;height:260px;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(234,217,168,.22) 0%,rgba(234,217,168,0) 70%);
+  pointer-events:none;
+}
+.hdr .home{
+  font-family:'Gowun Batang',serif;
+  color:var(--gold-glow);
+  font-size:15px;
+  letter-spacing:.35em;
+  margin-bottom:10px;
+}
+.hdr h1{
+  font-family:'Gowun Batang',serif;
+  color:var(--cream);
+  font-size:22px;
+  font-weight:700;
+  line-height:1.55;
+  word-break:keep-all;
+  position:relative;
+}
+
+/* ---------- 화면 공통 ---------- */
+.wrap{max-width:620px;margin:0 auto;padding:26px 18px 80px;}
+.screen{display:none;}
+.screen.on{display:block;animation:rise .45s ease both;}
+@keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){
+  .screen.on{animation:none;}
+  .bubble{animation:none !important;opacity:1 !important;}
+}
+
+/* ---------- 첫 진입: 안내문 ---------- */
+.intro{
+  font-size:15px;
+  color:var(--text);
+  text-align:center;
+  word-break:keep-all;
+  margin-bottom:8px;
+}
+.intro p+p{margin-top:14px;}
+.intro .soft{color:var(--text-soft);font-size:14px;}
+
+/* ---------- 입력창 ---------- */
+.paper{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:0 4px 18px rgba(26,34,64,.06);
+  padding:18px;
+  margin:22px 0 18px;
+}
+textarea#pour{
+  width:100%;
+  min-height:220px;
+  border:none;
+  background:transparent;
+  resize:vertical;
+  font-size:15.5px;
+  line-height:1.85;
+  color:var(--text);
+  outline:none;
+}
+textarea#pour::placeholder{color:#A9AAB6;line-height:1.85;}
+
+/* ---------- 버튼 ---------- */
+.btn-col{display:flex;flex-direction:column;gap:12px;align-items:center;}
+.btn{
+  width:100%;
+  max-width:380px;
+  border-radius:999px;
+  font-size:15px;
+  padding:14px 20px;
+  border:1px solid transparent;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{transform:scale(.985);}
+.btn-primary{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:var(--gold-glow);
+  font-weight:700;
+  letter-spacing:.02em;
+  box-shadow:0 6px 16px rgba(26,34,64,.22);
+}
+.btn-secondary{
+  background:var(--cream);
+  border-color:var(--gold);
+  color:var(--navy);
+  font-weight:500;
+}
+.btn-burn{
+  background:none;
+  border:none;
+  color:var(--text-soft);
+  font-size:14px;
+  padding:8px;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  text-decoration-color:var(--gold-soft);
+  width:auto;
+}
+.btn-burn:hover{color:var(--ember);}
+
+/* ---------- 대화(핑퐁) 화면 ---------- */
+.talk-note{
+  text-align:center;
+  font-size:13px;
+  color:var(--text-soft);
+  background:var(--gold-soft);
+  border-radius:10px;
+  padding:10px 14px;
+  margin-bottom:20px;
+  word-break:keep-all;
+}
+.bubble{
+  max-width:88%;
+  border-radius:18px;
+  padding:14px 18px;
+  font-size:15px;
+  word-break:keep-all;
+  margin-bottom:14px;
+  animation:rise .5s ease both;
+}
+.bubble.me{
+  margin-left:auto;
+  background:var(--navy);
+  color:var(--cream);
+  border-bottom-right-radius:6px;
+  white-space:pre-line;
+}
+.bubble.ai{
+  margin-right:auto;
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-bottom-left-radius:6px;
+  box-shadow:0 3px 10px rgba(26,34,64,.05);
+}
+.bubble.ai .q{font-weight:700;color:var(--navy);display:block;margin-bottom:6px;font-family:'Gowun Batang',serif;}
+.bubble.ai .sub{color:var(--text-soft);font-size:14px;}
+.talk-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-top:22px;
+}
+.chip{
+  border-radius:999px;
+  border:1px solid var(--gold);
+  background:var(--cream);
+  color:var(--navy);
+  font-size:14px;
+  padding:10px 18px;
+}
+.chip.primary{background:var(--navy);border-color:var(--navy);color:var(--gold-glow);font-weight:700;}
+.chip.ghost{border-color:var(--border);color:var(--text-soft);}
+.back-link{
+  display:block;
+  text-align:center;
+  margin-top:26px;
+  background:none;border:none;
+  color:var(--text-soft);
+  font-size:13px;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* ---------- 모달 ---------- */
+.modal-veil{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(26,34,64,.55);
+  z-index:50;
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+}
+.modal-veil.on{display:flex;animation:fadein .25s ease both;}
+@keyframes fadein{from{opacity:0;}to{opacity:1;}}
+.modal{
+  background:var(--cream);
+  border-radius:20px;
+  max-width:420px;
+  width:100%;
+  padding:30px 24px 24px;
+  text-align:center;
+  box-shadow:0 18px 50px rgba(26,34,64,.35);
+}
+.modal .flame{
+  font-size:26px;
+  margin-bottom:10px;
+  filter:saturate(.7);
+}
+.modal h2{
+  font-family:'Gowun Batang',serif;
+  font-size:18px;
+  color:var(--navy);
+  word-break:keep-all;
+  line-height:1.6;
+  margin-bottom:16px;
+}
+.modal .body{
+  font-size:14.5px;
+  color:var(--text);
+  word-break:keep-all;
+  text-align:center;
+}
+.modal .body p+p{margin-top:12px;}
+.modal .confirm-line{
+  margin-top:18px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--ember);
+  word-break:keep-all;
+}
+.modal .m-btns{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:20px;
+}
+.m-stay{
+  border-radius:999px;
+  padding:13px;
+  border:1px solid var(--gold);
+  background:var(--cream);
+  color:var(--navy);
+  font-weight:700;
+  font-size:15px;
+}
+.m-burn{
+  border-radius:999px;
+  padding:13px;
+  border:1px solid transparent;
+  background:#F3E4DE;
+  color:var(--ember);
+  font-size:15px;
+}
+
+/* ---------- 안내 토스트(그냥 조각으로 남기기) ---------- */
+.toast{
+  position:fixed;
+  left:50%;bottom:34px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--navy-deep);
+  color:var(--gold-soft);
+  font-size:14px;
+  padding:13px 22px;
+  border-radius:999px;
+  box-shadow:0 8px 24px rgba(26,34,64,.35);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease, transform .3s ease;
+  max-width:88%;
+  text-align:center;
+  word-break:keep-all;
+  z-index:60;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- 흘려보낸 뒤 화면 ---------- */
+.after-burn{
+  text-align:center;
+  padding:60px 10px 30px;
+}
+.after-burn .ember{
+  font-size:34px;
+  display:inline-block;
+  margin-bottom:18px;
+}
+.after-burn h2{
+  font-family:'Gowun Batang',serif;
+  font-size:19px;
+  color:var(--navy);
+  margin-bottom:12px;
+  word-break:keep-all;
+}
+.after-burn p{
+  font-size:14.5px;
+  color:var(--text-soft);
+  word-break:keep-all;
+  margin-bottom:30px;
+}
+
+
+/* ---------- v2: 답변 입력 영역 ---------- */
+.answer-box{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px;
+  margin-top:6px;
+}
+textarea.answer{
+  width:100%;
+  min-height:96px;
+  border:none;
+  background:transparent;
+  resize:vertical;
+  font-size:15px;
+  line-height:1.8;
+  color:var(--text);
+  outline:none;
+}
+textarea.answer::placeholder{color:#A9AAB6;}
+
+/* ---------- v2: 임시 정리 화면 ---------- */
+.gather-warn{
+  background:var(--gold-soft);
+  border-radius:12px;
+  padding:14px 16px;
+  font-size:13.5px;
+  color:var(--text);
+  text-align:center;
+  word-break:keep-all;
+  margin-bottom:22px;
+  line-height:1.75;
+}
+.gather-item{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(26,34,64,.04);
+}
+.gather-item .g-label{
+  font-family:'Gowun Batang',serif;
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--navy);
+  display:block;
+  margin-bottom:8px;
+  word-break:keep-all;
+}
+.gather-item .g-body{
+  font-size:14.5px;
+  color:var(--text);
+  white-space:pre-line;
+  word-break:keep-all;
+}
+.gather-item .g-body.empty{color:var(--text-soft);font-style:normal;}
+.gather-title{
+  font-family:'Gowun Batang',serif;
+  font-size:19px;
+  color:var(--navy);
+  text-align:center;
+  margin-bottom:14px;
+  word-break:keep-all;
+}
+.step-dot{
+  text-align:center;
+  font-size:12.5px;
+  letter-spacing:.2em;
+  color:var(--text-soft);
+  margin-bottom:14px;
+}
+
+@media (max-width:420px){
+  .hdr h1{font-size:19px;}
+  textarea#pour{min-height:190px;}
+}
+</style>
+</head>
+<body>
+
+<div class="proto-ribbon"><b>연결 테스트</b> · AI 질문만 실제 연결 · 아무것도 저장되지 않습니다 · 새로고침하면 사라집니다</div>
+
+<header class="hdr">
+  <div class="home">사라의 집</div>
+  <h1 id="hdrTitle">오늘, 마음에 남은 조각을<br>그냥 놓아두세요.</h1>
+</header>
+
+<main class="wrap">
+
+  <!-- ========== 화면 1: 자연어 쏟아내기 ========== -->
+  <section class="screen on" id="scr-pour">
+    <div class="intro">
+      <p>정리된 문장이 아니어도 괜찮습니다.<br>
+      무슨 일이 있었는지, 어떤 마음이 올라왔는지,<br>
+      떠오르는 대로 편하게 적어주세요.</p>
+      <p class="soft">지금은 맞는 말로 쓰려고 애쓰지 않아도 됩니다.<br>
+      여기는 판단받는 곳이 아니라,<br>
+      흩어진 마음을 잠시 내려놓는 방입니다.</p>
+    </div>
+
+    <div class="paper">
+      <textarea id="pour" placeholder="예)&#10;오늘 이런 일이 있었어.&#10;그때는 아무렇지 않은 척했는데, 집에 와서 마음이 무거웠어.&#10;왜 그 말이 계속 남는지 모르겠지만, 그냥 적어두고 싶어."></textarea>
+    </div>
+
+    <div class="btn-col">
+      <button class="btn btn-primary" onclick="goTalk()">AI와 함께 정리하기</button>
+      <button class="btn btn-secondary" onclick="keepPiece()">그냥 조각으로 남기기</button>
+      <button class="btn-burn" onclick="openBurn()">태워버리기</button>
+    </div>
+  </section>
+
+  <!-- ========== 화면 2: 다정한 핑퐁 (로컬 임시 대화) ========== -->
+  <section class="screen" id="scr-talk">
+    <div class="talk-note">AI가 실제로 질문을 건넵니다. 질문은 한 번에 하나씩이고,<br>답은 이 화면 안(브라우저 메모리)에만 잠시 머뭅니다. 저장되지 않습니다.</div>
+
+    <div class="bubble me" id="echoMe"></div>
+
+    <div id="qArea"></div>
+
+    <div class="answer-box" id="answerBox">
+      <textarea class="answer" id="answerInput" placeholder="떠오르는 대로 적어주세요. 짧아도 괜찮습니다."></textarea>
+    </div>
+
+    <div class="talk-actions" id="talkActions">
+      <button class="chip primary" onclick="submitAnswer()">답변 남기기</button>
+      <button class="chip" onclick="skipAnswer()">모르겠어요 / 건너뛰기</button>
+      <button class="chip ghost" onclick="openBurn()">태워버리기</button>
+    </div>
+
+    <button class="back-link" onclick="confirmBackHome()">← 처음으로 돌아가기</button>
+  </section>
+
+  <!-- ========== 화면 2.5: 지금까지 놓아둔 조각들 (임시 정리) ========== -->
+  <section class="screen" id="scr-gather">
+    <div class="gather-title">지금까지 놓아둔 조각들</div>
+    <div class="gather-warn">
+      아래 내용은 아직 어디에도 저장되지 않았습니다.<br>
+      이 화면을 닫거나 새로고침하면 사라질 수 있습니다.<br>
+      지금은 대화 흐름을 확인하기 위한 임시 정리본입니다.
+    </div>
+
+    <div id="gatherList"></div>
+
+    <div class="btn-col" style="margin-top:24px;">
+      <button class="btn btn-secondary" onclick="reviewQuestions()">다시 질문 보기</button>
+      <button class="btn btn-secondary" onclick="confirmBackHome()">처음으로 돌아가기</button>
+      <button class="btn-burn" onclick="openBurn()">태워버리기</button>
+    </div>
+  </section>
+
+  <!-- ========== 화면 3: 흘려보낸 뒤 ========== -->
+  <section class="screen" id="scr-after">
+    <div class="after-burn">
+      <span class="ember">🕯️</span>
+      <h2>조용히 흘려보냈습니다.</h2>
+      <p>이 조각은 어디에도 저장되지 않았습니다.<br>내려놓은 자리는 비워두어도 괜찮습니다.</p>
+      <div class="btn-col">
+        <button class="btn btn-secondary" onclick="goPour(true)">새 조각 적으러 가기</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== 태워버리기 모달 ========== -->
+<div class="modal-veil" id="burnVeil" onclick="if(event.target===this)closeBurn()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="burnTitle">
+    <div class="flame">🔥</div>
+    <h2 id="burnTitle">이 조각은 저장하지 않고<br>흘려보낼까요?</h2>
+    <div class="body">
+      <p>모든 마음을 기록으로 남길 필요는 없습니다.<br>
+      어떤 감정은 붙잡기보다,<br>
+      조용히 내보내는 것이 더 안전할 때도 있습니다.</p>
+      <p>태워버리기를 선택하면<br>
+      이 내용은 오늘의 기록에 저장되지 않습니다.<br>
+      누군가를 벌주기 위한 삭제가 아니라,<br>
+      내 안에 오래 머물던 무게를<br>내려놓기 위한 선택입니다.</p>
+    </div>
+    <div class="confirm-line">정말 이 조각을 저장하지 않고 흘려보낼까요?</div>
+    <div class="m-btns">
+      <button class="m-stay" onclick="closeBurn()">아니요, 다시 볼게요</button>
+      <button class="m-burn" onclick="doBurn()">네, 태워버릴게요</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   sara_house_index_29_talk_test — 대화형 UI + conversation-guide 연결
+   - Supabase Edge Function classify-sara-house 호출(functions.invoke)만 사용
+   - DB 테이블 접근 없음 · 저장 없음 · 브라우저 저장소 사용 없음
+   - talkState는 JS 메모리에만 존재, 새로고침하면 소멸 (의도된 동작)
+   ============================================================ */
+
+/* Supabase 연결 상수 — index (28)과 동일한 프로젝트 (anon public key, RLS 보호)
+   ※ 테스트 파일이므로 브라우저 저장소 덮어쓰기 없이 상수만 사용 */
+var SB_URL  = "https://koqptuxtnmvwgxwtyvrx.supabase.co";
+var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvcXB0dXh0bm12d2d4d3R5dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2Njg5OTcsImV4cCI6MjA5NzI0NDk5N30.XrqB9Wihq3CyKCOcflFGIGDsd5Al9XtZJdXYx6ucdoU";
+var CLASSIFY_FN = "classify-sara-house";
+var GUIDE_MODE = "conversation-guide";
+var MAX_STEP = 3;
+
+var _sb = null;
+function sbInit(){
+  try{
+    if(typeof window.supabase === 'undefined' || !window.supabase.createClient) return false;
+    _sb = window.supabase.createClient(SB_URL, SB_ANON);
+    return true;
+  }catch(e){ _sb = null; return false; }
+}
+
+/* 임시 상태 — 메모리에만 존재 */
+var talkState = {
+  originalText: "",
+  conversation: [],   // {role:'assistant', question:'...'} / {role:'user', answer:'...'}
+  step: 0,
+  status: "draft",    // draft | asking | gathered | burned
+  lastQuestion: null  // 현재 화면의 질문 {text, helper}
+};
+
+function resetState(){
+  talkState.originalText = "";
+  talkState.conversation = [];
+  talkState.step = 0;
+  talkState.status = "draft";
+  talkState.lastQuestion = null;
+}
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  window.scrollTo({top:0});
+}
+function setTitle(h){ document.getElementById('hdrTitle').innerHTML = h; }
+
+/* ----- 화면 1: 처음 ----- */
+function goPour(clear){
+  if(clear){ document.getElementById('pour').value=''; resetState(); }
+  setTitle('오늘, 마음에 남은 조각을<br>그냥 놓아두세요.');
+  show('scr-pour');
+}
+function confirmBackHome(){
+  if(talkState.originalText || talkState.conversation.length){
+    var ok = window.confirm('처음으로 돌아가면 지금까지의 임시 내용은 사라집니다. 돌아갈까요?');
+    if(!ok) return;
+  }
+  goPour(true);
+}
+
+/* ----- 대화 시작 ----- */
+function goTalk(){
+  var txt = document.getElementById('pour').value.trim();
+  if(!txt){ showToast('먼저 마음에 남은 조각을 적어주세요.'); return; }
+  resetState();
+  talkState.originalText = txt;
+  talkState.status = "asking";
+
+  document.getElementById('echoMe').textContent = txt;
+  document.getElementById('qArea').innerHTML = '';
+  document.getElementById('answerInput').value = '';
+  setTitle('천천히, 하나씩만<br>되물어 볼게요.');
+  show('scr-talk');
+  fetchNextQuestion();
+}
+
+/* ----- Edge Function 호출: 다음 질문 받기 ----- */
+async function fetchNextQuestion(){
+  var area = document.getElementById('qArea');
+  setTalkBusy(true);
+
+  /* 로딩 말풍선 */
+  area.innerHTML = '';
+  var dot = document.createElement('div');
+  dot.className = 'step-dot';
+  dot.textContent = '질문 ' + Math.min(talkState.step+1, MAX_STEP) + ' / ' + MAX_STEP;
+  area.appendChild(dot);
+  var loading = document.createElement('div');
+  loading.className = 'bubble ai';
+  loading.id = 'loadingBubble';
+  loading.innerHTML = '<span class="sub">조각을 맞추는 중...</span>';
+  area.appendChild(loading);
+
+  try{
+    if(!_sb && !sbInit()){
+      renderTalkError('지금은 AI 연결을 사용할 수 없습니다. 인터넷 연결을 확인해 주세요.');
+      return;
+    }
+    var inv = await _sb.functions.invoke(CLASSIFY_FN, { body: {
+      mode: GUIDE_MODE,
+      text: talkState.originalText,
+      conversation: talkState.conversation,
+      step: talkState.step
+    }});
+    if(inv.error){
+      renderTalkError('지금은 AI 질문을 받아올 수 없습니다. 잠시 후 다시 시도해 주세요.');
+      return;
+    }
+    var data = inv.data || {};
+
+    /* 종료 신호: done:true (서버가 step>=3에서 반환) */
+    if(data.done === true){
+      goGather(data.notice || '');
+      return;
+    }
+
+    var qs = Array.isArray(data.questions) ? data.questions : [];
+    var q = qs.length ? qs[0] : null;   /* 기본 1개만 사용 */
+    if(!q || typeof q.text !== 'string' || !q.text.trim()){
+      renderTalkError('질문을 받아오지 못했습니다. 다시 시도해 주세요.');
+      return;
+    }
+    talkState.lastQuestion = { text: q.text.trim(), helper: (typeof q.helper==='string'? q.helper.trim():'') };
+    renderQuestion(talkState.lastQuestion, data.notice, data.fallback === true);
+  }catch(e){
+    renderTalkError('지금은 AI 질문을 받아올 수 없습니다. 잠시 후 다시 시도해 주세요.');
+  }finally{
+    setTalkBusy(false);
+  }
+}
+
+function renderQuestion(q, notice, isFallback){
+  var area = document.getElementById('qArea');
+  area.innerHTML = '';
+
+  var dot = document.createElement('div');
+  dot.className = 'step-dot';
+  dot.textContent = '질문 ' + (talkState.step+1) + ' / ' + MAX_STEP + (isFallback ? ' · 기본 질문' : '');
+  area.appendChild(dot);
+
+  var b = document.createElement('div');
+  b.className = 'bubble ai';
+  b.innerHTML = '<span class="q"></span><span class="sub"></span>';
+  b.querySelector('.q').textContent = q.text;
+  b.querySelector('.sub').textContent = q.helper || '';
+  area.appendChild(b);
+
+  if(notice){
+    var n = document.createElement('div');
+    n.className = 'step-dot';
+    n.textContent = notice;
+    area.appendChild(n);
+  }
+
+  var input = document.getElementById('answerInput');
+  input.value = '';
+  input.focus();
+}
+
+function renderTalkError(msg){
+  var area = document.getElementById('qArea');
+  area.innerHTML = '';
+  var b = document.createElement('div');
+  b.className = 'bubble ai';
+  b.innerHTML = '<span class="sub"></span>';
+  b.querySelector('.sub').textContent = msg + ' 적어주신 원문은 이 화면에 그대로 남아 있습니다.';
+  area.appendChild(b);
+
+  var retryWrap = document.createElement('div');
+  retryWrap.className = 'talk-actions';
+  var retry = document.createElement('button');
+  retry.className = 'chip primary';
+  retry.textContent = '다시 시도하기';
+  retry.onclick = function(){ fetchNextQuestion(); };
+  retryWrap.appendChild(retry);
+  area.appendChild(retryWrap);
+}
+
+function setTalkBusy(busy){
+  document.querySelectorAll('#talkActions .chip').forEach(function(b){ b.disabled = !!busy; });
+}
+
+/* ----- 답변/건너뛰기 ----- */
+function submitAnswer(){
+  if(!talkState.lastQuestion){ showToast('질문을 먼저 받아주세요.'); return; }
+  var input = document.getElementById('answerInput');
+  var text = input.value.trim();
+  if(!text){
+    showToast('적힌 내용이 없어요. 건너뛰시려면 \u201C모르겠어요 / 건너뛰기\u201D를 눌러주세요.');
+    return;
+  }
+  talkState.conversation.push({ role:'assistant', question: talkState.lastQuestion.text });
+  talkState.conversation.push({ role:'user', answer: text });
+  advance();
+}
+function skipAnswer(){
+  if(!talkState.lastQuestion){ showToast('질문을 먼저 받아주세요.'); return; }
+  talkState.conversation.push({ role:'assistant', question: talkState.lastQuestion.text });
+  advance();
+}
+function advance(){
+  talkState.lastQuestion = null;
+  talkState.step++;
+  /* step이 상한에 닿아도 서버를 한 번 더 호출해 done:true 경로를 그대로 검증한다
+     (서버는 step>=3에서 AI 호출 없이 종료 신호만 반환 — 비용 0) */
+  fetchNextQuestion();
+}
+
+/* ----- 임시 정리 화면 ----- */
+function goGather(serverNotice){
+  talkState.status = "gathered";
+  var list = document.getElementById('gatherList');
+  list.innerHTML = '';
+
+  addGatherItem(list, '처음 놓아둔 조각', talkState.originalText, '(처음 화면에서 적은 글이 없습니다)');
+
+  var qNo = 0;
+  for(var i=0;i<talkState.conversation.length;i++){
+    var turn = talkState.conversation[i];
+    if(turn.role === 'assistant' && turn.question){
+      qNo++;
+      var answer = '';
+      var next = talkState.conversation[i+1];
+      if(next && next.role === 'user' && next.answer){ answer = next.answer; i++; }
+      addGatherItem(list, '질문 ' + qNo + '. ' + turn.question, answer,
+        '(이 질문은 건너뛰었어요. 답하지 않아도 괜찮습니다.)');
+    }
+  }
+
+  if(serverNotice){
+    var n = document.createElement('div');
+    n.className = 'step-dot';
+    n.textContent = serverNotice;
+    list.appendChild(n);
+  }
+
+  setTitle('여기까지 잘<br>놓아두셨습니다.');
+  show('scr-gather');
+}
+
+function addGatherItem(list, label, body, emptyMsg){
+  var d = document.createElement('div');
+  d.className = 'gather-item';
+  var l = document.createElement('span');
+  l.className = 'g-label';
+  l.textContent = label;
+  var bd = document.createElement('div');
+  bd.className = 'g-body' + (body ? '' : ' empty');
+  bd.textContent = body || emptyMsg;
+  d.appendChild(l); d.appendChild(bd);
+  list.appendChild(d);
+}
+
+function reviewQuestions(){
+  /* 연결 테스트 버전: 대화 이력을 유지한 채 처음부터 다시 진행하면 서버가
+     이미 답한 내용을 다시 묻지 않는지도 확인할 수 있다. step만 되돌린다. */
+  showToast('연결 테스트에서는 정리 화면 확인까지가 범위입니다. 다시 하려면 처음으로 돌아가 주세요.');
+}
+
+/* ----- 그냥 조각으로 남기기 ----- */
+function keepPiece(){
+  showToast('지금은 프로토타입입니다. 조각 저장 기능은 아직 연결되지 않았습니다.');
+}
+
+/* ----- 태워버리기 ----- */
+function openBurn(){ document.getElementById('burnVeil').classList.add('on'); }
+function closeBurn(){ document.getElementById('burnVeil').classList.remove('on'); }
+function doBurn(){
+  closeBurn();
+  /* 실제 삭제 아님: 메모리 변수와 화면 입력값만 초기화 (서버·DB 무관) */
+  resetState();
+  talkState.status = "burned";
+  document.getElementById('pour').value = '';
+  document.getElementById('answerInput').value = '';
+  document.getElementById('qArea').innerHTML = '';
+  document.getElementById('gatherList').innerHTML = '';
+  document.getElementById('echoMe').textContent = '';
+  setTitle('내려놓은 만큼,<br>가벼워져도 괜찮습니다.');
+  show('scr-after');
+}
+
+/* ----- 토스트 ----- */
+var toastTimer = null;
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('on'); }, 2800);
+}
+
+/* 초기화 */
+sbInit();
+</script>
+</body>
+</html>
