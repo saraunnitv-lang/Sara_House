@@ -1357,18 +1357,19 @@ body:not(.doorstep):not(.onboarding):not(.crisis) #scr-home::before{display:none
 .sv51-modal{position:fixed;inset:0;z-index:10000;background:rgba(12,19,35,.62);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:18px}.sv51-modal.on{display:flex}
 .sv51-panel{width:min(680px,100%);max-height:min(780px,92vh);overflow:auto;background:#fffdf8;border:1px solid #e4d5b8;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,.28);padding:22px}
 .sv51-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:16px}.sv51-head h2{margin:0 0 6px;font:700 23px 'Gowun Batang',serif;color:#252e4e}.sv51-head p{margin:0;color:#766b5e;font-size:12px;line-height:1.65}.sv51-close{border:0;background:#f0e8d9;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px;color:#594a38}
-.sv51-status{padding:12px 14px;border-radius:13px;background:#f5efe4;color:#594b3d;font-size:12px;line-height:1.6;margin-bottom:15px}.sv51-status.ok{background:#eaf7ef;color:#225c3a}.sv51-status.err{background:#fff0ef;color:#8d3936}.sv51-status.busy{background:#eef2fb;color:#304c7e}
+.sv51-status{padding:12px 14px;border-radius:13px;background:#f5efe4;color:#594b3d;font-size:12px;line-height:1.6;margin-bottom:15px}.sv51-status.ok{background:#eaf7ef;color:#225c3a}.sv51-status.err{display:block;background:#fff0ef;color:#8d3936}.sv51-status.busy{background:#eef2fb;color:#304c7e}
 .sv51-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sv51-grid .wide{grid-column:1/-1}.sv51-form label{display:block;font-size:10px;font-weight:900;letter-spacing:.04em;color:#755f47;margin:0 0 6px}.sv51-form input,.sv51-form select,.sv51-form textarea{box-sizing:border-box;width:100%;border:1px solid #dfd1ba;border-radius:11px;background:#fff;padding:11px 12px;color:#312a22;font:500 13px 'Noto Sans KR',sans-serif}.sv51-form textarea{min-height:92px;resize:vertical}
 .sv51-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.sv51-btn{border:0;border-radius:11px;padding:11px 14px;font:800 12px 'Noto Sans KR',sans-serif;cursor:pointer;background:#233250;color:#fff}.sv51-btn.sub{background:#eee5d5;color:#564836}.sv51-btn.warn{background:#8d4b48}.sv51-btn:disabled{opacity:.45;cursor:not-allowed}
 .sv51-note{margin-top:14px;padding:12px;border-radius:12px;background:#fbf5e9;color:#706354;font-size:11px;line-height:1.7}.sv51-note b{color:#564632}.sv51-recent{margin-top:16px;border-top:1px solid #eee2ce;padding-top:14px}.sv51-recent h3{font-size:13px;margin:0 0 10px;color:#4c4238}.sv51-row{padding:10px 11px;border:1px solid #eadfcb;border-radius:11px;margin:7px 0;background:#fff}.sv51-row strong{display:block;font-size:12px;color:#2f2a25}.sv51-row small{display:block;color:#83786b;margin-top:4px}.sv51-empty{font-size:11px;color:#8b8075}
 .sv51-provider-badge{display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;background:#e8f1eb;color:#285b3b;font-size:10px;font-weight:900}
 @media(max-width:720px){.sv51-float{top:auto;bottom:76px;right:12px;padding:10px 12px}.sv51-pipeline{grid-template-columns:1fr 1fr}.sv51-pipeline .sv51-mini{grid-column:1/-1}.sv51-grid{grid-template-columns:1fr}.sv51-grid .wide{grid-column:auto}.sv51-panel{padding:18px;border-radius:20px}}
+@media(max-width:520px){.sv51-pipeline{grid-template-columns:1fr}.sv51-pipeline .sv51-mini{grid-column:auto}}
 
 /* ══════════════════════════════════════════════════════════════
    v5.2 · 로그인 현관 + 비워진 거실 + 삶의 서랍
    ══════════════════════════════════════════════════════════════ */
 :root{--v52-olive:#78815b;--v52-olive-soft:#eef0e5;--v52-peach:#c98f73;--v52-peach-soft:#fbefea;--v52-word:#6f6a8e;--v52-word-soft:#f0edf6;--v52-ink:#3d3328;--v52-cream:#fffdf8;--v52-line:#eadfce}
-.sv51-float,.sv51-pipeline{display:none!important}
+.sv51-float{display:none!important}
 body.v52-locked{background:#f7f0e4}
 body.v52-locked .house-sidebar,body.v52-locked .house-topbar,body.v52-locked .nav,body.v52-locked .mobile-sidebar-overlay{display:none!important}
 body.v52-locked .house-shell,body.v52-locked .house-main{display:block!important;width:100%!important;min-height:100vh!important;margin:0!important}
@@ -1380,7 +1381,7 @@ body.v52-locked #scr-door.on{display:block!important;min-height:100vh!important;
 .v52-scene-copy{position:absolute;z-index:2;left:9%;bottom:11%;color:#fff;text-shadow:0 2px 18px rgba(46,31,20,.28)}.v52-scene-copy span{font-size:11px;letter-spacing:.28em}.v52-scene-copy h1{font:700 52px 'Gowun Batang',serif;margin:11px 0}.v52-scene-copy p{font:400 17px/1.9 'Gowun Batang',serif}
 .v52-login-card{align-self:center;width:min(430px,calc(100% - 44px));margin:auto;background:rgba(255,253,248,.96);border:1px solid rgba(188,157,116,.34);box-shadow:0 30px 80px rgba(70,48,29,.16);border-radius:28px;padding:36px 34px;color:var(--v52-ink)}
 .v52-login-mark{width:54px;height:54px;display:grid;place-items:center;margin:0 auto 12px;border-radius:18px;background:#f1e5cf;color:#866a48;font-size:27px}.v52-login-kicker{text-align:center;font-size:10px;font-weight:900;letter-spacing:.28em;color:#9b7b58}.v52-login-card h2{text-align:center;font:700 28px 'Gowun Batang',serif;margin:8px 0 5px}.v52-login-card>p{text-align:center;color:#837667;font-size:12px;line-height:1.75;margin-bottom:23px}.v52-login-card label{display:block;font-size:11px;font-weight:800;color:#796754;margin:11px 0 6px}.v52-login-card input{width:100%;box-sizing:border-box;border:1px solid #dfd0bc;border-radius:12px;background:#fff;padding:13px 14px;font:500 14px 'Noto Sans KR',sans-serif;color:#332a22}.v52-login-card input:focus{outline:none;border-color:#9d845d;box-shadow:0 0 0 3px rgba(157,132,93,.12)}
-.v52-login-primary{width:100%;border:0;border-radius:12px;padding:14px;margin-top:18px;background:#34415d;color:#fff;font:800 14px 'Noto Sans KR',sans-serif;cursor:pointer;box-shadow:0 9px 24px rgba(52,65,93,.18)}.v52-login-primary:disabled{opacity:.55}.v52-login-link{display:block;margin:13px auto 0;border:0;background:none;color:#786b5e;font:700 11px 'Noto Sans KR',sans-serif;cursor:pointer}.v52-support-link{font-weight:500;color:#a09589;margin-top:9px}.v52-gate-status{min-height:20px;margin-top:16px;padding:10px 11px;border-radius:10px;background:#f6efe4;color:#6e5f50;font-size:11px;line-height:1.55;text-align:center}.v52-gate-status.ok{background:#edf6ee;color:#326243}.v52-gate-status.err{background:#fff0ed;color:#914b43}.v52-gate-status.busy{background:#eef1f7;color:#405172}.v52-login-foot{text-align:center;color:#958979;font-size:10px;margin-top:13px}
+.v52-login-primary{width:100%;border:0;border-radius:12px;padding:14px;margin-top:18px;background:#34415d;color:#fff;font:800 14px 'Noto Sans KR',sans-serif;cursor:pointer;box-shadow:0 9px 24px rgba(52,65,93,.18)}.v52-login-primary:disabled{opacity:.55}.v52-login-link{display:block;margin:13px auto 0;border:0;background:none;color:#786b5e;font:700 11px 'Noto Sans KR',sans-serif;cursor:pointer}.v52-support-link{font-weight:500;color:#a09589;margin-top:9px}.v52-gate-status{min-height:20px;margin-top:16px;padding:10px 11px;border-radius:10px;background:#f6efe4;color:#6e5f50;font-size:11px;line-height:1.55;text-align:center}.v52-gate-status.ok{background:#edf6ee;color:#326243}.v52-gate-status.err{display:block;background:#fff0ed;color:#914b43}.v52-gate-status.busy{background:#eef1f7;color:#405172}.v52-login-foot{text-align:center;color:#958979;font-size:10px;margin-top:13px}
 .v52-side-note{margin:16px 2px 18px;padding:14px 13px;border:1px solid rgba(135,111,81,.13);border-radius:14px;background:rgba(255,255,255,.44);display:flex;gap:10px;align-items:flex-start}.v52-side-note span{font-size:19px}.v52-side-note p{margin:0;font:400 11px/1.7 'Gowun Batang',serif;color:#76685b}.v52-primary-menu{flex:1}.v52-primary-menu .hs-item{margin-bottom:6px}.house-sidebar .hs-foot{margin-top:auto}
 .v52-home-wrap{max-width:1020px;margin:0 auto;padding:12px 0 26px}.v52-home-greeting{display:flex;justify-content:space-between;gap:22px;align-items:center;padding:28px 30px;margin-bottom:18px;border:1px solid rgba(221,204,176,.65);border-radius:25px;background:linear-gradient(145deg,#fffefb,#fff8ec);box-shadow:0 15px 36px rgba(105,77,44,.07)}.v52-home-kicker,.v52-page-head>span,.v52-entry-kicker{font-size:10px;font-weight:900;letter-spacing:.2em;color:#9e7e54}.v52-home-greeting h1{font:700 29px 'Gowun Batang',serif;color:#4a3829;margin:7px 0 4px}.v52-home-greeting>div>p{font-size:12px;color:#7f7264}.v52-sara-whisper{display:flex;align-items:center;gap:10px;max-width:300px}.v52-sara-face{width:45px;height:45px;border-radius:50%;background:#e9d6c1;display:grid;place-items:center;font:700 11px 'Gowun Batang',serif;color:#735c47}.v52-sara-whisper p{font:400 13px/1.6 'Gowun Batang',serif;color:#66584c;margin:0}
 .v52-step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.v52-step-card{min-height:245px;border:1px solid var(--v52-line);border-radius:22px;padding:26px 22px;background:#fff;text-align:left;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;box-shadow:0 12px 30px rgba(85,62,39,.055);transition:.18s ease}.v52-step-card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(85,62,39,.09)}.v52-step-card.fact{background:linear-gradient(150deg,#fff,#f4f5eb)}.v52-step-card.heart{background:linear-gradient(150deg,#fff,#fcf1ed)}.v52-step-card.word{background:linear-gradient(150deg,#fff,#f3f0f8)}.v52-step-icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:26px;margin-bottom:25px;background:rgba(255,255,255,.75);border:1px solid rgba(130,105,78,.12)}.v52-step-card strong{font:700 19px 'Gowun Batang',serif;color:#4b3a2c;margin-bottom:10px}.v52-step-card small{font-size:11.5px;line-height:1.75;color:#7b7065;flex:1}.v52-step-card em{font-style:normal;font-size:11px;font-weight:800;color:#8a704f;margin-top:18px}
@@ -1792,11 +1793,11 @@ body.v52-locked #scr-door.on{display:block!important;min-height:100vh!important;
   <button class="back" onclick="appBack('home')">← 원문으로</button>
   <div class="step-head">
     <div class="step-room">오늘의 조각</div>
-    <div class="step-title">확인할 것만 2~3가지 여쭐게요</div>
-    <div class="step-desc">분석하는 질문이 아닙니다. 답하지 않거나 모두 건너뛰어도 됩니다.</div>
+    <div class="step-title">필요한 경우에만 확인할 것을 여쭐게요</div>
+    <div class="step-desc">질문은 0~2개만 표시됩니다. 답하지 않거나 모두 건너뛰어도 됩니다.</div>
   </div>
   <div id="askList"></div>
-  <button class="btn" onclick="makeReport(true)">9항목 회수 리포트 만들기</button>
+  <button class="btn" onclick="makeReport(true)">회수 리포트 만들기</button>
   <button class="link-quiet" style="display:block;margin:14px auto 0" onclick="makeReport(false)">질문을 모두 건너뛰기</button>
 </section>
 
@@ -2738,9 +2739,9 @@ function setAiConnectionState(state,detail){
     el.innerHTML='<strong>AI 정리 연결됨</strong> · 확인 질문과 회수 리포트를 클로드가 정리합니다. 사용자가 확인하기 전에는 내 기록으로 확정되지 않습니다.';
   }else if(aiConnectionState==='local'){
     el.classList.add('local');
-    el.innerHTML='<strong>AI 연결 안 됨</strong> · '+esc(detail||'현재 환경에서는 로컬 방어 초안으로 이어집니다. 원문과 답변은 그대로 유지됩니다.');
+    el.innerHTML='<strong>AI 연결 안 됨</strong> · '+esc(detail||'AI 정리를 중단했습니다. 원문과 답변은 그대로 유지됩니다.');
   }else{
-    el.innerHTML='<strong>AI 정리 상태 확인 전</strong> · 첫 확인 질문을 만들 때 연결을 확인합니다. 연결되지 않아도 원문은 유지되고 로컬 방어 초안으로 이어집니다.';
+    el.innerHTML='<strong>AI 정리 상태 확인 전</strong> · 첫 정리를 요청할 때 실제 연결을 확인합니다. 연결되지 않으면 원문을 유지하고 정리를 중단합니다.';
   }
 }
 async function saraFetch(){
@@ -2773,11 +2774,6 @@ function aiFailMsg(el,extra){
     (extra||'적은 글은 그대로 있으니, 원하시면 <b>정리 없이 저장</b>을 직접 눌러주세요.');
   el.classList.add('on');
 }
-const DEFAULT_CONFIRM_QS=[
-  '실제로 확인된 말이나 행동은 무엇인가요?',
-  '그때 어떤 마음이 들었나요?',
-  '내가 붙인 해석이나 아직 모르는 빈칸이 있다면 무엇인가요?'
-];
 function enterCrisis(text){
   pausedText=(text||'').trim();
   go('pause');
@@ -2795,9 +2791,8 @@ function resetCoreDraft(clearInput){
 }
 function normalizedQuestions(list){
   const out=[];
-  (Array.isArray(list)?list:[]).forEach(q=>{q=String(q||'').trim();if(q&&!out.includes(q)&&out.length<3)out.push(q);});
-  DEFAULT_CONFIRM_QS.forEach(q=>{if(out.length<2&&!out.includes(q))out.push(q);});
-  return out.slice(0,3);
+  (Array.isArray(list)?list:[]).forEach(q=>{q=String(q||'').trim();if(q&&!out.includes(q)&&out.length<2)out.push(q);});
+  return out.slice(0,2);
 }
 function renderCoreQuestions(note){
   const box=document.getElementById('askList');
@@ -2823,19 +2818,19 @@ function localCoreReport(){
   const interpreted=answerFor(/해석|빈칸|모르/);
   return normalizeCoreReport({
     piece:cur.text,
-    facts:answerFor(/확인|말|행동|실제/)||'사용자가 확인한 사실은 아직 따로 적히지 않았습니다.',
-    feelings:answerFor(/마음|느낌/)||'느낀 마음은 아직 따로 적히지 않았습니다.',
-    interpretation:interpreted||'사용자가 붙인 해석은 아직 따로 적히지 않았습니다.',
-    unknown:interpreted||'확인되지 않은 부분은 빈칸으로 둡니다.',
-    body:'몸의 신호는 아직 따로 적히지 않았습니다.',
-    fruit:'오늘의 열매·감사·자랑은 아직 따로 적히지 않았습니다.',
-    scriptureQuestion:'말씀 앞에 가져갈 질문은 사용자가 직접 적을 수 있습니다.',
+    facts:answerFor(/확인|말|행동|실제/),
+    feelings:answerFor(/마음|느낌/),
+    interpretation:interpreted,
+    unknown:'',
+    body:'',
+    fruit:'',
+    scriptureQuestion:'',
     closing:'오늘은 여기까지 해도 괜찮습니다.'
-  });
+  },true);
 }
 function normalizeCoreReport(value,preserveEmpty){
   value=(value&&typeof value==='object')?value:{};
-  const defaults={piece:cur.text,facts:'확인된 사실은 아직 적히지 않았습니다.',feelings:'느낀 마음은 아직 적히지 않았습니다.',interpretation:'내가 붙인 해석은 아직 적히지 않았습니다.',unknown:'아직 모르는 부분은 빈칸으로 둡니다.',body:'몸의 신호는 아직 적히지 않았습니다.',fruit:'오늘의 열매·감사·자랑은 아직 적히지 않았습니다.',scriptureQuestion:'말씀 앞에 가져갈 질문은 아직 적히지 않았습니다.',closing:'오늘은 여기까지 해도 괜찮습니다.'};
+  const defaults={piece:cur.text,facts:'',feelings:'',interpretation:'',unknown:'',body:'',fruit:'',scriptureQuestion:'',closing:'오늘은 여기까지 해도 괜찮습니다.'};
   const out={}; CORE_REPORT_FIELDS.forEach(([key])=>{out[key]=String(preserveEmpty?(value[key]??''):(value[key]||defaults[key])).trim();}); return out;
 }
 function reportAsText(report){
@@ -2886,9 +2881,9 @@ JSON: {"questions":["질문1","질문2","질문3(필요할 때만)"]}`)
     cur.questions=normalizedQuestions(r.questions); cur.answers=new Array(cur.questions.length).fill('');
     renderCoreQuestions('질문은 확인을 위한 2~3개만 표시됩니다.');
   })
-  .catch(()=>{
-    cur.questions=DEFAULT_CONFIRM_QS.slice(); cur.answers=new Array(cur.questions.length).fill('');
-    renderCoreQuestions('AI 질문을 불러오지 못해 기준문서의 기본 확인 질문을 표시했습니다. 원문은 그대로 유지됩니다.');
+  .catch(e=>{
+    setAiConnectionState('local',e?.message||'AI 질문을 받지 못했습니다.');
+    err.textContent='AI 질문을 받지 못해 정리를 중단했습니다. 원문은 입력란에 그대로 남아 있습니다.';err.classList.add('on');go('home');
   });
 }
 
@@ -2923,15 +2918,15 @@ JSON: {"report":{"piece":"...","facts":"...","feelings":"...","interpretation":"
     if(!cur.roomSuggestions.length) cur.roomSuggestions=localRoomSuggestions();
     showCoreReport();
   })
-  .catch(()=>{
-    cur.aiDraft=localCoreReport(); cur.reportSource='local'; cur.roomSuggestions=localRoomSuggestions();
-    showCoreReport();
+  .catch(e=>{
+    setAiConnectionState('local',e?.message||'AI 초안을 받지 못했습니다.');
+    const err=document.getElementById('todayErr');if(err){err.textContent='AI 초안을 받지 못해 정리를 중단했습니다. 원문과 답변은 그대로 유지됩니다.';err.classList.add('on');}go('home');
   });
 }
 
 function showCoreReport(){
   if(hasCrisis([cur.text,...cur.answers].join('\n'))){ enterCrisis([cur.text,...cur.answers].join('\n')); return; }
-  const editable=cur.draftEdits||cur.aiDraft||localCoreReport();
+  const editable=cur.draftEdits||cur.aiDraft||normalizeCoreReport({},true);
   document.getElementById('coreOriginal').textContent=cur.text;
   document.getElementById('coreQA').textContent=coreQAText();
   const reportTitle=document.getElementById('coreReportTitle');
@@ -5019,7 +5014,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
   const providerValue=()=>$('sv51Provider')?.value||'auto';
   const sourceValue=()=>$('sv51Source')?.value||'manual';
   const recordKind=()=>chipIdx>=0&&CHIPS[chipIdx]&&CHIPS[chipIdx][1]==='과거'?'past':'today';
-  const joined=(v,empty)=>Array.isArray(v)&&v.length?v.filter(Boolean).join('\n'):empty;
+  const joined=(v,empty='')=>Array.isArray(v)?v.map(x=>String(x||'').trim()).filter(Boolean).join('\n'):(typeof v==='string'?v.trim():empty);
   function status(text,type){
     const el=$('sv51Status'); if(el){el.textContent=text;el.className='sv51-status'+(type?' '+type:'');}
     const f=$('sv51Float'),ft=$('sv51FloatText'); if(f&&ft){f.classList.remove('is-on','is-err'); if(type==='ok')f.classList.add('is-on');if(type==='err')f.classList.add('is-err');ft.textContent=state.user?'집 연결됨':(state.config?.key?'로그인 필요':'배관 설정');}
@@ -5028,7 +5023,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
     if($('sv51Pipeline')) return;
     const anchor=$('aiStatus'); if(!anchor) return;
     const box=document.createElement('div');box.id='sv51Pipeline';box.className='sv51-pipeline';
-    box.innerHTML='<div class="sv51-field"><label for="sv51Provider">일할 AI</label><select id="sv51Provider"><option value="auto">사라가 자동 배정</option><option value="openai">노아 · 짧고 정확한 정리</option><option value="anthropic">나온 · 긴 글과 구조 정리</option><option value="gemini">하라 · 전사문·파일 텍스트 정리</option></select></div><div class="sv51-field"><label for="sv51Source">들어온 방식</label><select id="sv51Source"><option value="manual">직접 입력</option><option value="voice">음성 전사문</option><option value="file">파일에서 옮긴 글</option><option value="share">공유한 글</option></select></div><button type="button" class="sv51-mini" onclick="SaraCloud.openPanel()">연결·로그인</button>';
+    box.innerHTML='<div class="sv51-field"><label for="sv51Provider">일할 AI</label><select id="sv51Provider"><option value="auto">사라가 자동 배정</option><option value="openai">노아 · OpenAI</option><option value="anthropic">나온 · Anthropic</option><option value="gemini">하라 · Gemini</option></select></div><div class="sv51-field"><label for="sv51Source">들어온 방식</label><select id="sv51Source"><option value="manual">직접 입력</option><option value="voice">직접 붙여넣은 음성 전사문</option><option value="file">직접 붙여넣은 파일 텍스트</option><option value="share">직접 붙여넣은 공유 글</option></select></div><button type="button" class="sv51-mini" onclick="SaraCloud.openPanel()">연결·로그인</button>';
     anchor.insertAdjacentElement('afterend',box);
   }
   function currentConfigFromForm(){return normalizeConfig({email:($('sv51Email')?.value||'').trim()})};
@@ -5052,7 +5047,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
     }catch(e){state.client=null;state.user=null;state.session=null;state.lastError=friendlyAuthError(e);status('집 연결을 준비하지 못했습니다: '+state.lastError,'err');return false;}
   }
   function refresh(){
-    if(state.user){status('연결됨 · '+(state.user.email||'입주자')+' · sara-organize 호출 준비 완료','ok');setAiConnectionState('connected',labels[providerValue()]||labels.auto);}
+    if(state.user){status('로그인됨 · '+(state.user.email||'입주자')+' · AI 함수는 실제 정리 요청 때 확인합니다.','ok');setAiConnectionState('connected',labels[providerValue()]||labels.auto);}
     else if(state.config?.key){status('공개 배관은 준비됐고, 입주자 로그인이 필요합니다.');setAiConnectionState('unknown');}
     else{status('사라의 집 공개 연결 정보를 확인해 주세요.');setAiConnectionState('unknown');}
     const out=$('sv51LogoutBtn');if(out)out.style.display=state.user?'inline-block':'none';window.v52SyncAuthUI?.(state.user,'REFRESH');
@@ -5066,8 +5061,11 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
   }
   async function organize(text,opts={}){
     await ensureReady(true);state.busy=true;status('사라가 '+(labels[opts.provider||providerValue()]||labels.auto)+' 배관으로 정리하고 있어요.','busy');
+    let timeoutId=0;
     try{
-      const {data,error}=await state.client.functions.invoke('sara-organize',{body:{text,provider:opts.provider||providerValue(),recordKind:opts.recordKind||recordKind(),sourceType:opts.sourceType||sourceValue(),occurredAt:opts.occurredAt||null}});
+      const invoke=state.client.functions.invoke('sara-organize',{body:{text,provider:opts.provider||providerValue(),recordKind:opts.recordKind||recordKind(),sourceType:opts.sourceType||sourceValue(),occurredAt:opts.occurredAt||null,stage:opts.stage||'questions',questions:Array.isArray(opts.questions)?opts.questions:[],answers:Array.isArray(opts.answers)?opts.answers:[]}});
+      const timeout=new Promise((_,reject)=>{timeoutId=setTimeout(()=>reject(new Error('AI 정리 응답이 70초 안에 오지 않았습니다. 잠시 뒤 다시 시도해 주세요.')),70000);});
+      const {data,error}=await Promise.race([invoke,timeout]);
       if(error){let extra='';try{extra=await error.context?.text?.()}catch(_e){}throw new Error(extra||error.message||'Edge Function 호출 실패');}
       if(!data)throw new Error('sara-organize 응답이 비어 있습니다.');
       if(data.status==='crisis_hold')return data;
@@ -5076,7 +5074,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
       if(cleaned.ok)status('AI 초안을 받았고 임시 서버 기록 정리까지 확인했습니다. · '+(labels[data.provider]||data.provider)+' · '+data.model,'ok');
       else status('AI 초안은 받았지만 임시 서버 기록 정리를 다시 시도해야 합니다: '+cleaned.error,'err');
       return data;
-    }catch(e){state.lastError=e.message||String(e);status('AI 배관 오류: '+state.lastError,'err');throw e;}finally{state.busy=false;}
+    }catch(e){state.lastError=e.message||String(e);status('AI 배관 오류: '+state.lastError,'err');throw e;}finally{if(timeoutId)clearTimeout(timeoutId);state.busy=false;}
   }
   function mapRoom(x){
     const t=String(x||'').trim();const exact={'조각의 방':'조각','내 삶의 기록':'조각','오늘':'조각','과거':'연대기','마음의 방':'마음','사람과 관계':'관계','돈과 자산':'재정','돈 관리':'재정','돈':'재정','일과 계획':'일','몸과 건강':'몸','오늘의 열매':'열매','말씀과 신앙':'신앙','조명의 방':'조명','콘텐츠와 결과물':'서재','콘텐츠':'서재'};
@@ -5084,7 +5082,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
     if(/돈|자산|재정/.test(t))return '재정';if(/사람|관계/.test(t))return '관계';if(/일|계획/.test(t))return '일';if(/몸|건강/.test(t))return '몸';if(/말씀|신앙/.test(t))return '신앙';if(/열매|감사|자랑/.test(t))return '열매';if(/과거|연대기/.test(t))return '연대기';return null;
   }
   function mapDraft(d){
-    d=d||{};return {piece:cur.text,facts:joined(d.facts,'사용자가 확인한 사실은 아직 따로 적히지 않았습니다.'),feelings:joined(d.feelings,'느낀 마음은 아직 따로 적히지 않았습니다.'),interpretation:joined(d.interpretations,'사용자가 붙인 해석은 아직 따로 적히지 않았습니다.'),unknown:joined(d.unknowns,'확인되지 않은 부분은 빈칸으로 둡니다.'),body:joined(d.body_signals,'몸의 신호는 아직 따로 적히지 않았습니다.'),fruit:joined(d.fruits,'오늘의 열매·감사·자랑은 아직 따로 적히지 않았습니다.'),scriptureQuestion:d.scripture_question||'말씀 앞에 가져갈 질문은 사용자가 직접 적을 수 있습니다.',closing:d.closing||'오늘은 여기까지 해도 괜찮습니다.'};
+    d=d||{};return {piece:cur.text,facts:joined(d.facts),feelings:joined(d.feelings),interpretation:joined(d.interpretations),unknown:joined(d.unknowns),body:joined(d.body_signals),fruit:joined(d.fruits),scriptureQuestion:String(d.scripture_question||'').trim(),closing:String(d.closing||'').trim()||'오늘은 여기까지 해도 괜찮습니다.'};
   }
   function addAnswer(report,q,a){if(!a)return;const line='사용자 확인 답변: '+a;if(/사실|말|행동|실제/.test(q))report.facts+='\n'+line;else if(/마음|느낌/.test(q))report.feelings+='\n'+line;else if(/몸/.test(q))report.body+='\n'+line;else report.unknown+='\n'+line;}
 
@@ -5099,7 +5097,7 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
     async requestPasswordReset(){try{const c=currentConfigFromForm();if(!c.url||!c.key||!c.email){status('사라의 집 연결 주소, Publishable key, 입주자 이메일을 먼저 입력해 주세요.','err');return;}const redirectTo=recoveryReturnUrl();setStored(c);await initialize(c);status('입주자 이메일로 재설정 링크를 보내고 있어요.','busy');const {error}=await state.client.auth.resetPasswordForEmail(c.email,{redirectTo});if(error)throw error;status('재설정 메일을 보냈습니다. 메일의 링크로 다시 이 집에 들어오세요.','ok');}catch(e){status('재설정 메일 보내기 실패: '+(e.message||e),'err');}},
     async setNewPassword(){try{if(!state.client)await initialize(readStored());const p1=$('sv51NewPassword')?.value||'',p2=$('sv51NewPassword2')?.value||'';if(p1.length<8){status('새 비밀번호를 8자 이상 입력해 주세요.','err');return;}if(p1!==p2){status('새 비밀번호 두 칸이 서로 다릅니다.','err');return;}status('새 입주자 비밀번호를 저장하고 있어요.','busy');const {data,error}=await state.client.auth.updateUser({password:p1});if(error)throw error;$('sv51NewPassword').value='';$('sv51NewPassword2').value='';showRecoveryBox(false);state.user=data.user||state.user;history.replaceState({},document.title,location.pathname);refresh();status('새 비밀번호가 저장됐습니다. 이제 이 비밀번호로 로그인할 수 있어요.','ok');}catch(e){status('새 비밀번호 저장 실패: '+(e.message||e),'err');}},
     async logout(){try{if(state.client)await state.client.auth.signOut();state.session=null;state.user=null;refresh();}catch(e){status('로그아웃 중 오류: '+(e.message||e),'err');}},
-    async checkConnection(){try{await ensureReady(true);status('로그인·데이터베이스·함수 호출 준비를 확인하고 있어요.','busy');const {data:userData,error:userError}=await state.client.auth.getUser();if(userError||!userData.user)throw userError||new Error('로그인 사용자 없음');const {error:dbError}=await state.client.from('profiles').select('id').eq('id',userData.user.id).maybeSingle();if(dbError)throw dbError;status('정상 연결 · 로그인과 데이터베이스 접근 확인 완료','ok');}catch(e){status('연결 확인 실패: '+(e.message||e),'err');}},
+    async checkConnection(){try{await ensureReady(true);status('로그인과 데이터베이스 접근을 확인하고 있어요.','busy');const {data:userData,error:userError}=await state.client.auth.getUser();if(userError||!userData.user)throw userError||new Error('로그인 사용자 없음');const {error:dbError}=await state.client.from('profiles').select('id').eq('id',userData.user.id).maybeSingle();if(dbError)throw dbError;status('로그인·데이터베이스 접근 확인 완료 · AI 함수는 실제 정리 요청 때 확인합니다.','ok');}catch(e){status('연결 확인 실패: '+(e.message||e),'err');}},
     async loadRecent(){const box=$('sv51Recent');try{await ensureReady(true);box.textContent='불러오는 중…';const {data,error}=await state.client.from('life_records').select('id,original_text,record_status,created_at,ai_drafts(provider,model_name,draft_status,user_confirmed)').order('created_at',{ascending:false}).limit(5);if(error)throw error;if(!data?.length){box.innerHTML='<div class="sv51-empty">아직 서버 기록이 없습니다.</div>';return;}box.innerHTML=data.map(r=>{const d=Array.isArray(r.ai_drafts)?r.ai_drafts[0]:r.ai_drafts;return '<div class="sv51-row"><strong>'+escV((r.original_text||'').slice(0,90))+'</strong><small>'+escV(new Date(r.created_at).toLocaleString('ko-KR'))+' · '+escV(r.record_status)+(d?' · '+escV(labels[d.provider]||d.provider)+' · '+escV(d.draft_status):' · 원문만')+'</small></div>'}).join('');}catch(e){box.innerHTML='<div class="sv51-empty">불러오기 실패: '+escV(e.message||e)+'</div>';}}
   };
 
@@ -5173,24 +5171,36 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMobileSideba
   api.logoutAndLock=async()=>{try{if(state.client)await state.client.auth.signOut();}finally{state.session=null;state.user=null;await window.switchLocalUser?.(null);refresh();window.v52SyncAuthUI?.(null,'SIGNED_OUT');}};
   // 기존 단일 Claude 문구를 다중 AI·Supabase 상태로 교체.
   setAiConnectionState=function(stateName,detail){aiConnectionState=stateName||'unknown';const el=$('aiStatus');if(!el)return;el.classList.remove('connected','local');if(aiConnectionState==='connected'){el.classList.add('connected');el.innerHTML='<strong>AI 배관 연결됨</strong> · '+escV(detail||labels[providerValue()]||labels.auto)+'가 별도 실험방을 통해 정리합니다. 사용자 확인 전에는 내 최종 기록이 아닙니다.';}else if(aiConnectionState==='local'){el.classList.add('local');el.innerHTML='<strong>AI 배관 연결 안 됨</strong> · '+escV(detail||'로그인 또는 공개 연결 정보를 확인해 주세요. 원문은 입력란에 그대로 남아 있습니다.');}else{el.innerHTML='<strong>AI 배관 준비 전</strong> · 연결·로그인 후 노아·나온·하라를 자동 또는 직접 선택할 수 있습니다.';}};
+  function showPipelineFailure(message,backToQuestions=false){
+    const detail=String(message||'AI 정리 연결을 확인하지 못했습니다.');
+    setAiConnectionState('local',detail);
+    if(backToQuestions&&cur.questions?.length){renderCoreQuestions('AI 초안을 받지 못했습니다. 입력한 답은 유지했습니다. 연결을 확인한 뒤 다시 눌러 주세요.');return;}
+    const err=$('todayErr');if(err){err.textContent='AI 정리를 완료하지 못했습니다: '+detail+' 원문은 입력란과 이 기기의 작성 중 자리에 그대로 남아 있습니다.';err.classList.add('on');}
+    go('home');
+  }
   // v5.0 오늘 흐름을 보존하면서 최초 원문·AI 초안을 Supabase Edge Function으로 연결.
   startRecall=async function(){
     const t=$('todayText').value.trim(),err=$('todayErr');err.classList.remove('on');if(!t){err.textContent='빈 채로도 머물 수 있지만, 건네려면 한 줄이 필요해요.';err.classList.add('on');return;}if(hasCrisis(t)){enterCrisis(t);return;}
     cur={text:t,answers:[],questions:[],tidy:'',room:'조각',verse:'',verses:[],chosen:0,ask:'',mode:'core',fixedTs:null,pieceWhen:chipIdx>=0?CHIPS[chipIdx][1]:'잘 모르겠음',aiDraft:null,finalRecord:null,reportSource:'',roomSuggestions:[],confirmedRooms:[],originalOnly:false,draftEdits:null,reportInputSignature:'',classSelectionTouched:false,stewardDraft:null,stewardConfirmed:null,cloud:null};
     selectedClassRooms.clear();
     if(DB){DB.entryDraft={text:t,chipIdx,updatedAt:new Date().toISOString()};await store.save(DB);window.renderV52Settings?.();}
-    if(!navigator.onLine){cur.questions=DEFAULT_CONFIRM_QS.slice();cur.answers=new Array(cur.questions.length).fill('');setAiConnectionState('local','인터넷이 없어 사용자별 기기 보관함과 기본 확인 질문으로 계속합니다.');renderCoreQuestions('인터넷이 없어 기준문서의 기본 확인 질문을 표시했습니다. 기록은 이 기기에 먼저 남습니다.');return;}
+    if(!navigator.onLine){showPipelineFailure('인터넷 연결이 없어 AI 정리를 시작하지 않았습니다.');return;}
     const waitToken=beginWaitRequest();$('waitMsg').textContent='사라가 AI 정리 도구로 읽고 있어요';go('wait');
     try{
-      const r=await organize(t);if(!waitRequestActive(waitToken))return;if(r.status==='crisis_hold'){enterCrisis(t);return;}
+      const r=await organize(t,{stage:'questions'});if(!waitRequestActive(waitToken))return;if(r.status==='crisis_hold'){enterCrisis(t);return;}
       cur.cloud={provider:r.provider,model:r.model,draft:r.draft,cleanupPending:!!r.cleanupPending};cur.questions=normalizedQuestions(r.draft?.confirmation_questions||[]);cur.answers=new Array(cur.questions.length).fill('');cur.roomSuggestions=[...new Set((r.draft?.room_candidates||[]).map(mapRoom).filter(Boolean))].slice(0,3);
-      renderCoreQuestions((labels[r.provider]||r.provider)+' · '+r.model+'이 원문을 읽고 확인 질문을 제안했습니다.'+(r.cleanupPending?' 임시 서버 기록 정리는 연결 복귀 시 다시 확인합니다.':''));
-    }catch(e){if(!waitRequestActive(waitToken))return;cur.questions=DEFAULT_CONFIRM_QS.slice();cur.answers=new Array(cur.questions.length).fill('');setAiConnectionState('local','AI 연결을 통과하지 못해 로컬 흐름으로 계속합니다: '+(e.message||e));renderCoreQuestions('AI 배관을 통과하지 못해 기준문서의 기본 확인 질문을 표시했습니다. 원문은 사용자별 이 기기 보관함에 남길 수 있습니다.');}
+      if(cur.questions.length){renderCoreQuestions((labels[r.provider]||r.provider)+' · '+r.model+'이 꼭 확인할 질문만 제안했습니다.');}
+      else{await makeReport(false);}
+    }catch(e){if(!waitRequestActive(waitToken))return;showPipelineFailure(e.message||e);}
   };
-  makeReport=function(withAnswers){
+  makeReport=async function(withAnswers){
     const typed=collectCoreAnswers(),protectionText=[cur.text,...typed].join('\n');if(hasCrisis(protectionText)){enterCrisis(protectionText);return;}cur.answers=withAnswers?typed:new Array(cur.questions.length).fill('');
-    if(cur.cloud?.draft){const report=mapDraft(cur.cloud.draft);cur.questions.forEach((q,i)=>addAnswer(report,q,cur.answers[i]||''));cur.aiDraft=normalizeCoreReport(report);cur.reportSource='ai';if(!cur.roomSuggestions?.length)cur.roomSuggestions=localRoomSuggestions();showCoreReport();return;}
-    cur.aiDraft=localCoreReport();cur.reportSource='local';cur.roomSuggestions=localRoomSuggestions();showCoreReport();
+    const signature=JSON.stringify({text:cur.text,pieceWhen:cur.pieceWhen,questions:cur.questions,answers:cur.answers});if(cur.aiDraft&&cur.reportInputSignature===signature){showCoreReport();return;}cur.reportInputSignature=signature;cur.draftEdits=null;
+    const waitToken=beginWaitRequest();$('waitMsg').textContent='사라가 원문과 확인 답변을 다시 읽고 있어요';go('wait');
+    try{
+      const r=await organize(cur.text,{stage:'report',provider:cur.cloud?.provider||providerValue(),questions:cur.questions,answers:cur.answers});if(!waitRequestActive(waitToken))return;if(r.status==='crisis_hold'){enterCrisis(protectionText);return;}
+      cur.cloud={provider:r.provider,model:r.model,draft:r.draft,cleanupPending:!!r.cleanupPending};cur.aiDraft=normalizeCoreReport(mapDraft(r.draft),true);cur.reportSource='ai';cur.roomSuggestions=[...new Set((r.draft?.room_candidates||[]).map(mapRoom).filter(Boolean))].slice(0,3);showCoreReport();
+    }catch(e){if(!waitRequestActive(waitToken))return;cur.reportInputSignature='';showPipelineFailure(e.message||e,cur.questions.length>0);}
   };
   const baseConfirmCore=confirmCoreReport;
   confirmCoreReport=function(){return baseConfirmCore();};
