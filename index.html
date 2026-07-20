@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>사라의 집 · v1.0.2 집 관리실</title>
+<title>사라의 집 · v1.0.3 어디로 갈까요</title>
 <!--
+  사라의 집 v1.0.3 · 어디로 갈까요? 통합 검색대 시공본 (전용 화면·로컬 읽기 전용 검색·검색어 미저장·AI 초안 제외·강한 보호 완전 제외)
+  ── v1.0.3 (나온) ── v1.0.2 기반. scr-wherego 신설. 보수1: 오늘의 자리 완전 원복(v1.0.2와 동일),
+     어디로 갈까요를 사이드바 오늘의 자리 바로 아래로 이동(목업 순서), 집 안내 재진입은 검색대 안으로. 저장키·DB·Edge·기존 검색 무변경.
+  ── v1.0.2 이력은 아래 원문 유지 ──
   사라의 집 v1.0.2 · 집 관리실 5탭 시공본 (집의 구조·입주자의 기준·기억 서랍 골격·관리실 직원·설계 기록 2계층)
   ── v1.0.2 (나온) ── v1.0.1 기반. scr-design만 재구성: 기존 자산(요약·그리드·설계 기록·저장 폼) 원문 그대로 탭 안으로 이사.
      새 저장키·DB 필드·API 없음. 기억·직원 요청은 표시 골격만(기능 없음). HOUSE_STATUS 원본 라벨 불변(관리실 표기만 별도 매핑).
@@ -1865,6 +1869,58 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
 .manage-close-day:hover{background:#f7edd9}
 @media(max-width:900px){.manage-top-grid{grid-template-columns:repeat(3,1fr)}.manage-staff-grid{grid-template-columns:repeat(2,1fr)}.manage-memory-zones{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.manage-criteria{grid-template-columns:1fr}.manage-top-grid{grid-template-columns:1fr 1fr}.manage-tab{min-width:88px}}
+/* ── v1.0.3 · 어디로 갈까요? 통합 검색대 ── */
+.wg-page{max-width:980px;margin:0 auto;padding-bottom:40px}
+.wg-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;border:1px solid #e9dcc2;border-radius:22px;background:linear-gradient(145deg,#fffdf8,#faf3e4);padding:24px 26px;margin-bottom:16px;box-shadow:0 12px 30px rgba(105,77,44,.07)}
+.wg-kicker{font-size:10px;font-weight:900;letter-spacing:.22em;color:#a4854f}
+.wg-hero h1{font-size:26px;color:#4a3829;margin:6px 0 2px}
+.wg-sub{margin:0 0 2px;font-size:13px;color:#7a6a4a;font-weight:700}
+.wg-desc{margin:0 0 14px;font-size:12px;color:#8a8172}
+.wg-searchrow{display:flex;gap:9px}
+.wg-inputwrap{position:relative;flex:1;min-width:0}
+.wg-lens{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#a99668;font-size:16px}
+#wgInput{width:100%;border:1.5px solid #e2d4b8;border-radius:13px;padding:13px 14px 13px 36px;min-height:48px;font:500 13.5px inherit;color:#3a3427;background:#fff}
+#wgInput:focus{outline:0;border-color:#c9a35e}
+.wg-run{border:0;border-radius:13px;padding:13px 20px;min-height:48px;background:linear-gradient(135deg,#c9a35e,#a9823f);color:#fff;font:800 13px inherit;cursor:pointer;white-space:nowrap;box-shadow:0 6px 16px rgba(169,130,63,.2)}
+.wg-examples{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:12px}
+.wg-ex-label{font-size:10.5px;font-weight:800;color:#9a8a68}
+.wg-chip{border:1px solid #e6d9bd;background:#fff;color:#7a6a4a;border-radius:999px;padding:7px 12px;min-height:34px;font:700 11px inherit;cursor:pointer}
+.wg-chip:hover{background:#fbf4e6}
+.wg-hero-art{align-self:center;font-size:52px;color:#e4d3ac;position:relative;line-height:1;padding-right:6px}
+.wg-hero-art span{position:absolute;right:-6px;bottom:-4px;font-size:30px;color:#c9a35e}
+.wg-filters{display:flex;gap:7px;margin:0 0 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.wg-filter{flex:0 0 auto;border:1px solid #e3dccd;background:#fff;color:#7a7160;border-radius:999px;padding:10px 18px;min-height:44px;font:800 12px inherit;cursor:pointer;white-space:nowrap}
+.wg-filter.on{background:#3a4568;border-color:#3a4568;color:#fff}
+.wg-result-head{display:flex;align-items:baseline;gap:10px;margin:4px 2px 12px}
+.wg-result-head h2{font:700 15.5px 'Gowun Batang',serif;color:#4a3829;margin:0}
+.wg-result-head span{font-size:11px;color:#9a8a68;font-weight:800}
+.wg-group{border:1px solid #ece3d2;border-radius:16px;background:#fffdf8;margin-bottom:14px;overflow:hidden}
+.wg-group-head{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid #f0e9dc;background:#fdfaf3}
+.wg-group-head .wg-gico{width:26px;height:26px;border-radius:9px;background:#f1e6cf;color:#8a6a3a;display:grid;place-items:center;font-size:13px}
+.wg-group-head b{font-size:13px;color:#4a3f2e}
+.wg-group-head small{font-size:10px;color:#9a917f;background:#f5efe0;border-radius:999px;padding:3px 9px;font-weight:800}
+.wg-hits{padding:8px}
+.wg-hit{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;border:1px solid transparent;border-radius:12px;padding:11px 12px}
+.wg-hit:hover{background:#fbf7ee;border-color:#efe2c8}
+.wg-hit-main{min-width:0}
+.wg-hit-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.wg-room{font-size:10px;font-weight:800;color:#6a5a92;background:#f1edf8;border-radius:999px;padding:3px 8px}
+.wg-date{font-size:10.5px;color:#9a917f}
+.wg-state{font-size:9.5px;font-weight:800;color:#7a6a4a;background:#f5eedd;border-radius:999px;padding:3px 8px}
+.wg-state.local{color:#8b651b;background:#f7edd6}
+.wg-hit-title{font-size:13px;font-weight:700;color:#3f3a2e;margin:0 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wg-hit-preview{font-size:11.5px;color:#8a8172;line-height:1.6;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.wg-open{border:0;background:none;color:#9a7a3c;font:800 11.5px inherit;cursor:pointer;white-space:nowrap;min-height:44px;padding:8px 4px}
+.wg-empty{background:#fffdf8;border:1px solid #ece3d2;border-radius:16px;padding:30px 18px;text-align:center;margin-bottom:14px}
+.wg-empty b{display:block;font-size:13.5px;color:#4a3f2e;margin-bottom:6px}
+.wg-empty p{margin:0;font-size:11.5px;color:#9a917f}
+.wg-protect{display:flex;gap:12px;align-items:flex-start;border:1px dashed #ddcda6;border-radius:15px;background:#fdfaf1;padding:15px 17px;margin:6px 0 4px}
+.wg-lock{font-size:16px}
+.wg-protect b{display:block;font-size:12.5px;color:#5a4a2e;margin-bottom:3px}
+.wg-protect p{margin:0;font-size:11px;color:#8a8172;line-height:1.6}
+.wg-home-guide-btn{display:inline-flex;align-items:center;gap:6px;margin:2px auto 12px;border:1px solid #e6d9bd;background:#fffdf8;color:#7a6a4a;border-radius:999px;padding:9px 16px;min-height:40px;font:800 11.5px inherit;cursor:pointer}
+.wg-home-guide-wrap{text-align:center}
+@media(max-width:640px){.wg-hero{grid-template-columns:1fr;padding:19px}.wg-hero-art{display:none}.wg-searchrow{flex-direction:column}.wg-run{width:100%;min-height:48px}.wg-hit{grid-template-columns:1fr}.wg-open{justify-self:end}}
 
 .sc-preview-wrap{margin-top:14px;border:1px solid #e2d4bf;border-radius:16px;background:#fffdf8;overflow:hidden}
 .sc-preview-head{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid #efe6d6;font:700 12.5px 'Gowun Batang',serif;color:#5a4a2e}
@@ -1881,12 +1937,12 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
     <div class="hs-group v52-primary-menu v57-sidebar-group">
       <span class="hs-label">주요 공간</span>
       <button class="hs-item on" data-shell-route="home" onclick="nav('home')"><span class="hs-ico">⌂</span>오늘의 자리</button>
+      <button class="hs-item" data-shell-route="wherego" onclick="openWhereGo()"><span class="hs-ico">⌕</span>어디로 갈까요?</button>
       <button class="hs-item" data-shell-route="lightroom" onclick="nav('lightroom')"><span class="hs-ico">✦</span>말씀과 기도의 자리</button>
       <button class="hs-item" data-shell-route="people-life" onclick="openPeopleLife()"><span class="hs-ico">♧</span>함께한 사람들의 자리</button>
       <button class="hs-item" data-shell-route="finance-life" onclick="openMoneyLife()"><span class="hs-ico">₩</span>삶을 꾸리는 자리</button>
       <button class="hs-item" data-shell-route="chron" onclick="nav('chron')"><span class="hs-ico">▤</span>내 삶의 서재</button>
       <button class="hs-item" data-shell-route="house-map" onclick="openHouseMap()"><span class="hs-ico">▦</span>방 전체 보기</button>
-      <button class="hs-item hs-foyer-reentry" type="button" onclick="showSaraFoyer(true)"><span class="hs-ico">✦</span>어디로 갈까요?</button>
     </div>
     <div class="hs-group v57-sidebar-group">
       <span class="hs-label">생활과 집 관리</span>
@@ -1899,7 +1955,7 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
   </aside>
   <button class="mobile-sidebar-overlay" type="button" aria-label="메뉴 닫기" onclick="closeMobileSidebar()"></button>
   <main class="house-main">
-    <header class="house-topbar"><div class="ht-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" onclick="openMobileSidebar()">☰</button><div class="ht-title" id="shellTopTitle">오늘의 자리</div></div><div class="ht-user"><div class="ht-avatar" id="shellUserInitial">입</div><div><div class="ht-name" id="shellUserName">입주자님</div><div class="ht-sub">내 기록 공간 · v1.0.2 집 관리실</div></div></div></header>
+    <header class="house-topbar"><div class="ht-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" onclick="openMobileSidebar()">☰</button><div class="ht-title" id="shellTopTitle">오늘의 자리</div></div><div class="ht-user"><div class="ht-avatar" id="shellUserInitial">입</div><div><div class="ht-name" id="shellUserName">입주자님</div><div class="ht-sub">내 기록 공간 · v1.0.3 어디로 갈까요</div></div></div></header>
     <div class="house-content">
 <div class="app">
 
@@ -2181,7 +2237,7 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
     <div class="v52-settings-card"><h2>내 계정</h2><div class="v52-setting-row"><span>로그인 이메일</span><b id="v52SettingsEmail">확인 중</b></div><div class="v52-setting-actions"><button onclick="v52ResetFromSettings()">비밀번호 재설정 메일</button><button class="danger" onclick="SaraCloud.logoutAndLock()">로그아웃</button></div></div>
     <div class="v52-settings-card"><h2>첫 화면 맞춤 설정</h2><p>이 집에서 먼저 하고 싶은 일과 즐겨찾는 공간을 다시 고를 수 있습니다. 바꿔도 기존 기록은 지워지지 않습니다.</p><div class="movein-settings-summary" id="moveinSettingsSummary">기본 집을 사용하고 있습니다.</div><div class="v52-setting-actions"><button onclick="openMoveInPlanner()">첫 화면 다시 맞추기</button></div></div>
     <div class="v52-settings-card"><h2>내 기록</h2><p>기록을 내보내고 다시 보거나 삭제할 수 있습니다.</p><div class="v52-setting-actions"><button onclick="nav('export')">기록 내보내기</button><button onclick="nav('myhouse')">기록 다시 보기·삭제</button><button onclick="SaraCloud.syncOutbox().then(renderV52Settings)">동기화 다시 시도</button></div></div>
-    <div class="v52-settings-card"><h2>집 상태</h2><div class="v52-setting-row"><span>현재 상태</span><b id="v52SyncStatus">확인 중</b></div><div class="v52-setting-row"><span>동기화 대기</span><b id="v52OutboxStatus">확인 중</b></div><div class="v52-setting-row"><span>마지막 동기화</span><b id="v52LastSync">아직 없음</b></div><div class="v52-setting-row"><span>집 버전</span><b>v1.0.2 · 집 관리실</b></div><details class="v52-diagnostic"><summary>연결에 문제가 있어요</summary><p>로그인이나 AI 연결에 문제가 있을 때만 진단 화면을 엽니다. 공개 연결 주소와 키는 집에 내장되어 있으며, 이 화면에서는 현재 연결 상태와 오류 이유를 확인합니다.</p><button onclick="SaraCloud.openPanel()">연결 진단 열기</button></details></div>
+    <div class="v52-settings-card"><h2>집 상태</h2><div class="v52-setting-row"><span>현재 상태</span><b id="v52SyncStatus">확인 중</b></div><div class="v52-setting-row"><span>동기화 대기</span><b id="v52OutboxStatus">확인 중</b></div><div class="v52-setting-row"><span>마지막 동기화</span><b id="v52LastSync">아직 없음</b></div><div class="v52-setting-row"><span>집 버전</span><b>v1.0.3 · 어디로 갈까요</b></div><details class="v52-diagnostic"><summary>연결에 문제가 있어요</summary><p>로그인이나 AI 연결에 문제가 있을 때만 진단 화면을 엽니다. 공개 연결 주소와 키는 집에 내장되어 있으며, 이 화면에서는 현재 연결 상태와 오류 이유를 확인합니다.</p><button onclick="SaraCloud.openPanel()">연결 진단 열기</button></details></div>
   </div>
 </section>
 
@@ -3148,8 +3204,8 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
 
 <div class="design-principle">
       <div class="dp-mark">S</div>
-      <div><b>집 안에서 사라가 하는 일</b><p>사라는 집 안의 자리와 사용 흐름을 안내합니다. 기록 연결과 다음 행동을 자동으로 결정하지 않습니다.</p></div>
-      <div class="dp-flow"><span>말하기</span><i>→</i><span>확인</span><i>→</i><span>내 기록</span><i>→</i><span>필요한 자리는 내가 선택</span></div>
+      <div><b>디지털 집사 사라가 하는 일</b><p>한 번 남긴 기록을 사람·돈·일정·몸·콘텐츠와 연결하고, 사용자가 확인한 다음 행동만 다시 보여줍니다.</p></div>
+      <div class="dp-flow"><span>말하기</span><i>→</i><span>확인</span><i>→</i><span>한 기록</span><i>→</i><span>여러 공간 연결</span></div>
     </div>
 <div class="design-guardrail"><b>집의 원칙</b><span>한 곳에 모으고</span><span>필요한 곳에 연결하고</span><span>사용자가 확인하고</span><span>말씀 앞에서 방향을 돌아봅니다.</span></div>
     </div>
@@ -3177,7 +3233,7 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
       </div>
       <div class="manage-empty">
         <b>아직 내가 확인해 남긴 기억이 없습니다.</b>
-        <p>입주자 개인화 뒤, 기억 흐름 연결 단계에서 열립니다.</p>
+        <p>기억을 제안하고 확인하는 흐름은 다음 단계에서 연결합니다.</p>
       </div>
     </div>
 
@@ -3200,8 +3256,8 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
       <details class="manage-full" id="manageLedgerFull">
         <summary>전체 기록 보기</summary>
         <div class="manage-full-body">
-<section class="design-ledger" aria-label="집의 설계 기록">
-      <div class="design-ledger-head"><div><span>HOUSE · 기록 근거형 설계 기록</span><h2>집의 설계 기록</h2><p>이곳에는 실제로 남은 결정과 검수 기록만 표시합니다. 기록이 없으면 없는 상태로 남깁니다.</p></div><b>⌂</b></div>
+<section class="design-ledger" aria-label="노아 설계 기록">
+      <div class="design-ledger-head"><div><span>NOAH · 기록 근거형 설계 도우미</span><h2>설계 기록</h2><p>노아는 이곳에 실제로 남은 결정만 근거로 답합니다. 기록이 없으면 ‘기록에서 찾지 못함’으로 남깁니다.</p></div><b>N</b></div>
       <div class="design-ledger-tabs">
         <button class="on" data-design-log-tab="decisions" onclick="setDesignLogTab('decisions')">확정·보류</button>
         <button data-design-log-tab="ideas" onclick="setDesignLogTab('ideas')">아이디어함</button>
@@ -3211,7 +3267,7 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
       </div>
       <div class="design-log-panel on" id="design-log-decisions"><div id="designDecisionList"></div></div>
       <div class="design-log-panel" id="design-log-ideas">
-        <div class="design-entry-form"><label for="designIdeaText">집의 공사 메모 남기기</label><textarea id="designIdeaText" placeholder="기능 아이디어, 새로 알게 된 사이트, 오류, 보류할 생각을 그대로 적어도 됩니다."></textarea><div class="design-entry-row"><select id="designIdeaKind"><option value="idea">아이디어</option><option value="work">업무 메모</option><option value="bug">오류</option><option value="hold">보류 제안</option></select><select id="designIdeaRoom"><option value="전체">관련 방 미정</option><option>함께한 사람들의 자리</option><option>삶을 꾸리는 자리</option><option>일과 계획</option><option>몸을 돌보는 자리</option><option>오늘의 식탁</option><option>말씀과 기도의 자리</option><option>콘텐츠 작업실</option><option>소리의 방</option><option>내 삶의 서재</option><option>생활도구 지도</option><option>집 관리실</option></select><button onclick="saveDesignIdea()">아이디어함에 저장</button></div><div class="err" id="designIdeaErr"></div></div>
+        <div class="design-entry-form"><label for="designIdeaText">노아에게 공사 메모 남기기</label><textarea id="designIdeaText" placeholder="기능 아이디어, 새로 알게 된 사이트, 오류, 보류할 생각을 그대로 적어도 됩니다."></textarea><div class="design-entry-row"><select id="designIdeaKind"><option value="idea">아이디어</option><option value="work">업무 메모</option><option value="bug">오류</option><option value="hold">보류 제안</option></select><select id="designIdeaRoom"><option value="전체">관련 방 미정</option><option>함께한 사람들의 자리</option><option>삶을 꾸리는 자리</option><option>일과 계획</option><option>몸을 돌보는 자리</option><option>오늘의 식탁</option><option>말씀과 기도의 자리</option><option>콘텐츠 작업실</option><option>소리의 방</option><option>내 삶의 서재</option><option>생활도구 지도</option><option>집 관리실</option></select><button onclick="saveDesignIdea()">아이디어함에 저장</button></div><div class="err" id="designIdeaErr"></div></div>
         <div id="designIdeaList"></div>
       </div>
       <div class="design-log-panel" id="design-log-qa">
@@ -3231,6 +3287,54 @@ body.onboarding .house-content .app{max-width:860px!important;padding-left:18px!
 
 
 
+
+<!-- ═══ 어디로 갈까요? · 통합 검색대 (v1.0.3) ═══ -->
+<section class="scr" id="scr-wherego">
+  <div class="wg-page">
+    <div class="wg-hero">
+      <div class="wg-hero-body">
+        <span class="wg-kicker">FIND A RECORD</span>
+        <h1 class="serif">어디로 갈까요?</h1>
+        <p class="wg-sub">집 안에 흩어진 내 기록을 찾아가는 자리</p>
+        <p class="wg-desc">기억나는 사람이나 사건, 말씀, 날짜 한 단어로 찾아보세요.</p>
+        <div class="wg-searchrow">
+          <div class="wg-inputwrap"><span class="wg-lens">⌕</span><input id="wgInput" type="search" autocomplete="off" placeholder="이름, 사건, 말씀 장절, 날짜를 적어보세요" onkeydown="if(event.key==='Enter'){runWhereGo();}"></div>
+          <button class="wg-run" type="button" onclick="runWhereGo()">기록 찾아보기</button>
+        </div>
+        <div class="wg-examples"><span class="wg-ex-label">예시 검색어</span>
+          <button class="wg-chip" type="button" onclick="wgExample('')">사람 이름</button>
+          <button class="wg-chip" type="button" onclick="wgExample('시편 56편')">시편 56편</button>
+          <button class="wg-chip" type="button" onclick="wgExample('2026년 7월')">2026년 7월</button>
+          <button class="wg-chip" type="button" onclick="wgExample('감사')">감사</button>
+        </div>
+      </div>
+      <div class="wg-hero-art" aria-hidden="true">⌂<span>⌕</span></div>
+    </div>
+
+    <div class="wg-filters" role="tablist" aria-label="검색 범위">
+      <button class="wg-filter on" data-wg-filter="all" onclick="wgSetFilter('all')">전체</button>
+      <button class="wg-filter" data-wg-filter="people" onclick="wgSetFilter('people')">사람</button>
+      <button class="wg-filter" data-wg-filter="records" onclick="wgSetFilter('records')">내 기록</button>
+      <button class="wg-filter" data-wg-filter="word" onclick="wgSetFilter('word')">말씀</button>
+    </div>
+
+    <div class="wg-result-head" id="wgResultHead" style="display:none"><h2 id="wgResultTitle"></h2><span id="wgCount"></span></div>
+    <div id="wgResults"></div>
+    <div class="wg-empty" id="wgEmpty" style="display:none">
+      <b>이 단어와 연결된 기록은 아직 찾지 못했어요.</b>
+      <p>다른 이름이나 날짜, 기억나는 한 단어로 다시 찾아볼 수 있어요.</p>
+    </div>
+
+    <div class="wg-home-guide-wrap"><button class="wg-home-guide-btn" type="button" onclick="showSaraFoyer(true)">✦ 무엇을 할지 고르고 싶어요 — 집 안내 열기</button></div>
+
+    <div class="wg-protect">
+      <span class="wg-lock">🔒</span>
+      <div><b>강한 보호 기록은 검색 결과에 표시하지 않습니다.</b><p>잠금 기능이 완성되기 전까지 제목과 내용 모두 검색대에서 제외합니다.</p></div>
+    </div>
+
+    <button class="manage-close-day" type="button" onclick="nav('home')">♡ 오늘은 여기까지</button>
+  </div>
+</section>
 
 <section class="scr" id="scr-tools">
   <button class="back" onclick="appBack('home')">← 오늘의 자리로</button>
@@ -3913,6 +4017,109 @@ function renderManageRecent(){
     : '<div class="manage-empty"><b>아직 남은 설계 기록이 없습니다.</b><p>공사 메모와 검수 기록을 남기면 이 자리에 보입니다.</p></div>';
 }
 
+/* ── v1.0.3 · 어디로 갈까요? 통합 검색대 (읽기 전용 · 검색어 미저장 · AI 추론 없음) ── */
+let wgFilter='all';                       /* 화면 상태 변수만 사용, 어디에도 저장하지 않음 */
+function openWhereGo(){ if(typeof closeMobileSidebar==='function') closeMobileSidebar(); resetWhereGo(); go('wherego'); }
+function resetWhereGo(){
+  wgFilter='all';
+  const i=document.getElementById('wgInput'); if(i) i.value='';
+  document.querySelectorAll('[data-wg-filter]').forEach(b=>b.classList.toggle('on',b.dataset.wgFilter==='all'));
+  const r=document.getElementById('wgResults'); if(r) r.innerHTML='';
+  const h=document.getElementById('wgResultHead'); if(h) h.style.display='none';
+  const e=document.getElementById('wgEmpty'); if(e) e.style.display='none';
+}
+function wgExample(v){
+  const i=document.getElementById('wgInput'); if(!i) return;
+  if(v){ i.value=v; runWhereGo(); } else { i.focus(); } /* '사람 이름' 칩은 안내용 — 입력창 포커스만 */
+}
+function wgSetFilter(f){
+  wgFilter=f;
+  document.querySelectorAll('[data-wg-filter]').forEach(b=>b.classList.toggle('on',b.dataset.wgFilter===f));
+  const i=document.getElementById('wgInput');
+  if(i && i.value.trim()) runWhereGo();
+}
+/* 검색대 전용 본문 함수 — AI 초안(aiDraft)·질문/답(qaPairs)은 포함하지 않음 */
+function whereGoText(f){
+  return [f.text,f.title,f.originalText,reportAsText(f.finalRecord),f.verse,f.src,f.note].filter(Boolean).join(' ');
+}
+function parseWhereGoDate(q){
+  let m=q.match(/^(\d{4})[.\-](\d{1,2})[.\-](\d{1,2})\.?$/); if(m) return {y:+m[1],mo:+m[2],d:+m[3]};
+  m=q.match(/^(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일$/); if(m) return {y:+m[1],mo:+m[2],d:+m[3]};
+  m=q.match(/^(\d{4})년\s*(\d{1,2})월$/); if(m) return {y:+m[1],mo:+m[2],d:null};
+  m=q.match(/^(\d{4})[.\-](\d{1,2})\.?$/); if(m) return {y:+m[1],mo:+m[2],d:null};
+  return null;
+}
+function wgDateMatchTs(ts,dt){ const d=new Date(ts); return d.getFullYear()===dt.y&&d.getMonth()+1===dt.mo&&(dt.d==null||d.getDate()===dt.d); }
+function wgDateMatchStr(s,dt){ const t=Date.parse(s); if(isNaN(t)) return false; return wgDateMatchTs(t,dt); }
+function searchHouse(qRaw,filter){
+  const q=String(qRaw||'').trim(); if(!q) return null;
+  const nq=normalizePersonName(q);
+  const dt=parseWhereGoDate(q);
+  const people=safeArray(DB.people);
+  const strongIds=new Set(people.filter(p=>p.privacy==='strong').map(p=>p.id));
+  /* 사람 매칭: 강한 보호 제외, 사용자가 등록한 이름·별명만 (AI 추론 없음) */
+  const matched=people.filter(p=>p.privacy!=='strong'&&nq&&personNames(p).some(n=>n.includes(nq)));
+  const matchedIds=new Set(matched.map(p=>p.id));
+  const storyFragIds=new Set(); matched.forEach(p=>safeArray(p.stories).forEach(s=>{ if(s.fragmentId) storyFragIds.add(s.fragmentId); }));
+  const frags=safeArray(DB.fragments).filter(f=>f.origin!=='sample');
+  const linked=[], mentioned=[];
+  frags.forEach(f=>{
+    const pids=Array.isArray(f.personIds)?f.personIds:[];
+    if(pids.some(id=>strongIds.has(id))) return;            /* 강한 보호 사람과 직접 연결된 기록 완전 제외 */
+    const isLinked=pids.some(id=>matchedIds.has(id))||storyFragIds.has(f.id);
+    const textHit=whereGoText(f).includes(q);
+    const dateHit=dt?wgDateMatchTs(f.ts,dt):false;
+    if(isLinked) linked.push(f);
+    else if(textHit||dateHit) mentioned.push(f);
+  });
+  linked.sort((a,b)=>b.ts-a.ts); mentioned.sort((a,b)=>b.ts-a.ts);
+  const worship=safeArray(DB.worshipRecords).filter(w=>{
+    const hit=[w.worshipName,w.biblePassage,w.sermonTitle,w.rememberedWord,w.receivedGrace,w.lifeResponse].filter(Boolean).join(' ').includes(q);
+    const dateHit=dt?wgDateMatchStr(w.date,dt):false;
+    return hit||dateHit;
+  }).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  const out={q,matched:filter==='word'?[]:matched,linked,mentioned,worship};
+  if(filter==='people'){ out.worship=[]; out.mentioned=out.mentioned.filter(()=>false); } /* 사람 필터: 연결 기록 중심 */
+  if(filter==='records'){ out.matched=[]; out.linked=[]; out.worship=[]; }
+  if(filter==='word'){ out.linked=[]; out.mentioned=out.mentioned.filter(f=>String(f.verse||'').includes(q)||fragmentRooms(f).includes('신앙')); }
+  return out;
+}
+function wgStateLabel(f){
+  const kind=f.finalRecord?'사용자 확정 기록':'사용자 원문';
+  const local=(f.syncState&&f.syncState!=='synced')?'<span class="wg-state local">이 기기에만</span>':'';
+  return `<span class="wg-state">${kind}</span>${local}`;
+}
+function wgFragHit(f,extra){
+  const preview=String(f.text||f.originalText||'').slice(0,140);
+  return `<div class="wg-hit"><div class="wg-hit-main"><div class="wg-hit-meta"><span class="wg-room">${esc(fragmentRoomLabel(f))}</span><span class="wg-date">${esc(fmt(f.ts))}</span>${wgStateLabel(f)}${extra||''}</div>${f.title?`<p class="wg-hit-title">${esc(f.title)}</p>`:''}<p class="wg-hit-preview">${esc(preview)}</p></div><button class="wg-open" type="button" onclick="openWhereGoHit('frag','${esc(f.id)}')">기록 열어보기 →</button></div>`;
+}
+function wgGroupHTML(icon,title,badge,inner){
+  return `<div class="wg-group"><div class="wg-group-head"><span class="wg-gico">${icon}</span><b>${esc(title)}</b><small>${esc(badge)}</small></div><div class="wg-hits">${inner}</div></div>`;
+}
+function runWhereGo(){
+  const i=document.getElementById('wgInput'); const q=(i?i.value:'').trim();
+  const head=document.getElementById('wgResultHead'), box=document.getElementById('wgResults'), empty=document.getElementById('wgEmpty');
+  if(!q){ if(box) box.innerHTML=''; if(head) head.style.display='none'; if(empty) empty.style.display='none'; if(i) i.focus(); return; }
+  const r=searchHouse(q,wgFilter); if(!r) return;
+  const parts=[];
+  if(r.matched.length||r.linked.length){
+    const personLine=r.matched.length?`<div class="wg-hit"><div class="wg-hit-main"><div class="wg-hit-meta"><span class="wg-room">함께한 사람들</span></div><p class="wg-hit-title">${r.matched.map(p=>esc(p.name)).join(', ')}</p><p class="wg-hit-preview">사용자가 직접 등록한 이름·별명과 일치하는 사람입니다.</p></div><button class="wg-open" type="button" onclick="openWhereGoHit('person','${esc(r.matched[0]?r.matched[0].id:'')}')">사람 기록 열어보기 →</button></div>`:'';
+    const linkedRows=r.linked.map(f=>wgFragHit(f)).join('');
+    if(personLine||linkedRows) parts.push(wgGroupHTML('☺','이 사람과 직접 연결한 기록','사용자가 직접 연결',personLine+linkedRows||''));
+  }
+  if(r.mentioned.length) parts.push(wgGroupHTML('✎',wgFilter==='word'?'말씀이 담긴 내 기록':'이름·단어가 글에 나온 기록','본문에 등장 · 같은 대상이라 단정하지 않음',r.mentioned.map(f=>wgFragHit(f)).join('')));
+  if(r.worship.length) parts.push(wgGroupHTML('📖','말씀과 기도에서 나온 기록','구절·기도·예배 기록',r.worship.map(w=>`<div class="wg-hit"><div class="wg-hit-main"><div class="wg-hit-meta"><span class="wg-room">예배기록</span><span class="wg-date">${esc(w.date||'')}</span></div><p class="wg-hit-title">${esc(w.worshipName||w.sermonTitle||'예배기록')}</p><p class="wg-hit-preview">${esc(String(w.biblePassage||w.rememberedWord||'').slice(0,140))}</p></div><button class="wg-open" type="button" onclick="openWhereGoHit('worship','${esc(w.id)}')">기록 열어보기 →</button></div>`).join('')));
+  const total=r.matched.length+r.linked.length+r.mentioned.length+r.worship.length;
+  if(head){ head.style.display='flex'; document.getElementById('wgResultTitle').textContent=`내 기록 안에서 ‘${q}’가 나온 자리`; document.getElementById('wgCount').textContent=`확인된 기록 ${total}건`; }
+  if(box) box.innerHTML=parts.join('');
+  if(empty) empty.style.display=total?'none':'block';
+}
+function openWhereGoHit(type,id){
+  if(type==='frag'){ openItem(id,'wherego'); return; }              /* itemBackGo의 nav(itemBack)로 검색대 복귀 */
+  if(type==='person'){ if(id){ selectedPersonId=id; } openPeopleLife(); return; }
+  if(type==='worship'){ openWorshipRecord(id); return; }            /* 복귀는 기존 예배 목록 경로(함수 무수정) */
+}
+
 function renderDesignRecords(){
   if(!DB)return;ensureDesignStudioSchema();
   const decisions=document.getElementById('designDecisionList');if(decisions)decisions.innerHTML=`<div class="design-record-list">${[...DESIGN_DECISIONS,...DESIGN_HOLDS].map(x=>designRecordHTML(x)).join('')}</div>`;
@@ -3943,13 +4150,13 @@ function shellRouteFor(screen){
   const groups={
     home:'home', steward:'steward', people:'people-life', money:'finance-life', ask:'write', wait:'write', 'core-report':'write', 'steward-review':'write', classify:'write', guide:'write', draft:'write', report:'write', rooms:'rooms', roomlist:'rooms', item:'rooms',
     lightroom:'lightroom', light:'lightroom', lightresult:'lightroom', reading:'lightroom', readlog:'lightroom', bookshelf:'lightroom', biblemap:'lightroom', journey:'lightroom', beside:'lightroom', 'word-picker':'lightroom', prayer:'lightroom', worship:'lightroom', 'worship-list':'lightroom', 'worship-view':'lightroom', 'worship-saved':'lightroom',
-    chron:'chron', past:'chron', drawer:'chron', 'house-map':'house-map', craft:'craft', stonecraft:'craft', sound:'house-map', table:'house-map', desk:'house-map', letter:'house-map', stones:'house-map', myhouse:'myhouse', tools:'tools', design:'design', 'settings-v52':'settings', helper:'myhouse', export:'myhouse', copy:'myhouse',
+    chron:'chron', past:'chron', drawer:'chron', 'house-map':'house-map', wherego:'wherego', craft:'craft', stonecraft:'craft', sound:'house-map', table:'house-map', desk:'house-map', letter:'house-map', stones:'house-map', myhouse:'myhouse', tools:'tools', design:'design', 'settings-v52':'settings', helper:'myhouse', export:'myhouse', copy:'myhouse',
     pause:'', close:''
   };
   return groups[screen]||'home';
 }
 function shellTitleFor(screen){
-  const titles={home:'오늘의 자리',steward:'오늘의 살핌',people:'함께한 사람들의 자리',money:'삶을 꾸리는 자리',ask:'짧은 확인 질문','core-report':'오늘의 기록 정리본','steward-review':'사라가 챙길 것 확인',classify:'삶의 영역 연결',guide:'사라와 함께 기록 정리하기',draft:'기록 초안 확인',report:'오늘의 기록 정리본',rooms:'내 삶 전체 보기',roomlist:'삶의 기록',item:'기록 다시 보기',lightroom:'말씀과 기도의 자리',light:'말씀 앞 질문',lightresult:'말씀으로 돌아보기',reading:'말씀 읽기의 자리',readlog:'읽기 기록',bookshelf:'읽은 말씀 책장',biblemap:'성경 역사 지도',journey:'인물의 여정',beside:'말씀 곁에 내 기록','word-picker':'삶의 기록으로 돌아보기',prayer:'기도의 자리',worship:'예배기록','worship-list':'예배기록','worship-view':'예배기록','worship-saved':'예배기록',chron:'내 삶의 서재',past:'지난 기억 남기기',drawer:'삶의 서랍','house-map':'방 전체 보기',craft:'사라의 작업실',stonecraft:'사라의 작업실 · 원석 정리',sound:'소리의 방',table:'오늘의 식탁',desk:'편지·글',letter:'편지 모음',stones:'아이디어 원석',myhouse:'기록과 내보내기',tools:'생활도구 지도',design:'집 관리실',helper:'도움말',export:'파일 내보내기',copy:'기록 전체',pause:'도움이 먼저 필요한 자리',close:'오늘은 여기까지',door:'현관',movein:'첫 화면 맞춤 설정'};
+  const titles={wherego:'어디로 갈까요?',home:'오늘의 자리',steward:'오늘의 살핌',people:'함께한 사람들의 자리',money:'삶을 꾸리는 자리',ask:'짧은 확인 질문','core-report':'오늘의 기록 정리본','steward-review':'사라가 챙길 것 확인',classify:'삶의 영역 연결',guide:'사라와 함께 기록 정리하기',draft:'기록 초안 확인',report:'오늘의 기록 정리본',rooms:'내 삶 전체 보기',roomlist:'삶의 기록',item:'기록 다시 보기',lightroom:'말씀과 기도의 자리',light:'말씀 앞 질문',lightresult:'말씀으로 돌아보기',reading:'말씀 읽기의 자리',readlog:'읽기 기록',bookshelf:'읽은 말씀 책장',biblemap:'성경 역사 지도',journey:'인물의 여정',beside:'말씀 곁에 내 기록','word-picker':'삶의 기록으로 돌아보기',prayer:'기도의 자리',worship:'예배기록','worship-list':'예배기록','worship-view':'예배기록','worship-saved':'예배기록',chron:'내 삶의 서재',past:'지난 기억 남기기',drawer:'삶의 서랍','house-map':'방 전체 보기',wherego:'어디로 갈까요?',craft:'사라의 작업실',stonecraft:'사라의 작업실 · 원석 정리',sound:'소리의 방',table:'오늘의 식탁',desk:'편지·글',letter:'편지 모음',stones:'아이디어 원석',myhouse:'기록과 내보내기',tools:'생활도구 지도',design:'집 관리실',helper:'도움말',export:'파일 내보내기',copy:'기록 전체',pause:'도움이 먼저 필요한 자리',close:'오늘은 여기까지',door:'현관',movein:'첫 화면 맞춤 설정'};
   return titles[screen]||'사라의 집';
 }
 function refreshShell(screen){
